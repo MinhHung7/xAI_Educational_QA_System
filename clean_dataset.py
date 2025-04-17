@@ -27,6 +27,10 @@ def convert_fol_syntax(expr):
 
     # Thay tất cả dấu nháy đơn bằng khoảng trắng
     expr = expr.replace("'", "")
+    # Thay tất cả chữ implies bằng →
+    expr = expr.replace("implies", "→")
+    # Thay tất cả chữ not bằng ¬
+    expr = expr.replace("not ", "¬")
 
     quantifier_map = {
         'ForAll': '∀',

@@ -202,18 +202,28 @@ def parse_fol_string_to_z3(fol_str):
     Returns:
         z3.ExprRef | None: Biểu thức Z3 tương ứng hoặc None nếu không parse được.
     """
-    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠']):
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
-    if "Enrolled" in fol_str or "GainsKnowledge" in fol_str or "Pass" in fol_str or "complete_theory" in fol_str or "instructor_absent" in fol_str or "plagiarized_material" in fol_str or "cheating_history" in fol_str:
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
+    ################   TEST #########
+    # fol_str = "Q(Const) → R(Const)"
 
+    ##################################
+
+    # Các trường họp chưa xử lý được
+    # ---------------------------------------------------------
+
+    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠', '≤']):
+        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
+        return None
+    if "perpendicular_bisector" in fol_str or "Enrolled" in fol_str or "GainsKnowledge" in fol_str or "Pass" in fol_str or "complete_theory" in fol_str or "instructor_absent" in fol_str or "plagiarized_material" in fol_str or "cheating_history" in fol_str:
+        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
+        return None
+    
+    # ---------------------------------------------------------
+
+    # Xóa các dấu sapce
     fol_str = fol_str.strip()
 
     # Nếu có dấu ngoặc tròn bọc toàn bộ thì loại bỏ
-    # while fol_str.startswith("(") and fol_str.endswith(")") and (fol_str[-2]==')' or '(' not in fol_str[1:-1]):
-    #     fol_str = fol_str[1:-1].strip()
+    # Ví dụ: ((A ∧ B) ∧ C) chuyển thành (A ∧ B) ∧ C
     def strip_outer_parentheses(fol_str):
         while fol_str.startswith("(") and fol_str.endswith(")"):
             depth = 0
@@ -233,10 +243,12 @@ def parse_fol_string_to_z3(fol_str):
         return fol_str
     fol_str = strip_outer_parentheses(fol_str)
 
-
-
-    while fol_str.startswith(","):
+    # Xét trường hợp ∃x, (P(x)), lúc này fol_str = ", (P(x))"
+    if fol_str.startswith(","):
         fol_str = fol_str[1:].strip()
+
+    # Xử lý dạng ForAll và Exist trong FOL con
+    # ----------------------------------------------------------------
 
     # Chuyển ForAll thành ∀
     match = re.fullmatch(r"ForAll\(\s*(\w+)\s*,\s*(.+)\s*\)", fol_str)
@@ -276,10 +288,13 @@ def parse_fol_string_to_z3(fol_str):
 
     fol_str = transform_negated_exists_to_forall(fol_str)
     fol_str = transform_negated_forall_to_exists(fol_str)
+
+    # ----------------------------------------------------------------
+
     print(fol_str)
 
     # ------------------------------------------------------------------------------------
-    # Mẫu: P hoặc ¬P
+    # Mẫu: P hoặc ¬P, không đối số
     if '(' not in fol_str:
         if '¬' in fol_str:
             fol_str = fol_str[1:]
@@ -288,13 +303,21 @@ def parse_fol_string_to_z3(fol_str):
         else:
             P = get_predicate(fol_str)
             return P
+    # ------------------------------------------------------------------------------------
 
 
-    # Mẫu: ¬P(x) và P(x)
-    # match = re.fullmatch(r"(¬*\w+\([^()]*\))", fol_str)
+    # Mẫu:
+    # ¬P(const)
+    # ¬P(x)
+    # P(ABC)
+    # P(x)
+    # Q(Const, Const)
+    # P(R(S(x)))
+    # P(Q(S(t)))
+    # P(S(a), V(b))
+    # proportional(sides(ABC), sides(DEF))
     match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)", fol_str)
-    if match and not fol_str.startswith('∀'):
-        # pred = match.group(1)
+    if match and not fol_str.startswith('∀') and not fol_str.startswith('∃') and fol_str == match.group():
         pred = match.group()
         pred_name, args = pred.split('(', 1)
 
@@ -316,6 +339,7 @@ def parse_fol_string_to_z3(fol_str):
                     args.append(predicate)
                 
                 P = get_predicate(pred_name, *args)
+                return P(*args)
             else:
                 args = args[:-1]
                 # args = Q(S(t))
@@ -336,7 +360,6 @@ def parse_fol_string_to_z3(fol_str):
                 return z3.Not(P(*args))
             else:
                 return P(*args)
-
 
     # Mẫu:
     # ∃x (P(x))  
@@ -365,54 +388,34 @@ def parse_fol_string_to_z3(fol_str):
         elif sign == '∃':
             return z3.Exists([var], predicate)
         
-    # Mẫu 2b: ∀x(P(...) → (Q(x) ∨ R(x)))
-    match = re.fullmatch(r"∀([a-zA-z]+)\s*\(\s*(.*?)\s*→\s*\((.*?)∨(.*?)\)\s*\)", fol_str)
-    if match:
-        var_name = match.group(1)
-        left_expr = match.group(2).strip()
-        right_expr1 = match.group(3).strip()
-        right_expr2 = match.group(4).strip()
-
-        local_var = z3.Const(var_name, Item)  # Hoặc IntSort nếu dùng số
-
-        def parse_predicate(pred_str):
-            name_and_args = re.match(r"(\w+)\(([^()]*)\)", pred_str)
-            if name_and_args:
-                pred_name = name_and_args.group(1)
-                args = [arg.strip() for arg in name_and_args.group(2).split(",")]
-                z3_args = [local_var if arg == var_name else z3.Const(arg, Item) for arg in args]
-                pred_func = get_predicate(pred_name, *z3_args)
-                return pred_func(*z3_args)
-            else:
-                raise ValueError(f"Không thể phân tích: {pred_str}")
-
-        left_pred = parse_predicate(left_expr)
-        right_pred1 = parse_predicate(right_expr1)
-        right_pred2 = parse_predicate(right_expr2)
-
-        return z3.ForAll([local_var], z3.Implies(left_pred, z3.Or(right_pred1, right_pred2)))
-    
-    
-
-    # Matching the structure of ∀s∀t(Retention(s,t) = e^(-t/s))
-    # match = re.fullmatch(r"∀([a-z])∀([a-z])\(Retention\(\1,\2\)\s*=\s*e\^\(-\2/\1\)\)", fol_str)
-    
+    # # Mẫu 2b: ∀x(P(...) → (Q(x) ∨ R(x)))
+    # match = re.fullmatch(r"∀([a-zA-z]+)\s*\(\s*(.*?)\s*→\s*\((.*?)∨(.*?)\)\s*\)", fol_str)
     # if match:
-    #     s_var = match.group(1)
-    #     t_var = match.group(2)
-        
-    #     # Create Z3 variables for s and t
-    #     s = z3.Real(s_var)
-    #     t = z3.Real(t_var)
+    #     var_name = match.group(1)
+    #     left_expr = match.group(2).strip()
+    #     right_expr1 = match.group(3).strip()
+    #     right_expr2 = match.group(4).strip()
 
-    #     retention = z3.Function('Retention', z3.RealSort(), z3.RealSort(), z3.RealSort())
+    #     local_var = z3.Const(var_name, Item)  # Hoặc IntSort nếu dùng số
 
-    #     expr = z3.ForAll([s, t], retention(s, t) == z3.Exp(-t / s))
+    #     def parse_predicate(pred_str):
+    #         name_and_args = re.match(r"(\w+)\(([^()]*)\)", pred_str)
+    #         if name_and_args:
+    #             pred_name = name_and_args.group(1)
+    #             args = [arg.strip() for arg in name_and_args.group(2).split(",")]
+    #             z3_args = [local_var if arg == var_name else z3.Const(arg, Item) for arg in args]
+    #             pred_func = get_predicate(pred_name, *z3_args)
+    #             return pred_func(*z3_args)
+    #         else:
+    #             raise ValueError(f"Không thể phân tích: {pred_str}")
 
-    #     return expr
-        
-    # -----------------------------------------------------------------------------------
+    #     left_pred = parse_predicate(left_expr)
+    #     right_pred1 = parse_predicate(right_expr1)
+    #     right_pred2 = parse_predicate(right_expr2)
 
+    #     return z3.ForAll([local_var], z3.Implies(left_pred, z3.Or(right_pred1, right_pred2)))
+    
+    
     # ∀a∀b∀c((higher(a, b) ∧ higher(b, c)) → higher(a, c))
     match = re.fullmatch(
         r"∀(\w)∀(\w)∀(\w)\s*\(\s*\((.*?)\)\s*→\s*(\w+)\((.*?)\)\s*\)", fol_str)
@@ -483,14 +486,10 @@ def parse_fol_string_to_z3(fol_str):
     
 
     # Mẫu : 
-    #       ¬P(const)
-    #       ¬P(x)
-    #       P(x)
-    #       P(Const) ∧ Q(Const) hoặc Q(Const, Const)
-    #       P(R(S(x)))
+    #       P(Const) ∧ Q(Const)
     #       P(R(S(x)) ∧ Q(Const)) ∧ Q(Const) -> Q(Const) ∧ Q(Const) -> Q(Const)
     #       Q(Const) -> Q(Const)
-    if not fol_str.startswith(('∀', '∃')) and '=' not in fol_str:
+    if not fol_str.startswith(('∀', '∃')):
         arrow_parts = split_top_level(fol_str, delimiter='→')
         # Nếu fol_str = "P(R(S(x)) ∧ Q(Const)) ∧ (Q(Const) → Q(Const)) ∧ Q(Const) → Q(Const)"
         # thì arrow_parts gồm:
@@ -505,7 +504,6 @@ def parse_fol_string_to_z3(fol_str):
         for arrow_part in arrow_parts:
             
             if split_top_level(arrow_part, delimiter='∧')[0] != arrow_part.strip():
-
                 hat_parts = split_top_level(arrow_part, delimiter='∧')
                 # hat_parts gồm:
                 # P(R(S(x)) ∧ Q(Const))
@@ -527,7 +525,7 @@ def parse_fol_string_to_z3(fol_str):
                     z3_parts.append(z3.And(*hat_predicates))
 
             else: # split_top_level(arrow_part, delimiter='∨') != arrow_part.strip():
-                
+
                 v_parts = split_top_level(arrow_part, delimiter='∨')
 
                 # Tạo predicates để nối tất cả các hatparts lại với nhau
@@ -586,7 +584,7 @@ def parse_fol_string_to_z3(fol_str):
 
         # Toàn bộ biểu thức
         return z3.ForAll(arg1, z3.Implies(left_pred, exists_expr))
-    
+
     # *** Thêm các quy tắc regex khác cho các mẫu FOL bạn tìm thấy trong dataset ***
 
     # Nếu không khớp mẫu nào

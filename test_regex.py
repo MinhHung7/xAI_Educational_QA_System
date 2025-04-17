@@ -1,13 +1,8 @@
 import regex
 
-fol_str = "∀x(P(x, A) → Q(x, B))"
+fol_str = "Q(Const)"
 
-# Regex có hỗ trợ đệ quy
-pattern = r"¬*\w+\((?:[^()]+|(?R))*\)"
-
-match = regex.search(pattern, fol_str)
-
-if match:
-    print("✅ Match:", match.group())
-else:
-    print("❌ No match")
+match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)", fol_str)
+if match and not fol_str.startswith('∀'):
+    pred = match.group()
+    print(pred)
