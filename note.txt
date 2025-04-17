@@ -1,0 +1,16 @@
+z3 hoạt động prolog
+Đưa cho z3 mệnh đề logic, thì nó có thể trả lời đc (A, "yes", "no") -> trả về idx
+z3 cần 1 kho lưu trữ FOL
+
+"một" -> 1
+FOL_str -> FOL
+
+predicate(var)
+Để truy vấn, chuyển questions thành FOL -> LLMs (premises-NL, premises-FOL)
+
+Sau khi có đc question_FOL -> z3 -> answer + idx
+Tạo explaination -> LLMs (answer + idx + premises-NL[idx])
+
+Mênh đồ logic 
+    - predicate (trả về bool)
+    - function (trả về giá trị số)

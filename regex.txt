@@ -1,0 +1,74 @@
+------------------------------
+¬P(const)
+¬P(x)
+P(ABC)
+P(x)
+P(Const) ∧ Q(Const) hoặc Q(Const, Const)
+P(R(S(x)))
+P(R(S(x)) ∧ Q(Const)) ∧ Q(Const) -> Q(Const) ∧ Q(Const) -> Q(Const)
+Q(Const) -> Q(Const)
+P(Q(S(t)))
+P(S(a), V(b))
+P(no_const)
+
+S(a), V(b)
+-------------------------------
+
+∃x (P(x))  
+∀x (P(x))
+∀x (P(x) → Q(x))
+∀x (¬P(x) → ¬Q(x))
+∀x ((P(x) ∧ Q(x)) → R(x))
+∀a((P(a) ∧ Q(R(a))) → S(a))
+
+P(S(a, b), c)
+-------------------------------
+
+P(const) = const    -> chưa xong
+
+--------------------------------------------------
+instructor_absent(s)
+instructor_absent(Lan, '8:15', '25/3/2025')
+------------------------------------------------------
+
+
+∀s∀t(Retention(s,t) = e^(-t/s)) -> chưa xử lý
+
+
+
+
+∀x(P(x, Const) → (Q(x) ∨ R(x)))
+∀x ((P(x) > const) → Q(x))   -> chưa xử lý
+∀x ((P(x) ∧ Q(x) > const) → Q(x))   -> chưa xử lý
+∀x∀h((P(x, h) ∧ h ≥ const) → Q(x)) -> chưa xử lý
+∀s∀m((P(s,m) ≥ 80) → Q(s,m)) -> chưa xử lý
+
+
+∀x(P(x) → (∃d, Q(x, d) ∧ R(d, Const)))
+
+
+∀x ((P(x) ∧ Q(x)) → Q(const))
+∀x ((P(x, const) ∧ Q(x, const)) → R(x))
+
+∀x (P(x, const) → Q(x))
+∀x (P(x, const) → Q(x, const))
+∀x ((P(x, const) ∧ Q(x, const)) → R(x, const))
+
+∀x∀d((P(x, d) ∧ Q(x) ∧ T(x)) → R(x))
+
+
+-------------------------------------
+∀s∀m((P(s,m) ∧ Q(s,m)) → R(s,m))
+∀s∀m (P(s,m) ∧ Q(s,m)) → R(s,m)
+∀s∀m(¬P(s,m) → Q(s,m))
+∀s∀m (P(s,m) ∧ Q(s,m)) → R(s,m) ∧ S(s,m)
+-------------------------------------
+
+∀s∀t(P(s,t) = e^(-t/S))
+
+∀a∀b∀c((higher(a, b) ∧ higher(b, c)) → higher(a, c))
+
+
+
+
+Warning: Could not parse FOL string with current rules
