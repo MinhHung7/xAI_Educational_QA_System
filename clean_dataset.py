@@ -31,6 +31,14 @@ def convert_fol_syntax(expr):
     expr = expr.replace("implies", "→")
     # Thay tất cả chữ not bằng ¬
     expr = expr.replace("not ", "¬")
+    # Thay tất cả ~ bằng ¬
+    expr = expr.replace("~", "¬")
+    # Thay tất cả & bằng ∧
+    expr = expr.replace("&", "∧")
+    # Thay tất cả "):" bằng ")↔"
+    expr = expr.replace("):", ")↔")
+    # Thay tất cả "Hà" bằng "Ha"
+    expr = expr.replace("Hà", "Ha")
 
     quantifier_map = {
         'ForAll': '∀',

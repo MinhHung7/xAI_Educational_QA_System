@@ -1,1 +1,1 @@
-MSc
+return z3.ForAll([var], predicate)

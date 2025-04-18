@@ -16,15 +16,11 @@ def split_top_level(expr, delimiter='→'):
         i += 1
     parts.append(expr[last:].strip())
 
-
-
     return parts
 
 # Thử nghiệm
-expr = "P(R(S(x)) ∧ Q(Const)) ∧ (Q(Const) → Q(Const)) ∧ Q(Const) → Q(Const)"
-parts = split_top_level(expr, delimiter='→')
+expr = "GradeA(Tuan, x), 3"
+parts = split_top_level(expr, delimiter=',')
 for part in parts:
-    sub_part = split_top_level(part, delimiter='∧')
-
-    for part in sub_part:
-        print(part)
+    
+    print(part)

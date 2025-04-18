@@ -132,56 +132,48 @@ def get_predicate(name, *arg_sorts_for_inference):
     clean_name = name.strip()
     if not clean_name:
         raise ValueError("Predicate name cannot be empty")
+    
+    arity = len(arg_sorts_for_inference)
+    cache_key = (clean_name, arity)
 
-    if clean_name not in predicate_cache:
-        print(f"  Defining Predicate: {clean_name}")
+    if cache_key not in predicate_cache:
+        print(f"  Defining Predicate: {clean_name} with arity {arity}")
+
         if clean_name in PREDEFINED_SIGNATURES:
             sig = PREDEFINED_SIGNATURES[clean_name]
             print(f"    Using predefined signature: {[s.name() for s in sig[:-1]]} -> {sig[-1].name()}")
-            predicate_cache[clean_name] = z3.Function(clean_name, *sig)
+            predicate_cache[cache_key] = z3.Function(clean_name, *sig)
         else:
-            
             # -------------------------------------
-            # Trường hợp đặc biệt
-            if clean_name == "complete_theory":
-                if len(arg_sorts_for_inference) == 1:
-                    # Sử dụng predicate với một đối số
-                    predicate_cache[clean_name] =  z3.Function(clean_name, Item, z3.BoolSort())
-                elif len(arg_sorts_for_inference) == 2:
-                    # Sử dụng predicate với hai đối số (tên sinh viên và ngày)
-                    predicate_cache[clean_name] =  z3.Function(clean_name, Item, Item, z3.BoolSort())
+            num_args = len(arg_sorts_for_inference)
+            inferred_arg_sorts = []
+            valid_inference = True
+            if num_args > 0:
+                for arg in arg_sorts_for_inference:
+                    if hasattr(arg, 'sort') and callable(arg.sort):
+                        inferred_arg_sorts.append(arg.sort())
+                    else:
+                        print(f"    Warning: Cannot infer sort for argument of {clean_name}. Argument: {arg}. Defaulting to Item.")
+                        inferred_arg_sorts.append(Item) # Default sort
+                        # valid_inference = False # Có thể quyết định không tạo nếu không rõ sort
+                        # break
+            else: # Predicate không có đối số? Ví dụ: Raining (0-ary)
+                predicate_cache[cache_key] = z3.Const(clean_name, z3.BoolSort())
+                return predicate_cache[cache_key]
 
-            else:
-                num_args = len(arg_sorts_for_inference)
-                inferred_arg_sorts = []
-                valid_inference = True
-                if num_args > 0:
-                    for arg in arg_sorts_for_inference:
-                        if hasattr(arg, 'sort') and callable(arg.sort):
-                            inferred_arg_sorts.append(arg.sort())
-                        else:
-                            print(f"    Warning: Cannot infer sort for argument of {clean_name}. Argument: {arg}. Defaulting to Item.")
-                            inferred_arg_sorts.append(Item) # Default sort
-                            # valid_inference = False # Có thể quyết định không tạo nếu không rõ sort
-                            # break
-                else: # Predicate không có đối số? Ví dụ: Raining (0-ary)
-                    predicate_cache[clean_name] = z3.Const(clean_name, z3.BoolSort())
-                    return predicate_cache[clean_name]
-
-                # if valid_inference:
-                signature = inferred_arg_sorts + [z3.BoolSort()]
-                print(f"    Inferred signature: {[s.name() for s in signature[:-1]]} -> {signature[-1].name()}")
-                predicate_cache[clean_name] = z3.Function(clean_name, *signature)
-                # else:
-                #     print(f"    Could not infer signature for {clean_name}. Skipping declaration.")
-                #     return None # Hoặc raise lỗi
+            # if valid_inference:
+            signature = inferred_arg_sorts + [z3.BoolSort()]
+            print(f"    Inferred signature: {[s.name() for s in signature[:-1]]} -> {signature[-1].name()}")
+            predicate_cache[cache_key] = z3.Function(clean_name, *signature)
+            # else:
+            #     print(f"    Could not infer signature for {clean_name}. Skipping declaration.")
+            #     return None # Hoặc raise lỗi
 
     # Lấy từ cache
-    func = predicate_cache.get(clean_name)
+    func = predicate_cache.get(cache_key)
     if func is None:
         # Should not happen if declaration logic above works
-        raise RuntimeError(f"Failed to get or create predicate '{clean_name}' after attempting definition.")
-
+        raise RuntimeError(f"Failed to get or create predicate '{clean_name}' with arity {arity}.")
     # (Optional) Thêm kiểm tra arity/signature ở đây nếu cần
     # expected_arity = len(arg_sorts_for_inference)
     # if func.decl().arity() != expected_arity:
@@ -210,10 +202,10 @@ def parse_fol_string_to_z3(fol_str):
     # Các trường họp chưa xử lý được
     # ---------------------------------------------------------
 
-    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠', '≤']):
+    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠', '≤', '+', '.', '∈', '*']):
         print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
         return None
-    if "perpendicular_bisector" in fol_str or "Enrolled" in fol_str or "GainsKnowledge" in fol_str or "Pass" in fol_str or "complete_theory" in fol_str or "instructor_absent" in fol_str or "plagiarized_material" in fol_str or "cheating_history" in fol_str:
+    if "SubmittedApplication" in fol_str:
         print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
         return None
     
@@ -268,13 +260,15 @@ def parse_fol_string_to_z3(fol_str):
         # Tạo lại biểu thức FOL
         fol_str = f"∃{var} ({body})"
 
+
     # Xử lý trường hợp ¬(Exists(x, P(x)) → Exists(x, Q(x))), đưa về dạng: ∃x P(x) ∧ ∀x ¬R(x)
     match = re.fullmatch(r"¬\(\s*Exists\(\s*(\w+)\s*,\s*(\w+)\(\1\)\s*\)\s*→\s*Exists\(\s*\1\s*,\s*(\w+)\(\1\)\s*\)\s*\)", fol_str)
     if match:
         var = match.group(1)
         p_func = match.group(2)
         r_func = match.group(3)
-        fol_str =  f"∃{var}, {p_func}({var})) ∧ ∀({var} ¬{r_func}({var}))"
+        fol_str =  f"∃{var} {p_func}({var}) ∧ ∀{var} ¬{r_func}({var})"
+
 
     # Xử lý trường hợp ¬Exists(x, P(x)), đưa về dạng: ∀x ¬P(x)
     def transform_negated_exists_to_forall(expression):
@@ -315,6 +309,7 @@ def parse_fol_string_to_z3(fol_str):
     # P(R(S(x)))
     # P(Q(S(t)))
     # P(S(a), V(b))
+    # P(Q(Const, x), 3)
     # proportional(sides(ABC), sides(DEF))
     match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)", fol_str)
     if match and not fol_str.startswith('∀') and not fol_str.startswith('∃') and fol_str == match.group():
@@ -325,16 +320,19 @@ def parse_fol_string_to_z3(fol_str):
         if '(' in args:
 
             if ',' in args: # Trường hợp P(S(a), V(b))
-
                 args = args[:-1]
 
-                predicates = args.split(',')
+                predicates = split_top_level(args, delimiter=',')
+
                 predicates = [predicate.strip() for predicate in predicates]
 
                 args = []
 
                 for predicate in predicates:
-                    predicate = parse_fol_string_to_z3(predicate)
+                    if ('(') in predicate:
+                        predicate = parse_fol_string_to_z3(predicate)
+                    else:
+                        predicate = z3.Const(predicate, Item)
 
                     args.append(predicate)
                 
@@ -350,16 +348,32 @@ def parse_fol_string_to_z3(fol_str):
                 return P(sub_predicate)
         else:
             args = args.split(')')[0]
-            args = args.split(',')
-            args = [z3.Const(arg.strip(), Item) for arg in args]
 
-            P = get_predicate(pred_name, *args)
+            if ',' in args:
+                args = args.split(',')
+            
+                args = [z3.Const(arg.strip(), Item) for arg in args]
 
-            if '¬' in pred_name:
-                pred_name = pred_name[1:]
-                return z3.Not(P(*args))
+                print("IAM HERE")
+                print(args)
+
+                if '¬' in pred_name:
+                    pred_name = pred_name[1:]
+                    P = get_predicate(pred_name, *args)
+                    return z3.Not(P(*args))
+                else:
+                    P = get_predicate(pred_name, *args)
+                    return P(*args)
             else:
-                return P(*args)
+                args = z3.Const(args.strip(), Item)
+
+                if '¬' in pred_name:
+                    pred_name = pred_name[1:]
+                    P = get_predicate(pred_name, args)
+                    return z3.Not(P(args))
+                else:
+                    P = get_predicate(pred_name, args)
+                    return P(args)
 
     # Mẫu:
     # ∃x (P(x))  
@@ -368,6 +382,7 @@ def parse_fol_string_to_z3(fol_str):
     # ∀x (¬P(x) → ¬Q(x))
     # ∀x ((P(x) ∧ Q(x)) → R(x))
     # ∀a((P(a) ∧ Q(R(a))) → S(a))
+    # ∃x(T(x))
 
     if fol_str.startswith(('∀', '∃')):
         sign = fol_str[0]
@@ -524,7 +539,7 @@ def parse_fol_string_to_z3(fol_str):
                 else:
                     z3_parts.append(z3.And(*hat_predicates))
 
-            else: # split_top_level(arrow_part, delimiter='∨') != arrow_part.strip():
+            elif split_top_level(arrow_part, delimiter='∨')[0] != arrow_part.strip():
 
                 v_parts = split_top_level(arrow_part, delimiter='∨')
 
@@ -539,6 +554,25 @@ def parse_fol_string_to_z3(fol_str):
                     z3_parts.append(v_predicates[0])
                 else:
                     z3_parts.append(z3.Or(*v_predicates))
+            else:
+                def z3_parts_equivalence(preds):
+                    if len(preds) == 1:
+                        return preds[0]
+                    expr = preds[0]
+                    for next_expr in preds[1:]:
+                        expr = expr == next_expr  # z3 xử lý tương đương bằng ==
+                    return expr
+
+                e_parts = split_top_level(arrow_part, delimiter='↔')
+
+                # Tạo predicates để nối tất cả các hatparts lại với nhau
+                e_predicates = []
+
+                for e_part in e_parts:
+                    e_predicates.append(parse_fol_string_to_z3(e_part))
+
+                z3_parts.append(z3_parts_equivalence(e_predicates))
+
 
         # Nối tất cả bằng chuỗi z3.Implies
         expr = z3_parts[-1]

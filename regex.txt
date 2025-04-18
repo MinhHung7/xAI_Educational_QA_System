@@ -9,6 +9,7 @@ P(R(S(x)) ∧ Q(Const)) ∧ Q(Const) -> Q(Const) ∧ Q(Const) -> Q(Const)
 Q(Const) -> Q(Const)
 P(Q(S(t)))
 P(S(a), V(b))
+P(x, V(b))
 P(no_const)
 
 S(a), V(b)
