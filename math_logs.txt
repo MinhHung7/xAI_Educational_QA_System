@@ -1,0 +1,2810 @@
+Successfully loaded data from datasets/math_dataset.json
+
+--- Processing Record 0 ---
+safety_orientation(Alex)
+safety_orientation
+PREDICATE_OK
+  Defining Predicate: safety_orientation with arity 1
+    Inferred signature: ['Item'] -> Bool
+membership_duration(Alex) = 8
+membership_duration(Alex)
+membership_duration
+PREDICATE_OK
+  Defining Predicate: membership_duration with arity 1
+    Inferred signature: ['Item'] -> Real
+paid_annual_fee(Alex)
+paid_annual_fee
+PREDICATE_OK
+  Defining Predicate: paid_annual_fee with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x((valid_membership(x) ∧ safety_orientation(x)) → use_equipment(x))
+(valid_membership(x) ∧ safety_orientation(x)) → use_equipment(x)
+PARTS
+valid_membership(x) ∧ safety_orientation(x)
+PARTS
+valid_membership(x)
+valid_membership
+PREDICATE_OK
+  Defining Predicate: valid_membership with arity 1
+    Inferred signature: ['Item'] -> Bool
+safety_orientation(x)
+safety_orientation
+PREDICATE_OK
+use_equipment(x)
+use_equipment
+PREDICATE_OK
+  Defining Predicate: use_equipment with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x((use_equipment(x) ∧ has_trainer(x)) → book_training(x))
+(use_equipment(x) ∧ has_trainer(x)) → book_training(x)
+PARTS
+use_equipment(x) ∧ has_trainer(x)
+PARTS
+use_equipment(x)
+use_equipment
+PREDICATE_OK
+has_trainer(x)
+has_trainer
+PREDICATE_OK
+  Defining Predicate: has_trainer with arity 1
+    Inferred signature: ['Item'] -> Bool
+book_training(x)
+book_training
+PREDICATE_OK
+  Defining Predicate: book_training with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x((membership_duration(x) ≥ 6) → eligible_trainer(x))
+(membership_duration(x) ≥ 6) → eligible_trainer(x)
+PARTS
+membership_duration(x) ≥ 6
+membership_duration(x)
+membership_duration
+PREDICATE_OK
+eligible_trainer(x)
+eligible_trainer
+PREDICATE_OK
+  Defining Predicate: eligible_trainer with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(paid_annual_fee(x) → valid_membership(x))
+paid_annual_fee(x) → valid_membership(x)
+PARTS
+paid_annual_fee(x)
+paid_annual_fee
+PREDICATE_OK
+valid_membership(x)
+valid_membership
+PREDICATE_OK
+
+--- Processing Record 1 ---
+∀x((active_status(x) ∧ completed_courses(x) ≥ 5) → eligible_advanced(x))
+(active_status(x) ∧ completed_courses(x) ≥ 5) → eligible_advanced(x)
+PARTS
+active_status(x) ∧ completed_courses(x) ≥ 5
+PARTS
+active_status(x)
+active_status
+PREDICATE_OK
+  Defining Predicate: active_status with arity 1
+    Inferred signature: ['Item'] -> Bool
+completed_courses(x) ≥ 5
+completed_courses(x)
+completed_courses
+PREDICATE_OK
+  Defining Predicate: completed_courses with arity 1
+    Inferred signature: ['Item'] -> Real
+eligible_advanced(x)
+eligible_advanced
+PREDICATE_OK
+  Defining Predicate: eligible_advanced with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(eligible_advanced(x) → requires_approval(x))
+eligible_advanced(x) → requires_approval(x)
+PARTS
+eligible_advanced(x)
+eligible_advanced
+PREDICATE_OK
+requires_approval(x)
+requires_approval
+PREDICATE_OK
+  Defining Predicate: requires_approval with arity 1
+    Inferred signature: ['Item'] -> Bool
+active_status(sarah)
+active_status
+PREDICATE_OK
+completed_courses(sarah) = 4
+completed_courses(sarah)
+completed_courses
+PREDICATE_OK
+has_approval(sarah)
+has_approval
+PREDICATE_OK
+  Defining Predicate: has_approval with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 2 ---
+∀x∀h((clinical_hours(x, h) ∧ h ≥ 500) → advanced_practice(x))
+∀h((clinical_hours(x, h) ∧ h ≥ 500) → advanced_practice(x))
+(clinical_hours(x, h) ∧ h ≥ 500) → advanced_practice(x)
+PARTS
+clinical_hours(x, h) ∧ h ≥ 500
+PARTS
+clinical_hours(x, h)
+clinical_hours
+PREDICATE_OK
+  Defining Predicate: clinical_hours with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+h ≥ 500
+h ≥ 500
+PREDICATE_OK
+  Defining Predicate: h ≥ 500 with arity 0
+advanced_practice(x)
+advanced_practice
+PREDICATE_OK
+  Defining Predicate: advanced_practice with arity 1
+    Inferred signature: ['Item'] -> Bool
+clinical_hours(john, 600)
+clinical_hours
+PREDICATE_OK
+registered_nurse(john)
+registered_nurse
+PREDICATE_OK
+  Defining Predicate: registered_nurse with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x((registered_nurse(x) ∧ advanced_practice(x)) → can_prescribe(x))
+(registered_nurse(x) ∧ advanced_practice(x)) → can_prescribe(x)
+PARTS
+registered_nurse(x) ∧ advanced_practice(x)
+PARTS
+registered_nurse(x)
+registered_nurse
+PREDICATE_OK
+advanced_practice(x)
+advanced_practice
+PREDICATE_OK
+can_prescribe(x)
+can_prescribe
+PREDICATE_OK
+  Defining Predicate: can_prescribe with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 3 ---
+∀x((has_card(x) ∧ safety_orientation(x)) → use_equipment(x))
+(has_card(x) ∧ safety_orientation(x)) → use_equipment(x)
+PARTS
+has_card(x) ∧ safety_orientation(x)
+PARTS
+has_card(x)
+has_card
+PREDICATE_OK
+  Defining Predicate: has_card with arity 1
+    Inferred signature: ['Item'] -> Bool
+safety_orientation(x)
+safety_orientation
+PREDICATE_OK
+use_equipment(x)
+use_equipment
+PREDICATE_OK
+∀x((use_equipment(x) ∧ has_trainer(x)) → book_training(x))
+(use_equipment(x) ∧ has_trainer(x)) → book_training(x)
+PARTS
+use_equipment(x) ∧ has_trainer(x)
+PARTS
+use_equipment(x)
+use_equipment
+PREDICATE_OK
+has_trainer(x)
+has_trainer
+PREDICATE_OK
+book_training(x)
+book_training
+PREDICATE_OK
+∀x((membership_duration(x) ≥ 6) → eligible_trainer(x))
+(membership_duration(x) ≥ 6) → eligible_trainer(x)
+PARTS
+membership_duration(x) ≥ 6
+membership_duration(x)
+membership_duration
+PREDICATE_OK
+eligible_trainer(x)
+eligible_trainer
+PREDICATE_OK
+∀x(paid_annual_fee(x) → valid_membership(x))
+paid_annual_fee(x) → valid_membership(x)
+PARTS
+paid_annual_fee(x)
+paid_annual_fee
+PREDICATE_OK
+valid_membership(x)
+valid_membership
+PREDICATE_OK
+
+--- Processing Record 4 ---
+∀s((study(s,PoliticalTheory) > 12) → understand(s,PoliticalIdeologies))
+(study(s,PoliticalTheory) > 12) → understand(s,PoliticalIdeologies)
+PARTS
+study(s,PoliticalTheory) > 12
+study(s,PoliticalTheory)
+study
+PREDICATE_OK
+  Defining Predicate: study with arity 2
+    Inferred signature: ['Item', 'Item'] -> Real
+understand(s,PoliticalIdeologies)
+understand
+PREDICATE_OK
+  Defining Predicate: understand with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s(understand(s,PoliticalIdeologies) → analyze(s,GovernmentPolicies))
+understand(s,PoliticalIdeologies) → analyze(s,GovernmentPolicies)
+PARTS
+understand(s,PoliticalIdeologies)
+understand
+PREDICATE_OK
+analyze(s,GovernmentPolicies)
+analyze
+PREDICATE_OK
+  Defining Predicate: analyze with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s(analyze(s,GovernmentPolicies) → (debate(s) ∨ write_essay(s)))
+analyze(s,GovernmentPolicies) → (debate(s) ∨ write_essay(s))
+PARTS
+analyze(s,GovernmentPolicies)
+analyze
+PREDICATE_OK
+debate(s) ∨ write_essay(s)
+PARTS
+debate(s)
+debate
+PREDICATE_OK
+  Defining Predicate: debate with arity 1
+    Inferred signature: ['Item'] -> Bool
+write_essay(s)
+write_essay
+PREDICATE_OK
+  Defining Predicate: write_essay with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s(¬debate(s) → write_essay(s))
+¬debate(s) → write_essay(s)
+PARTS
+¬debate(s)
+debate
+PREDICATE_OK
+write_essay(s)
+write_essay
+PREDICATE_OK
+∀s((study(s,PoliticalTheory) < 6) → struggle(s,PoliticalIdeologies))
+(study(s,PoliticalTheory) < 6) → struggle(s,PoliticalIdeologies)
+PARTS
+study(s,PoliticalTheory) < 6
+study(s,PoliticalTheory)
+study
+PREDICATE_OK
+struggle(s,PoliticalIdeologies)
+struggle
+PREDICATE_OK
+  Defining Predicate: struggle with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s(professor_requires(s,Debate) → (debate(s) ∨ justified_reason(s)))
+professor_requires(s,Debate) → (debate(s) ∨ justified_reason(s))
+PARTS
+professor_requires(s,Debate)
+professor_requires
+PREDICATE_OK
+  Defining Predicate: professor_requires with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+debate(s) ∨ justified_reason(s)
+PARTS
+debate(s)
+debate
+PREDICATE_OK
+justified_reason(s)
+justified_reason
+PREDICATE_OK
+  Defining Predicate: justified_reason with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s((write_essay(s) ∧ high_quality(s)) → academic_recognition(s))
+(write_essay(s) ∧ high_quality(s)) → academic_recognition(s)
+PARTS
+write_essay(s) ∧ high_quality(s)
+PARTS
+write_essay(s)
+write_essay
+PREDICATE_OK
+high_quality(s)
+high_quality
+PREDICATE_OK
+  Defining Predicate: high_quality with arity 1
+    Inferred signature: ['Item'] -> Bool
+academic_recognition(s)
+academic_recognition
+PREDICATE_OK
+  Defining Predicate: academic_recognition with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s((academic_recognition(s) ∧ field(s,PoliticalStudies)) → qualify_fellowship(s))
+(academic_recognition(s) ∧ field(s,PoliticalStudies)) → qualify_fellowship(s)
+PARTS
+academic_recognition(s) ∧ field(s,PoliticalStudies)
+PARTS
+academic_recognition(s)
+academic_recognition
+PREDICATE_OK
+field(s,PoliticalStudies)
+field
+PREDICATE_OK
+  Defining Predicate: field with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+qualify_fellowship(s)
+qualify_fellowship
+PREDICATE_OK
+  Defining Predicate: qualify_fellowship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀p(controversial(p) → ForAll(s, must_analyze(s,p)))
+controversial(p) → ForAll(s, must_analyze(s,p))
+PARTS
+controversial(p)
+controversial
+PREDICATE_OK
+  Defining Predicate: controversial with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s (must_analyze(s,p))
+must_analyze(s,p)
+must_analyze
+PREDICATE_OK
+  Defining Predicate: must_analyze with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s((¬debate(s) ∧ ¬write_essay(s)) → fail(s,PoliticalTheory))
+(¬debate(s) ∧ ¬write_essay(s)) → fail(s,PoliticalTheory)
+PARTS
+¬debate(s) ∧ ¬write_essay(s)
+PARTS
+¬debate(s)
+debate
+PREDICATE_OK
+¬write_essay(s)
+write_essay
+PREDICATE_OK
+fail(s,PoliticalTheory)
+fail
+PREDICATE_OK
+  Defining Predicate: fail with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 5 ---
+∀s((study(s,quantum_mechanics) ≥ 15) → understand(s,superposition))
+(study(s,quantum_mechanics) ≥ 15) → understand(s,superposition)
+PARTS
+study(s,quantum_mechanics) ≥ 15
+study(s,quantum_mechanics)
+study
+PREDICATE_OK
+understand(s,superposition)
+understand
+PREDICATE_OK
+∀s(understand(s,superposition) → explain(s,quantum_measurement))
+understand(s,superposition) → explain(s,quantum_measurement)
+PARTS
+understand(s,superposition)
+understand
+PREDICATE_OK
+explain(s,quantum_measurement)
+explain
+PREDICATE_OK
+  Defining Predicate: explain with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s(explain(s,quantum_measurement) → (write_paper(s) ∨ give_presentation(s)))
+explain(s,quantum_measurement) → (write_paper(s) ∨ give_presentation(s))
+PARTS
+explain(s,quantum_measurement)
+explain
+PREDICATE_OK
+write_paper(s) ∨ give_presentation(s)
+PARTS
+write_paper(s)
+write_paper
+PREDICATE_OK
+  Defining Predicate: write_paper with arity 1
+    Inferred signature: ['Item'] -> Bool
+give_presentation(s)
+give_presentation
+PREDICATE_OK
+  Defining Predicate: give_presentation with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s(¬give_presentation(s) → write_paper(s))
+¬give_presentation(s) → write_paper(s)
+PARTS
+¬give_presentation(s)
+give_presentation
+PREDICATE_OK
+write_paper(s)
+write_paper
+PREDICATE_OK
+∀s((study(s,quantum_mechanics) < 8) → struggle(s,superposition))
+(study(s,quantum_mechanics) < 8) → struggle(s,superposition)
+PARTS
+study(s,quantum_mechanics) < 8
+study(s,quantum_mechanics)
+study
+PREDICATE_OK
+struggle(s,superposition)
+struggle
+PREDICATE_OK
+∀s(professor_requires(s,presentation) → (give_presentation(s) ∨ justified_reason(s)))
+professor_requires(s,presentation) → (give_presentation(s) ∨ justified_reason(s))
+PARTS
+professor_requires(s,presentation)
+professor_requires
+PREDICATE_OK
+give_presentation(s) ∨ justified_reason(s)
+PARTS
+give_presentation(s)
+give_presentation
+PREDICATE_OK
+justified_reason(s)
+justified_reason
+PREDICATE_OK
+∀s((write_paper(s) ∧ original_work(s)) → academic_recognition(s))
+(write_paper(s) ∧ original_work(s)) → academic_recognition(s)
+PARTS
+write_paper(s) ∧ original_work(s)
+PARTS
+write_paper(s)
+write_paper
+PREDICATE_OK
+original_work(s)
+original_work
+PREDICATE_OK
+  Defining Predicate: original_work with arity 1
+    Inferred signature: ['Item'] -> Bool
+academic_recognition(s)
+academic_recognition
+PREDICATE_OK
+∀s((academic_recognition(s) ∧ field(s,quantum_mechanics)) → qualify_scholarship(s))
+(academic_recognition(s) ∧ field(s,quantum_mechanics)) → qualify_scholarship(s)
+PARTS
+academic_recognition(s) ∧ field(s,quantum_mechanics)
+PARTS
+academic_recognition(s)
+academic_recognition
+PREDICATE_OK
+field(s,quantum_mechanics)
+field
+PREDICATE_OK
+qualify_scholarship(s)
+qualify_scholarship
+PREDICATE_OK
+  Defining Predicate: qualify_scholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀e(experiment(e,entanglement) → ForAll(s, must_analyze(s,e)))
+experiment(e,entanglement) → ForAll(s, must_analyze(s,e))
+PARTS
+experiment(e,entanglement)
+experiment
+PREDICATE_OK
+  Defining Predicate: experiment with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s (must_analyze(s,e))
+must_analyze(s,e)
+must_analyze
+PREDICATE_OK
+∀s((¬write_paper(s) ∧ ¬give_presentation(s)) → fail(s,quantum_mechanics))
+(¬write_paper(s) ∧ ¬give_presentation(s)) → fail(s,quantum_mechanics)
+PARTS
+¬write_paper(s) ∧ ¬give_presentation(s)
+PARTS
+¬write_paper(s)
+write_paper
+PREDICATE_OK
+¬give_presentation(s)
+give_presentation
+PREDICATE_OK
+fail(s,quantum_mechanics)
+fail
+PREDICATE_OK
+
+--- Processing Record 6 ---
+∀s∀c((complete_modules(s,c) ∧ (uptime(c) ≥ 99)) → master_content(s,c))
+∀c((complete_modules(s,c) ∧ (uptime(c) ≥ 99)) → master_content(s,c))
+(complete_modules(s,c) ∧ (uptime(c) ≥ 99)) → master_content(s,c)
+PARTS
+complete_modules(s,c) ∧ (uptime(c) ≥ 99)
+PARTS
+complete_modules(s,c)
+complete_modules
+PREDICATE_OK
+  Defining Predicate: complete_modules with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+uptime(c) ≥ 99
+uptime(c)
+uptime
+PREDICATE_OK
+  Defining Predicate: uptime with arity 1
+    Inferred signature: ['Item'] -> Real
+master_content(s,c)
+master_content
+PREDICATE_OK
+  Defining Predicate: master_content with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s∀c(master_content(s,c) → (pass_exam(s,c) ∨ submit_capstone(s,c)))
+∀c(master_content(s,c) → (pass_exam(s,c) ∨ submit_capstone(s,c)))
+master_content(s,c) → (pass_exam(s,c) ∨ submit_capstone(s,c))
+PARTS
+master_content(s,c)
+master_content
+PREDICATE_OK
+pass_exam(s,c) ∨ submit_capstone(s,c)
+PARTS
+pass_exam(s,c)
+pass_exam
+PREDICATE_OK
+  Defining Predicate: pass_exam with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+submit_capstone(s,c)
+submit_capstone
+PREDICATE_OK
+  Defining Predicate: submit_capstone with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s∀c(¬submit_capstone(s,c) → take_exam(s,c))
+∀c(¬submit_capstone(s,c) → take_exam(s,c))
+¬submit_capstone(s,c) → take_exam(s,c)
+PARTS
+¬submit_capstone(s,c)
+submit_capstone
+PREDICATE_OK
+take_exam(s,c)
+take_exam
+PREDICATE_OK
+  Defining Predicate: take_exam with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀c(require_exam(c) → (secure_system(c) ∨ external_proctor(c)))
+require_exam(c) → (secure_system(c) ∨ external_proctor(c))
+PARTS
+require_exam(c)
+require_exam
+PREDICATE_OK
+  Defining Predicate: require_exam with arity 1
+    Inferred signature: ['Item'] -> Bool
+secure_system(c) ∨ external_proctor(c)
+PARTS
+secure_system(c)
+secure_system
+PREDICATE_OK
+  Defining Predicate: secure_system with arity 1
+    Inferred signature: ['Item'] -> Bool
+external_proctor(c)
+external_proctor
+PREDICATE_OK
+  Defining Predicate: external_proctor with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s∀c((downtime(s,c) > 5) → ¬master_content(s,c))
+∀c((downtime(s,c) > 5) → ¬master_content(s,c))
+(downtime(s,c) > 5) → ¬master_content(s,c)
+PARTS
+downtime(s,c) > 5
+downtime(s,c)
+downtime
+PREDICATE_OK
+  Defining Predicate: downtime with arity 2
+    Inferred signature: ['Item', 'Item'] -> Real
+¬master_content(s,c)
+master_content
+PREDICATE_OK
+∀s((pass_count(s) ≥ 6) → digital_certificate(s))
+(pass_count(s) ≥ 6) → digital_certificate(s)
+PARTS
+pass_count(s) ≥ 6
+pass_count(s)
+pass_count
+PREDICATE_OK
+  Defining Predicate: pass_count with arity 1
+    Inferred signature: ['Item'] -> Real
+digital_certificate(s)
+digital_certificate
+PREDICATE_OK
+  Defining Predicate: digital_certificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s∀c((live_sessions(s,c) = 100) → ¬take_exam(s,c))
+∀c((live_sessions(s,c) = 100) → ¬take_exam(s,c))
+(live_sessions(s,c) = 100) → ¬take_exam(s,c)
+PARTS
+live_sessions(s,c) = 100
+live_sessions(s,c)
+live_sessions
+PREDICATE_OK
+  Defining Predicate: live_sessions with arity 2
+    Inferred signature: ['Item', 'Item'] -> Real
+¬take_exam(s,c)
+take_exam
+PREDICATE_OK
+∀s∀c1∀c2∀c3((master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)) → (take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3)))
+∀c1∀c2∀c3((master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)) → (take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3)))
+∀c2∀c3((master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)) → (take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3)))
+∀c3((master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)) → (take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3)))
+(master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)) → (take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3))
+PARTS
+master_content(s,c1) ∧ master_content(s,c2) ∧ master_content(s,c3) ∧ ¬submit_capstone(s,c1) ∧ ¬submit_capstone(s,c2) ∧ ¬submit_capstone(s,c3)
+PARTS
+master_content(s,c1)
+master_content
+PREDICATE_OK
+master_content(s,c2)
+master_content
+PREDICATE_OK
+master_content(s,c3)
+master_content
+PREDICATE_OK
+¬submit_capstone(s,c1)
+submit_capstone
+PREDICATE_OK
+¬submit_capstone(s,c2)
+submit_capstone
+PREDICATE_OK
+¬submit_capstone(s,c3)
+submit_capstone
+PREDICATE_OK
+take_exam(s,c1) ∧ take_exam(s,c2) ∧ take_exam(s,c3)
+PARTS
+take_exam(s,c1)
+take_exam
+PREDICATE_OK
+take_exam(s,c2)
+take_exam
+PREDICATE_OK
+take_exam(s,c3)
+take_exam
+PREDICATE_OK
+∀s∀c(((downtime(s,c) < 5) ∧ submit_capstone(s,c) ∧ high_stakes(c)) → need_verification(s,c))
+∀c(((downtime(s,c) < 5) ∧ submit_capstone(s,c) ∧ high_stakes(c)) → need_verification(s,c))
+((downtime(s,c) < 5) ∧ submit_capstone(s,c) ∧ high_stakes(c)) → need_verification(s,c)
+PARTS
+(downtime(s,c) < 5) ∧ submit_capstone(s,c) ∧ high_stakes(c)
+PARTS
+downtime(s,c) < 5
+downtime(s,c)
+downtime
+PREDICATE_OK
+submit_capstone(s,c)
+submit_capstone
+PREDICATE_OK
+high_stakes(c)
+high_stakes
+PREDICATE_OK
+  Defining Predicate: high_stakes with arity 1
+    Inferred signature: ['Item'] -> Bool
+need_verification(s,c)
+need_verification
+PREDICATE_OK
+  Defining Predicate: need_verification with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s((complete_modules(s,c1) ∧ complete_modules(s,c2) ∧ complete_modules(s,c3) ∧ complete_modules(s,c4) ∧ (uptime(c1) ≥ 99) ∧ (uptime(c2) ≥ 99) ∧ (uptime(c3) ≥ 99) ∧ (uptime(c4) ≥ 99) ∧ pass_exam(s,c1) ∧ pass_exam(s,c2) ∧ pass_exam(s,c3) ∧ pass_exam(s,c4)) → advanced_credential(s))
+(complete_modules(s,c1) ∧ complete_modules(s,c2) ∧ complete_modules(s,c3) ∧ complete_modules(s,c4) ∧ (uptime(c1) ≥ 99) ∧ (uptime(c2) ≥ 99) ∧ (uptime(c3) ≥ 99) ∧ (uptime(c4) ≥ 99) ∧ pass_exam(s,c1) ∧ pass_exam(s,c2) ∧ pass_exam(s,c3) ∧ pass_exam(s,c4)) → advanced_credential(s)
+PARTS
+complete_modules(s,c1) ∧ complete_modules(s,c2) ∧ complete_modules(s,c3) ∧ complete_modules(s,c4) ∧ (uptime(c1) ≥ 99) ∧ (uptime(c2) ≥ 99) ∧ (uptime(c3) ≥ 99) ∧ (uptime(c4) ≥ 99) ∧ pass_exam(s,c1) ∧ pass_exam(s,c2) ∧ pass_exam(s,c3) ∧ pass_exam(s,c4)
+PARTS
+complete_modules(s,c1)
+complete_modules
+PREDICATE_OK
+complete_modules(s,c2)
+complete_modules
+PREDICATE_OK
+complete_modules(s,c3)
+complete_modules
+PREDICATE_OK
+complete_modules(s,c4)
+complete_modules
+PREDICATE_OK
+uptime(c1) ≥ 99
+uptime(c1)
+uptime
+PREDICATE_OK
+uptime(c2) ≥ 99
+uptime(c2)
+uptime
+PREDICATE_OK
+uptime(c3) ≥ 99
+uptime(c3)
+uptime
+PREDICATE_OK
+uptime(c4) ≥ 99
+uptime(c4)
+uptime
+PREDICATE_OK
+pass_exam(s,c1)
+pass_exam
+PREDICATE_OK
+pass_exam(s,c2)
+pass_exam
+PREDICATE_OK
+pass_exam(s,c3)
+pass_exam
+PREDICATE_OK
+pass_exam(s,c4)
+pass_exam
+PREDICATE_OK
+advanced_credential(s)
+advanced_credential
+PREDICATE_OK
+  Defining Predicate: advanced_credential with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀c(secure_system(c) ∧ crash_during_exam(c) → reschedule_exam(c))
+secure_system(c) ∧ crash_during_exam(c) → reschedule_exam(c)
+PARTS
+secure_system(c)
+secure_system
+PREDICATE_OK
+crash_during_exam(c)
+crash_during_exam
+PREDICATE_OK
+  Defining Predicate: crash_during_exam with arity 1
+    Inferred signature: ['Item'] -> Bool
+reschedule_exam(c)
+reschedule_exam
+PREDICATE_OK
+  Defining Predicate: reschedule_exam with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s∀c((¬master_content(s,c) ∧ submit_capstone(s,c)) → (¬accept_capstone(s,c) ∨ re_enroll(s,c)))
+∀c((¬master_content(s,c) ∧ submit_capstone(s,c)) → (¬accept_capstone(s,c) ∨ re_enroll(s,c)))
+(¬master_content(s,c) ∧ submit_capstone(s,c)) → (¬accept_capstone(s,c) ∨ re_enroll(s,c))
+PARTS
+¬master_content(s,c) ∧ submit_capstone(s,c)
+PARTS
+¬master_content(s,c)
+master_content
+PREDICATE_OK
+submit_capstone(s,c)
+submit_capstone
+PREDICATE_OK
+¬accept_capstone(s,c) ∨ re_enroll(s,c)
+PARTS
+¬accept_capstone(s,c)
+accept_capstone
+PREDICATE_OK
+  Defining Predicate: accept_capstone with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+re_enroll(s,c)
+re_enroll
+PREDICATE_OK
+  Defining Predicate: re_enroll with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 7 ---
+complete_theory(s) → participate_practice(s)
+PARTS
+complete_theory(s)
+complete_theory
+PREDICATE_OK
+  Defining Predicate: complete_theory with arity 1
+    Inferred signature: ['Item'] -> Bool
+participate_practice(s)
+participate_practice
+PREDICATE_OK
+  Defining Predicate: participate_practice with arity 1
+    Inferred signature: ['Item'] -> Bool
+bad_weather(s) → delay_practice(s) ≥ 2
+PARTS
+bad_weather(s)
+bad_weather
+PREDICATE_OK
+  Defining Predicate: bad_weather with arity 1
+    Inferred signature: ['Item'] -> Bool
+delay_practice(s) ≥ 2
+delay_practice(s)
+delay_practice
+PREDICATE_OK
+  Defining Predicate: delay_practice with arity 1
+    Inferred signature: ['Item'] -> Real
+flight_practice(s) → safety_test(s) ≤ 1
+PARTS
+flight_practice(s)
+flight_practice
+PREDICATE_OK
+  Defining Predicate: flight_practice with arity 1
+    Inferred signature: ['Item'] -> Bool
+safety_test(s) ≤ 1
+safety_test(s)
+safety_test
+PREDICATE_OK
+  Defining Predicate: safety_test with arity 1
+    Using predefined signature: ['Item'] -> Bool
+¬safety_test(s) → ¬flight_practice(s) ∧ retake_theory(s)
+PARTS
+¬safety_test(s)
+safety_test
+PREDICATE_OK
+¬flight_practice(s)
+flight_practice
+PREDICATE_OK
+retake_theory(s)
+retake_theory
+PREDICATE_OK
+  Defining Predicate: retake_theory with arity 1
+    Inferred signature: ['Item'] -> Bool
+delay_practice(s) > 3 → refund(s) = 0.5
+PARTS
+delay_practice(s) > 3
+delay_practice(s)
+delay_practice
+PREDICATE_OK
+refund(s) = 0.5
+refund(s)
+refund
+PREDICATE_OK
+  Defining Predicate: refund with arity 1
+    Inferred signature: ['Item'] -> Real
+flight_late(s) > 1 → submit_report(s)
+PARTS
+flight_late(s) > 1
+flight_late(s)
+flight_late
+PREDICATE_OK
+  Defining Predicate: flight_late with arity 1
+    Inferred signature: ['Item'] -> Real
+submit_report(s)
+submit_report
+PREDICATE_OK
+  Defining Predicate: submit_report with arity 1
+    Inferred signature: ['Item'] -> Bool
+flight_practice(s) → instructors(s) ≥ 2
+PARTS
+flight_practice(s)
+flight_practice
+PREDICATE_OK
+instructors(s) ≥ 2
+instructors(s)
+instructors
+PREDICATE_OK
+  Defining Predicate: instructors with arity 1
+    Inferred signature: ['Item'] -> Real
+instructor_absent(s) → find_replacement(s) ≤ 1
+PARTS
+instructor_absent(s)
+instructor_absent
+PREDICATE_OK
+  Defining Predicate: instructor_absent with arity 1
+    Inferred signature: ['Item'] -> Bool
+find_replacement(s) ≤ 1
+find_replacement(s)
+find_replacement
+PREDICATE_OK
+  Defining Predicate: find_replacement with arity 1
+    Using predefined signature: ['Item'] -> Bool
+instructor_absent(s) ∧ ¬find_replacement(s) → cancel_practice(s) ∧ reregister(s)
+PARTS
+instructor_absent(s)
+instructor_absent
+PREDICATE_OK
+¬find_replacement(s)
+find_replacement
+PREDICATE_OK
+cancel_practice(s)
+cancel_practice
+PREDICATE_OK
+  Defining Predicate: cancel_practice with arity 1
+    Inferred signature: ['Item'] -> Bool
+reregister(s)
+reregister
+PREDICATE_OK
+  Defining Predicate: reregister with arity 1
+    Inferred signature: ['Item'] -> Bool
+flight_practice(s) → submit_application(s) ≥ 7
+PARTS
+flight_practice(s)
+flight_practice
+PREDICATE_OK
+submit_application(s) ≥ 7
+submit_application(s)
+submit_application
+PREDICATE_OK
+  Defining Predicate: submit_application with arity 1
+    Inferred signature: ['Item'] -> Real
+complete_theory(Lan, 20/3/2025)
+complete_theory
+PREDICATE_OK
+  Defining Predicate: complete_theory with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+bad_weather(Lan, 8:00, 25/3/2025)
+bad_weather
+PREDICATE_OK
+  Defining Predicate: bad_weather with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+safety_test(Lan, 7:30, 25/3/2025)
+safety_test
+PREDICATE_OK
+  Defining Predicate: safety_test with arity 3
+    Using predefined signature: ['Item', 'Item', 'Item'] -> Bool
+instructor_absent(Lan, 8:15, 25/3/2025)
+instructor_absent
+PREDICATE_OK
+  Defining Predicate: instructor_absent with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+¬find_replacement(Lan, 1)
+find_replacement
+PREDICATE_OK
+  Defining Predicate: find_replacement with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+cancel_practice(s) → notify_cancellation(s) ≥ 0.5
+PARTS
+cancel_practice(s)
+cancel_practice
+PREDICATE_OK
+notify_cancellation(s) ≥ 0.5
+notify_cancellation(s)
+notify_cancellation
+PREDICATE_OK
+  Defining Predicate: notify_cancellation with arity 1
+    Inferred signature: ['Item'] -> Real
+cancel_practice(s) → make_up_session(s) ≤ 2 ∨ lose_exam_eligibility(s)
+PARTS
+cancel_practice(s)
+cancel_practice
+PREDICATE_OK
+make_up_session(s) ≤ 2
+make_up_session(s)
+make_up_session
+PREDICATE_OK
+  Defining Predicate: make_up_session with arity 1
+    Inferred signature: ['Item'] -> Real
+lose_exam_eligibility(s)
+lose_exam_eligibility
+PREDICATE_OK
+  Defining Predicate: lose_exam_eligibility with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 8 ---
+∀x(Student(x) → ComplyWithRules(x))
+Student(x) → ComplyWithRules(x)
+PARTS
+Student(x)
+Student
+PREDICATE_OK
+  Defining Predicate: Student with arity 1
+    Inferred signature: ['Item'] -> Bool
+ComplyWithRules(x)
+ComplyWithRules
+PREDICATE_OK
+  Defining Predicate: ComplyWithRules with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬ComplyWithRules(x) → DisciplinaryAction(x))
+¬ComplyWithRules(x) → DisciplinaryAction(x)
+PARTS
+¬ComplyWithRules(x)
+ComplyWithRules
+PREDICATE_OK
+DisciplinaryAction(x)
+DisciplinaryAction
+PREDICATE_OK
+  Defining Predicate: DisciplinaryAction with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Student(x) → CompleteMandatoryCourses(x))
+Student(x) → CompleteMandatoryCourses(x)
+PARTS
+Student(x)
+Student
+PREDICATE_OK
+CompleteMandatoryCourses(x)
+CompleteMandatoryCourses
+PREDICATE_OK
+  Defining Predicate: CompleteMandatoryCourses with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬CompleteMandatoryCourses(x) → ¬EligibleForGraduation(x))
+¬CompleteMandatoryCourses(x) → ¬EligibleForGraduation(x)
+PARTS
+¬CompleteMandatoryCourses(x)
+CompleteMandatoryCourses
+PREDICATE_OK
+¬EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+  Defining Predicate: EligibleForGraduation with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Lecturer(x) → UnderstandAdmissionRegulations(x))
+Lecturer(x) → UnderstandAdmissionRegulations(x)
+PARTS
+Lecturer(x)
+Lecturer
+PREDICATE_OK
+  Defining Predicate: Lecturer with arity 1
+    Inferred signature: ['Item'] -> Bool
+UnderstandAdmissionRegulations(x)
+UnderstandAdmissionRegulations
+PREDICATE_OK
+  Defining Predicate: UnderstandAdmissionRegulations with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬UnderstandAdmissionRegulations(x) → AdditionalTesting(x))
+¬UnderstandAdmissionRegulations(x) → AdditionalTesting(x)
+PARTS
+¬UnderstandAdmissionRegulations(x)
+UnderstandAdmissionRegulations
+PREDICATE_OK
+AdditionalTesting(x)
+AdditionalTesting
+PREDICATE_OK
+  Defining Predicate: AdditionalTesting with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Student(x) → MaxStudyDuration(x, 2 * StandardDuration))
+Student(x) → MaxStudyDuration(x, 2 * StandardDuration)
+PARTS
+Student(x)
+Student
+PREDICATE_OK
+MaxStudyDuration(x, 2 * StandardDuration)
+MaxStudyDuration
+PREDICATE_OK
+  Defining Predicate: MaxStudyDuration with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x((StudyDurationExceeded(x) ∧ ¬EligibleForGraduation(x)) → CompleteRequirementsWithin3Years(x))
+(StudyDurationExceeded(x) ∧ ¬EligibleForGraduation(x)) → CompleteRequirementsWithin3Years(x)
+PARTS
+StudyDurationExceeded(x) ∧ ¬EligibleForGraduation(x)
+PARTS
+StudyDurationExceeded(x)
+StudyDurationExceeded
+PREDICATE_OK
+  Defining Predicate: StudyDurationExceeded with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+CompleteRequirementsWithin3Years(x)
+CompleteRequirementsWithin3Years
+PREDICATE_OK
+  Defining Predicate: CompleteRequirementsWithin3Years with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(TuitionFee(x) → DeterminedByFieldAndYear(x))
+TuitionFee(x) → DeterminedByFieldAndYear(x)
+PARTS
+TuitionFee(x)
+TuitionFee
+PREDICATE_OK
+  Defining Predicate: TuitionFee with arity 1
+    Inferred signature: ['Item'] -> Bool
+DeterminedByFieldAndYear(x)
+DeterminedByFieldAndYear
+PREDICATE_OK
+  Defining Predicate: DeterminedByFieldAndYear with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Student(x) → CompleteTuitionPayment(x))
+Student(x) → CompleteTuitionPayment(x)
+PARTS
+Student(x)
+Student
+PREDICATE_OK
+CompleteTuitionPayment(x)
+CompleteTuitionPayment
+PREDICATE_OK
+  Defining Predicate: CompleteTuitionPayment with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 9 ---
+∀x(¬Submitted(x) → Fail(x))
+¬Submitted(x) → Fail(x)
+PARTS
+¬Submitted(x)
+Submitted
+PREDICATE_OK
+  Defining Predicate: Submitted with arity 1
+    Inferred signature: ['Item'] -> Bool
+Fail(x)
+Fail
+PREDICATE_OK
+  Defining Predicate: Fail with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(StudyRegularly(x) → Pass(x))
+StudyRegularly(x) → Pass(x)
+PARTS
+StudyRegularly(x)
+StudyRegularly
+PREDICATE_OK
+  Defining Predicate: StudyRegularly with arity 1
+    Inferred signature: ['Item'] -> Bool
+Pass(x)
+Pass
+PREDICATE_OK
+  Defining Predicate: Pass with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(Pass(x))
+Pass(x)
+Pass
+PREDICATE_OK
+∀x(Pass(x) → MeetCourseReq(x))
+Pass(x) → MeetCourseReq(x)
+PARTS
+Pass(x)
+Pass
+PREDICATE_OK
+MeetCourseReq(x)
+MeetCourseReq
+PREDICATE_OK
+  Defining Predicate: MeetCourseReq with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Fail(x) → RetakeCourse(x))
+Fail(x) → RetakeCourse(x)
+PARTS
+Fail(x)
+Fail
+PREDICATE_OK
+RetakeCourse(x)
+RetakeCourse
+PREDICATE_OK
+  Defining Predicate: RetakeCourse with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Score(x) = 100 → Distinction(x))
+Score(x) = 100 → Distinction(x)
+PARTS
+Score(x) = 100
+Score(x)
+Score
+PREDICATE_OK
+  Defining Predicate: Score with arity 1
+    Inferred signature: ['Item'] -> Real
+Distinction(x)
+Distinction
+PREDICATE_OK
+  Defining Predicate: Distinction with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬Study(x) → ¬Pass(x))
+¬Study(x) → ¬Pass(x)
+PARTS
+¬Study(x)
+Study
+PREDICATE_OK
+  Defining Predicate: Study with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬Pass(x)
+Pass
+PREDICATE_OK
+∃x(Score(x) > 90)
+Score(x) > 90
+Score(x)
+Score
+PREDICATE_OK
+∀x(Score(x) > 90 → CertificateExcellence(x))
+Score(x) > 90 → CertificateExcellence(x)
+PARTS
+Score(x) > 90
+Score(x)
+Score
+PREDICATE_OK
+CertificateExcellence(x)
+CertificateExcellence
+PREDICATE_OK
+  Defining Predicate: CertificateExcellence with arity 1
+    Inferred signature: ['Item'] -> Bool
+(ForAll(x, Pass(x) → MeetCourseReq(x))) → ForAll(x, Pass(x))
+PARTS
+∀x (Pass(x) → MeetCourseReq(x))
+Pass(x) → MeetCourseReq(x)
+PARTS
+Pass(x)
+Pass
+PREDICATE_OK
+MeetCourseReq(x)
+MeetCourseReq
+PREDICATE_OK
+∀x (Pass(x))
+Pass(x)
+Pass
+PREDICATE_OK
+(ForAll(x, Score(x) > 90 → CertificateExcellence(x))) → (ForAll(x, ¬CertificateExcellence(x) → Score(x) ≤ 90))
+PARTS
+∀x (Score(x) > 90 → CertificateExcellence(x))
+Score(x) > 90 → CertificateExcellence(x)
+PARTS
+Score(x) > 90
+Score(x)
+Score
+PREDICATE_OK
+CertificateExcellence(x)
+CertificateExcellence
+PREDICATE_OK
+∀x (¬CertificateExcellence(x) → Score(x) ≤ 90)
+¬CertificateExcellence(x) → Score(x) ≤ 90
+PARTS
+¬CertificateExcellence(x)
+CertificateExcellence
+PREDICATE_OK
+Score(x) ≤ 90
+Score(x)
+Score
+PREDICATE_OK
+∀x(¬Submitted(x) → ¬Pass(x))
+¬Submitted(x) → ¬Pass(x)
+PARTS
+¬Submitted(x)
+Submitted
+PREDICATE_OK
+¬Pass(x)
+Pass
+PREDICATE_OK
+∀x(Distinction(x) → HighAcademicStanding(x))
+Distinction(x) → HighAcademicStanding(x)
+PARTS
+Distinction(x)
+Distinction
+PREDICATE_OK
+HighAcademicStanding(x)
+HighAcademicStanding
+PREDICATE_OK
+  Defining Predicate: HighAcademicStanding with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(CertificateExcellence(x) → Honored(x))
+CertificateExcellence(x) → Honored(x)
+PARTS
+CertificateExcellence(x)
+CertificateExcellence
+PREDICATE_OK
+Honored(x)
+Honored
+PREDICATE_OK
+  Defining Predicate: Honored with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(StudyButFail(x))
+StudyButFail(x)
+StudyButFail
+PREDICATE_OK
+  Defining Predicate: StudyButFail with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(FailThenImprove(x))
+FailThenImprove(x)
+FailThenImprove
+PREDICATE_OK
+  Defining Predicate: FailThenImprove with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬Pass(x) → ¬MeetCourseReq(x))
+¬Pass(x) → ¬MeetCourseReq(x)
+PARTS
+¬Pass(x)
+Pass
+PREDICATE_OK
+¬MeetCourseReq(x)
+MeetCourseReq
+PREDICATE_OK
+
+--- Processing Record 10 ---
+∀x(CompletedCourses(x) → EligibleForGraduation(x))
+CompletedCourses(x) → EligibleForGraduation(x)
+PARTS
+CompletedCourses(x)
+CompletedCourses
+PREDICATE_OK
+  Defining Predicate: CompletedCourses with arity 1
+    Inferred signature: ['Item'] -> Bool
+EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+∀x(GPA(x) < 2.0 → ¬EligibleForGraduation(x))
+GPA(x) < 2.0 → ¬EligibleForGraduation(x)
+PARTS
+GPA(x) < 2.0
+GPA(x)
+GPA
+PREDICATE_OK
+  Defining Predicate: GPA with arity 1
+    Inferred signature: ['Item'] -> Real
+¬EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+∀x(MustCompleteFinalProject(x))
+MustCompleteFinalProject(x)
+MustCompleteFinalProject
+PREDICATE_OK
+  Defining Predicate: MustCompleteFinalProject with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(EligibleForGraduation(x) → ReceivesDiploma(x))
+EligibleForGraduation(x) → ReceivesDiploma(x)
+PARTS
+EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+ReceivesDiploma(x)
+ReceivesDiploma
+PREDICATE_OK
+  Defining Predicate: ReceivesDiploma with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(InternshipCompleted(x) → CompletedCourses(x))
+InternshipCompleted(x) → CompletedCourses(x)
+PARTS
+InternshipCompleted(x)
+InternshipCompleted
+PREDICATE_OK
+  Defining Predicate: InternshipCompleted with arity 1
+    Inferred signature: ['Item'] -> Bool
+CompletedCourses(x)
+CompletedCourses
+PREDICATE_OK
+∃x(GraduatesWithHonors(x))
+GraduatesWithHonors(x)
+GraduatesWithHonors
+PREDICATE_OK
+  Defining Predicate: GraduatesWithHonors with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(GPA(x) ≥ 3.5 → GraduatesWithHonors(x))
+GPA(x) ≥ 3.5 → GraduatesWithHonors(x)
+PARTS
+GPA(x) ≥ 3.5
+GPA(x)
+GPA
+PREDICATE_OK
+GraduatesWithHonors(x)
+GraduatesWithHonors
+PREDICATE_OK
+∃x(InternshipCompleted(x))
+InternshipCompleted(x)
+InternshipCompleted
+PREDICATE_OK
+∀x(CompletedCourses(x) → MeetsAcademicRequirements(x))
+CompletedCourses(x) → MeetsAcademicRequirements(x)
+PARTS
+CompletedCourses(x)
+CompletedCourses
+PREDICATE_OK
+MeetsAcademicRequirements(x)
+MeetsAcademicRequirements
+PREDICATE_OK
+  Defining Predicate: MeetsAcademicRequirements with arity 1
+    Inferred signature: ['Item'] -> Bool
+(ForAll(x, GPA(x) ≥ 3.5 → GraduatesWithHonors(x))) → ForAll(x, EligibleForHonors(x) → GoodGPA(x))
+PARTS
+∀x (GPA(x) ≥ 3.5 → GraduatesWithHonors(x))
+GPA(x) ≥ 3.5 → GraduatesWithHonors(x)
+PARTS
+GPA(x) ≥ 3.5
+GPA(x)
+GPA
+PREDICATE_OK
+GraduatesWithHonors(x)
+GraduatesWithHonors
+PREDICATE_OK
+∀x (EligibleForHonors(x) → GoodGPA(x))
+EligibleForHonors(x) → GoodGPA(x)
+PARTS
+EligibleForHonors(x)
+EligibleForHonors
+PREDICATE_OK
+  Defining Predicate: EligibleForHonors with arity 1
+    Inferred signature: ['Item'] -> Bool
+GoodGPA(x)
+GoodGPA
+PREDICATE_OK
+  Defining Predicate: GoodGPA with arity 1
+    Inferred signature: ['Item'] -> Bool
+(ForAll(x, InternshipCompleted(x) → MeetsGraduationRequirements(x))) → ForAll(x, ¬InternshipCompleted(x) → ¬EligibleForGraduation(x))
+PARTS
+∀x (InternshipCompleted(x) → MeetsGraduationRequirements(x))
+InternshipCompleted(x) → MeetsGraduationRequirements(x)
+PARTS
+InternshipCompleted(x)
+InternshipCompleted
+PREDICATE_OK
+MeetsGraduationRequirements(x)
+MeetsGraduationRequirements
+PREDICATE_OK
+  Defining Predicate: MeetsGraduationRequirements with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (¬InternshipCompleted(x) → ¬EligibleForGraduation(x))
+¬InternshipCompleted(x) → ¬EligibleForGraduation(x)
+PARTS
+¬InternshipCompleted(x)
+InternshipCompleted
+PREDICATE_OK
+¬EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+∀x(FinalProjectCompleted(x) → MeetsAcademicRequirements(x))
+FinalProjectCompleted(x) → MeetsAcademicRequirements(x)
+PARTS
+FinalProjectCompleted(x)
+FinalProjectCompleted
+PREDICATE_OK
+  Defining Predicate: FinalProjectCompleted with arity 1
+    Inferred signature: ['Item'] -> Bool
+MeetsAcademicRequirements(x)
+MeetsAcademicRequirements
+PREDICATE_OK
+∀x(MeetsAcademicRequirements(x) → ReceivesDiploma(x))
+MeetsAcademicRequirements(x) → ReceivesDiploma(x)
+PARTS
+MeetsAcademicRequirements(x)
+MeetsAcademicRequirements
+PREDICATE_OK
+ReceivesDiploma(x)
+ReceivesDiploma
+PREDICATE_OK
+∀x(MustMeetAcademicRequirements(x))
+MustMeetAcademicRequirements(x)
+MustMeetAcademicRequirements
+PREDICATE_OK
+  Defining Predicate: MustMeetAcademicRequirements with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(ReceivesDiploma(x) → CompletedGraduationRequirements(x))
+ReceivesDiploma(x) → CompletedGraduationRequirements(x)
+PARTS
+ReceivesDiploma(x)
+ReceivesDiploma
+PREDICATE_OK
+CompletedGraduationRequirements(x)
+CompletedGraduationRequirements
+PREDICATE_OK
+  Defining Predicate: CompletedGraduationRequirements with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(GraduatesWithDistinction(x))
+GraduatesWithDistinction(x)
+GraduatesWithDistinction
+PREDICATE_OK
+  Defining Predicate: GraduatesWithDistinction with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(EligibleForGraduation(x))
+EligibleForGraduation(x)
+EligibleForGraduation
+PREDICATE_OK
+∀x(¬FinalProjectCompleted(x) → ¬MeetsAcademicRequirements(x))
+¬FinalProjectCompleted(x) → ¬MeetsAcademicRequirements(x)
+PARTS
+¬FinalProjectCompleted(x)
+FinalProjectCompleted
+PREDICATE_OK
+¬MeetsAcademicRequirements(x)
+MeetsAcademicRequirements
+PREDICATE_OK
+
+--- Processing Record 11 ---
+∀x (Member(x) ∧ ∃e (Event(e) ∧ Attend(x, e)) → Experience(x))
+Member(x) ∧ ∃e (Event(e) ∧ Attend(x, e)) → Experience(x)
+PARTS
+Member(x)
+Member
+PREDICATE_OK
+  Defining Predicate: Member with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃e (Event(e) ∧ Attend(x, e))
+Event(e) ∧ Attend(x, e)
+PARTS
+Event(e)
+Event
+PREDICATE_OK
+  Defining Predicate: Event with arity 1
+    Inferred signature: ['Item'] -> Bool
+Attend(x, e)
+Attend
+PREDICATE_OK
+  Defining Predicate: Attend with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Experience(x)
+Experience
+PREDICATE_OK
+  Defining Predicate: Experience with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (Experience(x) → ImproveSkill(x))
+Experience(x) → ImproveSkill(x)
+PARTS
+Experience(x)
+Experience
+PREDICATE_OK
+ImproveSkill(x)
+ImproveSkill
+PREDICATE_OK
+  Defining Predicate: ImproveSkill with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (ImproveSkill(x) → Confident(x))
+ImproveSkill(x) → Confident(x)
+PARTS
+ImproveSkill(x)
+ImproveSkill
+PREDICATE_OK
+Confident(x)
+Confident
+PREDICATE_OK
+  Defining Predicate: Confident with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x ((Events(x, e) ∧ e ≥ 2) → Experience(x))
+(Events(x, e) ∧ e ≥ 2) → Experience(x)
+PARTS
+Events(x, e) ∧ e ≥ 2
+PARTS
+Events(x, e)
+Events
+PREDICATE_OK
+  Defining Predicate: Events with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+e ≥ 2
+e ≥ 2
+PREDICATE_OK
+  Defining Predicate: e ≥ 2 with arity 0
+Experience(x)
+Experience
+PREDICATE_OK
+∀e (Event(e) → Attend(Tu, e)) ∧ TotalEvents(Tu, 5)
+(Event(e) → Attend(Tu, e)) ∧ TotalEvents(Tu, 5)
+PARTS
+Event(e) → Attend(Tu, e)
+PARTS
+Event(e)
+Event
+PREDICATE_OK
+Attend(Tu, e)
+Attend
+PREDICATE_OK
+TotalEvents(Tu, 5)
+TotalEvents
+PREDICATE_OK
+  Defining Predicate: TotalEvents with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 12 ---
+∀x (Year(x, n) ∧ n ≥ 3 → (Internship(x) ∨ Work(x)))
+Year(x, n) ∧ n ≥ 3 → (Internship(x) ∨ Work(x))
+PARTS
+Year(x, n)
+Year
+PREDICATE_OK
+  Defining Predicate: Year with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+n ≥ 3
+n ≥ 3
+PREDICATE_OK
+  Defining Predicate: n ≥ 3 with arity 0
+Internship(x) ∨ Work(x)
+PARTS
+Internship(x)
+Internship
+PREDICATE_OK
+  Defining Predicate: Internship with arity 1
+    Inferred signature: ['Item'] -> Bool
+Work(x)
+Work
+PREDICATE_OK
+  Defining Predicate: Work with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (Internship(x) → GoodCV(x))
+Internship(x) → GoodCV(x)
+PARTS
+Internship(x)
+Internship
+PREDICATE_OK
+GoodCV(x)
+GoodCV
+PREDICATE_OK
+  Defining Predicate: GoodCV with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (GoodCV(x) → EasyJob(x))
+GoodCV(x) → EasyJob(x)
+PARTS
+GoodCV(x)
+GoodCV
+PREDICATE_OK
+EasyJob(x)
+EasyJob
+PREDICATE_OK
+  Defining Predicate: EasyJob with arity 1
+    Inferred signature: ['Item'] -> Bool
+Year(Coke, 4)
+Year
+PREDICATE_OK
+
+--- Processing Record 13 ---
+∀x (FailTheoryCount(x) ≥ 4 → ¬AllowedFuturePractice(x))
+FailTheoryCount(x) ≥ 4 → ¬AllowedFuturePractice(x)
+PARTS
+FailTheoryCount(x) ≥ 4
+FailTheoryCount(x)
+FailTheoryCount
+PREDICATE_OK
+  Defining Predicate: FailTheoryCount with arity 1
+    Inferred signature: ['Item'] -> Real
+¬AllowedFuturePractice(x)
+AllowedFuturePractice
+PREDICATE_OK
+  Defining Predicate: AllowedFuturePractice with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (TheoryQuizFailCount(x) > 3 → ¬AllowedFuturePractice(x))
+TheoryQuizFailCount(x) > 3 → ¬AllowedFuturePractice(x)
+PARTS
+TheoryQuizFailCount(x) > 3
+TheoryQuizFailCount(x)
+TheoryQuizFailCount
+PREDICATE_OK
+  Defining Predicate: TheoryQuizFailCount with arity 1
+    Inferred signature: ['Item'] -> Real
+¬AllowedFuturePractice(x)
+AllowedFuturePractice
+PREDICATE_OK
+∀x ∀t ∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+∀t ∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p)
+PARTS
+¬Attended(x, t)
+Attended
+PREDICATE_OK
+  Defining Predicate: Attended with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+CorrespondsTo(t, p)
+CorrespondsTo
+PREDICATE_OK
+  Defining Predicate: CorrespondsTo with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Eligible(x, p)
+Eligible
+PREDICATE_OK
+  Defining Predicate: Eligible with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀g ∀s (CountFails(g, s) ≥ 2 → SessionFail(s))
+∀s (CountFails(g, s) ≥ 2 → SessionFail(s))
+CountFails(g, s) ≥ 2 → SessionFail(s)
+PARTS
+CountFails(g, s) ≥ 2
+CountFails(g, s)
+CountFails
+PREDICATE_OK
+  Defining Predicate: CountFails with arity 2
+    Inferred signature: ['Item', 'Item'] -> Real
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+  Defining Predicate: SessionFail with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀g ∀s (FailedCalculation(g, s) → SessionFail(s))
+∀s (FailedCalculation(g, s) → SessionFail(s))
+FailedCalculation(g, s) → SessionFail(s)
+PARTS
+FailedCalculation(g, s)
+FailedCalculation
+PREDICATE_OK
+  Defining Predicate: FailedCalculation with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+∀x ∀g ∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+∀g ∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+(AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s)
+PARTS
+AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)
+PARTS
+AssignedTo(x, g)
+AssignedTo
+PREDICATE_OK
+  Defining Predicate: AssignedTo with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+AssignedToSession(g, s)
+AssignedToSession
+PREDICATE_OK
+  Defining Predicate: AssignedToSession with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+SessionFailForStudent(x, s)
+SessionFailForStudent
+PREDICATE_OK
+  Defining Predicate: SessionFailForStudent with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x ∀t (¬Attended(x, t) → FailsSession(x, t))
+∀t (¬Attended(x, t) → FailsSession(x, t))
+¬Attended(x, t) → FailsSession(x, t)
+PARTS
+¬Attended(x, t)
+Attended
+PREDICATE_OK
+FailsSession(x, t)
+FailsSession
+PREDICATE_OK
+  Defining Predicate: FailsSession with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+FailTheoryCount(Bob) ≥ 3
+FailTheoryCount(Bob)
+FailTheoryCount
+PREDICATE_OK
+TheoryQuizFailCount(Bob) ≥ 3
+TheoryQuizFailCount(Bob)
+TheoryQuizFailCount
+PREDICATE_OK
+¬Attended(Bob, T3)
+Attended
+PREDICATE_OK
+CorrespondsTo(T3, P3)
+CorrespondsTo
+PREDICATE_OK
+AssignedTo(Bob, G1)
+AssignedTo
+PREDICATE_OK
+AssignedToSession(G1, P3)
+AssignedToSession
+PREDICATE_OK
+∀x ∀t ∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+∀t ∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p)
+PARTS
+FailsSession(x, t)
+FailsSession
+PREDICATE_OK
+CorrespondsTo(t, p)
+CorrespondsTo
+PREDICATE_OK
+FailsOralCheck(x, p)
+FailsOralCheck
+PREDICATE_OK
+  Defining Predicate: FailsOralCheck with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+CountFails(G1, P3) ≥ 1
+CountFails(G1, P3)
+CountFails
+PREDICATE_OK
+
+--- Processing Record 14 ---
+∀x (HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600))
+HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)
+PARTS
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+  Defining Predicate: HasEnglishCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600
+PARTS
+IELTS(x) ≥ 6.0
+IELTS(x)
+IELTS
+PREDICATE_OK
+  Defining Predicate: IELTS with arity 1
+    Inferred signature: ['Item'] -> Real
+TOEFL(x) > 600
+TOEFL(x)
+TOEFL
+PREDICATE_OK
+  Defining Predicate: TOEFL with arity 1
+    Inferred signature: ['Item'] -> Real
+∃x(HasEnglishCertificate(x))
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+∀x (RequiredToHaveEnglishCertificate(x))
+RequiredToHaveEnglishCertificate(x)
+RequiredToHaveEnglishCertificate
+PREDICATE_OK
+  Defining Predicate: RequiredToHaveEnglishCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(HasEnglishCertificate(x)) → ∀y (RequiredToHaveEnglishCertificate(y))
+(HasEnglishCertificate(x)) → ∀y (RequiredToHaveEnglishCertificate(y))
+PARTS
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+∀y (RequiredToHaveEnglishCertificate(y))
+RequiredToHaveEnglishCertificate(y)
+RequiredToHaveEnglishCertificate
+PREDICATE_OK
+∀x ((HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)) → ∀y (RequiredToHaveEnglishCertificate(y)))
+(HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)) → ∀y (RequiredToHaveEnglishCertificate(y))
+PARTS
+HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)
+PARTS
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600
+PARTS
+IELTS(x) ≥ 6.0
+IELTS(x)
+IELTS
+PREDICATE_OK
+TOEFL(x) > 600
+TOEFL(x)
+TOEFL
+PREDICATE_OK
+∀y (RequiredToHaveEnglishCertificate(y))
+RequiredToHaveEnglishCertificate(y)
+RequiredToHaveEnglishCertificate
+PREDICATE_OK
+∃x(CompletedLanguageProficiencyTest(x))
+CompletedLanguageProficiencyTest(x)
+CompletedLanguageProficiencyTest
+PREDICATE_OK
+  Defining Predicate: CompletedLanguageProficiencyTest with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(EligibleForLanguageScholarship(x))
+EligibleForLanguageScholarship(x)
+EligibleForLanguageScholarship
+PREDICATE_OK
+  Defining Predicate: EligibleForLanguageScholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 15 ---
+∀x(Miss_Quiz(x) → Fail_Class(x))
+Miss_Quiz(x) → Fail_Class(x)
+PARTS
+Miss_Quiz(x)
+Miss_Quiz
+PREDICATE_OK
+  Defining Predicate: Miss_Quiz with arity 1
+    Inferred signature: ['Item'] -> Bool
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+  Defining Predicate: Fail_Class with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Score_Final(x) < 50 → Fail_Class(x))
+Score_Final(x) < 50 → Fail_Class(x)
+PARTS
+Score_Final(x) < 50
+Score_Final(x)
+Score_Final
+PREDICATE_OK
+  Defining Predicate: Score_Final with arity 1
+    Inferred signature: ['Item'] -> Real
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+∀x(Complete_Homework(x) ∧ Attend_All_Classes(x) → Pass_Final(x))
+Complete_Homework(x) ∧ Attend_All_Classes(x) → Pass_Final(x)
+PARTS
+Complete_Homework(x)
+Complete_Homework
+PREDICATE_OK
+  Defining Predicate: Complete_Homework with arity 1
+    Inferred signature: ['Item'] -> Bool
+Attend_All_Classes(x)
+Attend_All_Classes
+PREDICATE_OK
+  Defining Predicate: Attend_All_Classes with arity 1
+    Inferred signature: ['Item'] -> Bool
+Pass_Final(x)
+Pass_Final
+PREDICATE_OK
+  Defining Predicate: Pass_Final with arity 1
+    Inferred signature: ['Item'] -> Bool
+Complete_Homework(Ponko) ∧ ¬Attend_All_Classes(Ponko)
+PARTS
+Complete_Homework(Ponko)
+Complete_Homework
+PREDICATE_OK
+¬Attend_All_Classes(Ponko)
+Attend_All_Classes
+PREDICATE_OK
+∀x(Fail_Class(x) → Retake_Next_Semester(x))
+Fail_Class(x) → Retake_Next_Semester(x)
+PARTS
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+Retake_Next_Semester(x)
+Retake_Next_Semester
+PREDICATE_OK
+  Defining Predicate: Retake_Next_Semester with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 16 ---
+∀x(ScoreFinalExam(x) > 80 → QualifyScholarship(x))
+ScoreFinalExam(x) > 80 → QualifyScholarship(x)
+PARTS
+ScoreFinalExam(x) > 80
+ScoreFinalExam(x)
+ScoreFinalExam
+PREDICATE_OK
+  Defining Predicate: ScoreFinalExam with arity 1
+    Inferred signature: ['Item'] -> Real
+QualifyScholarship(x)
+QualifyScholarship
+PREDICATE_OK
+  Defining Predicate: QualifyScholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬AttendRegularly(x) → ScoreFinalExam(x) ≤ 80)
+¬AttendRegularly(x) → ScoreFinalExam(x) ≤ 80
+PARTS
+¬AttendRegularly(x)
+AttendRegularly
+PREDICATE_OK
+  Defining Predicate: AttendRegularly with arity 1
+    Inferred signature: ['Item'] -> Bool
+ScoreFinalExam(x) ≤ 80
+ScoreFinalExam(x)
+ScoreFinalExam
+PREDICATE_OK
+∀x(BasketballTeam(x) → MustAttendRegularly(x))
+BasketballTeam(x) → MustAttendRegularly(x)
+PARTS
+BasketballTeam(x)
+BasketballTeam
+PREDICATE_OK
+  Defining Predicate: BasketballTeam with arity 1
+    Inferred signature: ['Item'] -> Bool
+MustAttendRegularly(x)
+MustAttendRegularly
+PREDICATE_OK
+  Defining Predicate: MustAttendRegularly with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(RemainOnTeamAllSemester(x) → AthleticCertificate(x))
+RemainOnTeamAllSemester(x) → AthleticCertificate(x)
+PARTS
+RemainOnTeamAllSemester(x)
+RemainOnTeamAllSemester
+PREDICATE_OK
+  Defining Predicate: RemainOnTeamAllSemester with arity 1
+    Inferred signature: ['Item'] -> Bool
+AthleticCertificate(x)
+AthleticCertificate
+PREDICATE_OK
+  Defining Predicate: AthleticCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+BasketballTeam(Rillance)
+BasketballTeam
+PREDICATE_OK
+AthleticCertificate(Rillance)
+AthleticCertificate
+PREDICATE_OK
+ScoreFinalExam(Rillance) = 85
+ScoreFinalExam(Rillance)
+ScoreFinalExam
+PREDICATE_OK
+
+--- Processing Record 17 ---
+∀x∀y(Studies(x, y, ≥10) → Knowledge(x, y))
+∀y(Studies(x, y, ≥10) → Knowledge(x, y))
+Studies(x, y, ≥10) → Knowledge(x, y)
+PARTS
+Studies(x, y, ≥10)
+Studies
+PREDICATE_OK
+  Defining Predicate: Studies with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+Knowledge(x, y)
+Knowledge
+PREDICATE_OK
+  Defining Predicate: Knowledge with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀y(Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y)))
+∀y(Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y)))
+Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y))
+PARTS
+Knowledge(x, y)
+Knowledge
+PREDICATE_OK
+ExamPass(x, y) ∨ Project(x, y)
+PARTS
+ExamPass(x, y)
+ExamPass
+PREDICATE_OK
+  Defining Predicate: ExamPass with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Project(x, y)
+Project
+PREDICATE_OK
+  Defining Predicate: Project with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀y(¬Project(x, y) → ExamTake(x, y))
+∀y(¬Project(x, y) → ExamTake(x, y))
+¬Project(x, y) → ExamTake(x, y)
+PARTS
+¬Project(x, y)
+Project
+PREDICATE_OK
+ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+  Defining Predicate: ExamTake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀y(RequiresExam(y) → (ProfessorPrepares(y) ∨ SystemGenerates(y)))
+RequiresExam(y) → (ProfessorPrepares(y) ∨ SystemGenerates(y))
+PARTS
+RequiresExam(y)
+RequiresExam
+PREDICATE_OK
+  Defining Predicate: RequiresExam with arity 1
+    Inferred signature: ['Item'] -> Bool
+ProfessorPrepares(y) ∨ SystemGenerates(y)
+PARTS
+ProfessorPrepares(y)
+ProfessorPrepares
+PREDICATE_OK
+  Defining Predicate: ProfessorPrepares with arity 1
+    Inferred signature: ['Item'] -> Bool
+SystemGenerates(y)
+SystemGenerates
+PREDICATE_OK
+  Defining Predicate: SystemGenerates with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y(Studies(x, y, <10) → ExamTake(x, y))
+∀y(Studies(x, y, <10) → ExamTake(x, y))
+Studies(x, y, <10) → ExamTake(x, y)
+PARTS
+Studies(x, y, <10)
+Studies
+PREDICATE_OK
+ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+∀x(PassesSubjects(x, ≥3) → Scholarship(x))
+PassesSubjects(x, ≥3) → Scholarship(x)
+PARTS
+PassesSubjects(x, ≥3)
+PassesSubjects
+PREDICATE_OK
+  Defining Predicate: PassesSubjects with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Scholarship(x)
+Scholarship
+PREDICATE_OK
+  Defining Predicate: Scholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y(Studies(x, y, ≥15) → ¬ExamTake(x, y))
+∀y(Studies(x, y, ≥15) → ¬ExamTake(x, y))
+Studies(x, y, ≥15) → ¬ExamTake(x, y)
+PARTS
+Studies(x, y, ≥15)
+Studies
+PREDICATE_OK
+¬ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+∀x((KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)) → ExamTakeThree(x))
+(KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)) → ExamTakeThree(x)
+PARTS
+KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)
+PARTS
+KnowledgeThreeSubjects(x)
+KnowledgeThreeSubjects
+PREDICATE_OK
+  Defining Predicate: KnowledgeThreeSubjects with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬ProjectAny(x)
+ProjectAny
+PREDICATE_OK
+  Defining Predicate: ProjectAny with arity 1
+    Inferred signature: ['Item'] -> Bool
+ExamTakeThree(x)
+ExamTakeThree
+PREDICATE_OK
+  Defining Predicate: ExamTakeThree with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y((Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y))
+∀y((Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y))
+(Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y)
+PARTS
+Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)
+PARTS
+Studies(x, y, <10)
+Studies
+PREDICATE_OK
+Project(x, y)
+Project
+PREDICATE_OK
+ProfessorRequires(y)
+ProfessorRequires
+PREDICATE_OK
+  Defining Predicate: ProfessorRequires with arity 1
+    Inferred signature: ['Item'] -> Bool
+Assessment(x, y)
+Assessment
+PREDICATE_OK
+  Defining Predicate: Assessment with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 18 ---
+∀x(Graduate(x) → Credits(x, ≥150))
+Graduate(x) → Credits(x, ≥150)
+PARTS
+Graduate(x)
+Graduate
+PREDICATE_OK
+  Defining Predicate: Graduate with arity 1
+    Inferred signature: ['Item'] -> Bool
+Credits(x, ≥150)
+Credits
+PREDICATE_OK
+  Defining Predicate: Credits with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀c(CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x)))
+∀c(CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x)))
+CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x))
+PARTS
+CoreCourse(c)
+CoreCourse
+PREDICATE_OK
+  Defining Predicate: CoreCourse with arity 1
+    Inferred signature: ['Item'] -> Bool
+Fails(x, c)
+Fails
+PREDICATE_OK
+  Defining Predicate: Fails with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Retake(x, c) ∧ Passes(x, c) → Graduate(x)
+PARTS
+Retake(x, c)
+Retake
+PREDICATE_OK
+  Defining Predicate: Retake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Passes(x, c)
+Passes
+PREDICATE_OK
+  Defining Predicate: Passes with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Graduate(x)
+Graduate
+PREDICATE_OK
+∀x(Enroll(x, Capstone) → (Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods)))
+Enroll(x, Capstone) → (Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods))
+PARTS
+Enroll(x, Capstone)
+Enroll
+PREDICATE_OK
+  Defining Predicate: Enroll with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods)
+PARTS
+Completed(x, AdvAlgorithms)
+Completed
+PREDICATE_OK
+  Defining Predicate: Completed with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Completed(x, ResearchMethods)
+Completed
+PREDICATE_OK
+∀x(Completed(x, AdvAlgorithms) → (Passes(x, DataStructures) ∧ Passes(x, DiscreteMath)))
+Completed(x, AdvAlgorithms) → (Passes(x, DataStructures) ∧ Passes(x, DiscreteMath))
+PARTS
+Completed(x, AdvAlgorithms)
+Completed
+PREDICATE_OK
+Passes(x, DataStructures) ∧ Passes(x, DiscreteMath)
+PARTS
+Passes(x, DataStructures)
+Passes
+PREDICATE_OK
+Passes(x, DiscreteMath)
+Passes
+PREDICATE_OK
+∀x((CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)) → ApplyEarlyGraduation(x))
+(CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)) → ApplyEarlyGraduation(x)
+PARTS
+CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)
+PARTS
+CreditsPerSemester(x, ≥12)
+CreditsPerSemester
+PREDICATE_OK
+  Defining Predicate: CreditsPerSemester with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+GPA(x, ≥3.0)
+GPA
+PREDICATE_OK
+  Defining Predicate: GPA with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+ApplyEarlyGraduation(x)
+ApplyEarlyGraduation
+PREDICATE_OK
+  Defining Predicate: ApplyEarlyGraduation with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀c(¬MeetsPrerequisites(x, c) → ¬Enroll(x, c))
+∀c(¬MeetsPrerequisites(x, c) → ¬Enroll(x, c))
+¬MeetsPrerequisites(x, c) → ¬Enroll(x, c)
+PARTS
+¬MeetsPrerequisites(x, c)
+MeetsPrerequisites
+PREDICATE_OK
+  Defining Predicate: MeetsPrerequisites with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Enroll(x, c)
+Enroll
+PREDICATE_OK
+∀x∀c(Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c)))
+∀c(Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c)))
+Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c))
+PARTS
+Fails(x, c)
+Fails
+PREDICATE_OK
+RetakeNext(x, c) ∨ Approval(x, c)
+PARTS
+RetakeNext(x, c)
+RetakeNext
+PREDICATE_OK
+  Defining Predicate: RetakeNext with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Approval(x, c)
+Approval
+PREDICATE_OK
+  Defining Predicate: Approval with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀c(CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x))
+∀c(CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x))
+CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x)
+PARTS
+CoreCourse(c)
+CoreCourse
+PREDICATE_OK
+DelaysRetake(x, c)
+DelaysRetake
+PREDICATE_OK
+  Defining Predicate: DelaysRetake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Approval(x, c)
+Approval
+PREDICATE_OK
+¬Graduate(x)
+Graduate
+PREDICATE_OK
+Credits(Nam, 138) ∧ Passes(Nam, DataStructures) ∧ ¬Passes(Nam, DiscreteMath)
+PARTS
+Credits(Nam, 138)
+Credits
+PREDICATE_OK
+Passes(Nam, DataStructures)
+Passes
+PREDICATE_OK
+¬Passes(Nam, DiscreteMath)
+Passes
+PREDICATE_OK
+CreditsPerSemester(Nam, 15) ∧ GPA(Nam, 3.2)
+PARTS
+CreditsPerSemester(Nam, 15)
+CreditsPerSemester
+PREDICATE_OK
+GPA(Nam, 3.2)
+GPA
+PREDICATE_OK
+CoreCourse(OperatingSystems) ∧ Fails(Nam, OperatingSystems) ∧ ¬Retake(Nam, OperatingSystems)
+PARTS
+CoreCourse(OperatingSystems)
+CoreCourse
+PREDICATE_OK
+Fails(Nam, OperatingSystems)
+Fails
+PREDICATE_OK
+¬Retake(Nam, OperatingSystems)
+Retake
+PREDICATE_OK
+
+--- Processing Record 19 ---
+∀x(Subject(x) → ContainsKnowledge(x))
+Subject(x) → ContainsKnowledge(x)
+PARTS
+Subject(x)
+Subject
+PREDICATE_OK
+  Defining Predicate: Subject with arity 1
+    Inferred signature: ['Item'] -> Bool
+ContainsKnowledge(x)
+ContainsKnowledge
+PREDICATE_OK
+  Defining Predicate: ContainsKnowledge with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s∀x(Knowledge(s, x) → Explain(s, x, Friends))
+∀x(Knowledge(s, x) → Explain(s, x, Friends))
+Knowledge(s, x) → Explain(s, x, Friends)
+PARTS
+Knowledge(s, x)
+Knowledge
+PREDICATE_OK
+Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+  Defining Predicate: Explain with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+∀s∀x((Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x))
+∀x((Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x))
+(Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x)
+PARTS
+Explain(s, x, Friends) ∧ Understand(Friends, x)
+PARTS
+Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+Understand(Friends, x)
+Understand
+PREDICATE_OK
+  Defining Predicate: Understand with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+  Defining Predicate: Mastered with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s∀x(Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x)))
+∀x(Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x)))
+Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x))
+PARTS
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+GradeA(s, x) ∨ GradeAPlus(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+  Defining Predicate: GradeA with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+GradeAPlus(s, x)
+GradeAPlus
+PREDICATE_OK
+  Defining Predicate: GradeAPlus with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s((Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5) → Scholarship(s)))
+Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5) → Scholarship(s)
+PARTS
+Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5)
+GradeA(s, x) ∨ GradeAPlus(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+GradeAPlus(s, x)
+GradeAPlus
+PREDICATE_OK
+Count
+PREDICATE_OK
+  Defining Predicate: Count with arity 2
+    Inferred signature: ['Bool', 'Item'] -> Bool
+Scholarship(s)
+Scholarship
+PREDICATE_OK
+Count(GradeA(Tuan, x), 3)
+GradeA(Tuan, x)
+GradeA
+PREDICATE_OK
+Count
+PREDICATE_OK
+Count(GradeAPlus(Tuan, x), 0)
+GradeAPlus(Tuan, x)
+GradeAPlus
+PREDICATE_OK
+Count
+PREDICATE_OK
+∀s∀x(GradeA(s, x) → Mastered(s, x))
+∀x(GradeA(s, x) → Mastered(s, x))
+GradeA(s, x) → Mastered(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+∀x(¬Understand(Friends, x) → ¬Mastered(Tuan, x))
+¬Understand(Friends, x) → ¬Mastered(Tuan, x)
+PARTS
+¬Understand(Friends, x)
+Understand
+PREDICATE_OK
+¬Mastered(Tuan, x)
+Mastered
+PREDICATE_OK
+∀s∀x(¬Explain(s, x, Friends) → ¬Knowledge(s, x))
+∀x(¬Explain(s, x, Friends) → ¬Knowledge(s, x))
+¬Explain(s, x, Friends) → ¬Knowledge(s, x)
+PARTS
+¬Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+¬Knowledge(s, x)
+Knowledge
+PREDICATE_OK
+
+--- Processing Record 20 ---
+∀x (S(x) → A(x))
+S(x) → A(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+  Defining Predicate: S with arity 1
+    Inferred signature: ['Item'] -> Bool
+A(x)
+A
+PREDICATE_OK
+  Defining Predicate: A with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (¬S(x) → ¬A(x))
+¬S(x) → ¬A(x)
+PARTS
+¬S(x)
+S
+PREDICATE_OK
+¬A(x)
+A
+PREDICATE_OK
+S(John)
+S
+PREDICATE_OK
+A(John)
+A
+PREDICATE_OK
+¬S(Sarah)
+S
+PREDICATE_OK
+∀x (S(x) ∧ A(x) → K(x))
+S(x) ∧ A(x) → K(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+A(x)
+A
+PREDICATE_OK
+K(x)
+K
+PREDICATE_OK
+  Defining Predicate: K with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (K(x) → F(x))
+K(x) → F(x)
+PARTS
+K(x)
+K
+PREDICATE_OK
+F(x)
+F
+PREDICATE_OK
+  Defining Predicate: F with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀c ∃n (MaxStudents(c, n))
+∃n (MaxStudents(c, n))
+MaxStudents(c, n)
+MaxStudents
+PREDICATE_OK
+  Defining Predicate: MaxStudents with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x (S(x) ∧ M(x) > 3 → P(x))
+S(x) ∧ M(x) > 3 → P(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+M(x) > 3
+M(x)
+M
+PREDICATE_OK
+  Defining Predicate: M with arity 1
+    Inferred signature: ['Item'] -> Real
+P(x)
+P
+PREDICATE_OK
+  Defining Predicate: P with arity 1
+    Inferred signature: ['Item'] -> Bool
+M(John) = 0
+M(John)
+M
+PREDICATE_OK
+
+--- Processing Record 21 ---
+∀s (AllowedToEnterLab(s) ↔ (HasHealthInsurance(s) ∧ HasAccidentInsurance(s)))
+AllowedToEnterLab(s) ↔ (HasHealthInsurance(s) ∧ HasAccidentInsurance(s))
+PARTS
+AllowedToEnterLab(s)
+AllowedToEnterLab
+PREDICATE_OK
+  Defining Predicate: AllowedToEnterLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasHealthInsurance(s) ∧ HasAccidentInsurance(s)
+PARTS
+HasHealthInsurance(s)
+HasHealthInsurance
+PREDICATE_OK
+  Defining Predicate: HasHealthInsurance with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasAccidentInsurance(s)
+HasAccidentInsurance
+PREDICATE_OK
+  Defining Predicate: HasAccidentInsurance with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasHealthInsurance(Lan)
+HasHealthInsurance
+PREDICATE_OK
+HasAccidentInsurance(Lan)
+HasAccidentInsurance
+PREDICATE_OK
+∀s ((LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent) → CanAccessLab(s))
+(LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent) → CanAccessLab(s)
+PARTS
+LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent
+PARTS
+LabOpen(Weekdays, 9AM-5PM)
+LabOpen
+PREDICATE_OK
+  Defining Predicate: LabOpen with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬SpecialEvent
+SpecialEvent
+PREDICATE_OK
+  Defining Predicate: SpecialEvent with arity 0
+CanAccessLab(s)
+CanAccessLab
+PREDICATE_OK
+  Defining Predicate: CanAccessLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s (InLab(s) ∧ ¬VirtualLab → MustWearGoggles(s))
+InLab(s) ∧ ¬VirtualLab → MustWearGoggles(s)
+PARTS
+InLab(s)
+InLab
+PREDICATE_OK
+  Defining Predicate: InLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬VirtualLab
+VirtualLab
+PREDICATE_OK
+  Defining Predicate: VirtualLab with arity 0
+MustWearGoggles(s)
+MustWearGoggles
+PREDICATE_OK
+  Defining Predicate: MustWearGoggles with arity 1
+    Inferred signature: ['Item'] -> Bool
+Enrolled(Lan, Chemistry101)
+Enrolled
+PREDICATE_OK
+  Defining Predicate: Enrolled with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+RequiresLabAccess(Chemistry101, Tuesdays)
+RequiresLabAccess
+PREDICATE_OK
+  Defining Predicate: RequiresLabAccess with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+HasHealthInsurance(Kai)
+HasHealthInsurance
+PREDICATE_OK
+¬HasAccidentInsurance(Kai)
+HasAccidentInsurance
+PREDICATE_OK
+∀s (GroupSize(s) > 3 → MustReserveEquipment(s, 24Hours))
+GroupSize(s) > 3 → MustReserveEquipment(s, 24Hours)
+PARTS
+GroupSize(s) > 3
+GroupSize(s)
+GroupSize
+PREDICATE_OK
+  Defining Predicate: GroupSize with arity 1
+    Inferred signature: ['Item'] -> Real
+MustReserveEquipment(s, 24Hours)
+MustReserveEquipment
+PREDICATE_OK
+  Defining Predicate: MustReserveEquipment with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+GroupSize(Lan) = 1
+GroupSize(Lan)
+GroupSize
+PREDICATE_OK
+CompletedSafetyTraining(Lan)
+CompletedSafetyTraining
+PREDICATE_OK
+  Defining Predicate: CompletedSafetyTraining with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s ((GPA(s) > 3.5 ∧ Approved(DrZee, s)) → ExtraLabHours(s))
+(GPA(s) > 3.5 ∧ Approved(DrZee, s)) → ExtraLabHours(s)
+PARTS
+GPA(s) > 3.5 ∧ Approved(DrZee, s)
+PARTS
+GPA(s) > 3.5
+GPA(s)
+GPA
+PREDICATE_OK
+Approved(DrZee, s)
+Approved
+PREDICATE_OK
+  Defining Predicate: Approved with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+ExtraLabHours(s)
+ExtraLabHours
+PREDICATE_OK
+  Defining Predicate: ExtraLabHours with arity 1
+    Inferred signature: ['Item'] -> Bool
+GPA(Lan) = 3.8
+GPA(Lan)
+GPA
+PREDICATE_OK
+WorksRegularHours(Lan)
+WorksRegularHours
+PREDICATE_OK
+  Defining Predicate: WorksRegularHours with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬AllowedToEnterLab(Kai)
+AllowedToEnterLab
+PREDICATE_OK
+∀e (Experiment(Chemistry101, e) → LabTemperature ≥ 20)
+Experiment(Chemistry101, e) → LabTemperature ≥ 20
+PARTS
+Experiment(Chemistry101, e)
+Experiment
+PREDICATE_OK
+  Defining Predicate: Experiment with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+LabTemperature ≥ 20
+LabTemperature ≥ 20
+PREDICATE_OK
+  Defining Predicate: LabTemperature ≥ 20 with arity 0
+
+--- Processing Record 22 ---
+∀s (FullTimeStudent(s) → (Credits(s) ≥ 14 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 11)))
+FullTimeStudent(s) → (Credits(s) ≥ 14 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 11))
+PARTS
+FullTimeStudent(s)
+FullTimeStudent
+PREDICATE_OK
+  Defining Predicate: FullTimeStudent with arity 1
+    Inferred signature: ['Item'] -> Bool
+Credits(s) ≥ 14 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 11)
+PARTS
+Credits(s) ≥ 14
+Credits(s)
+Credits
+PREDICATE_OK
+  Defining Predicate: Credits with arity 1
+    Inferred signature: ['Item'] -> Real
+SpecialCase(s) ∧ Credits(s) ≥ 11
+PARTS
+SpecialCase(s)
+SpecialCase
+PREDICATE_OK
+  Defining Predicate: SpecialCase with arity 1
+    Inferred signature: ['Item'] -> Bool
+Credits(s) ≥ 11
+Credits(s)
+Credits
+PREDICATE_OK
+∀s (PartTimeStudent(s) → (Credits(s) ≥ 11 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 9)))
+PartTimeStudent(s) → (Credits(s) ≥ 11 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 9))
+PARTS
+PartTimeStudent(s)
+PartTimeStudent
+PREDICATE_OK
+  Defining Predicate: PartTimeStudent with arity 1
+    Inferred signature: ['Item'] -> Bool
+Credits(s) ≥ 11 ∨ (SpecialCase(s) ∧ Credits(s) ≥ 9)
+PARTS
+Credits(s) ≥ 11
+Credits(s)
+Credits
+PREDICATE_OK
+SpecialCase(s) ∧ Credits(s) ≥ 9
+PARTS
+SpecialCase(s)
+SpecialCase
+PREDICATE_OK
+Credits(s) ≥ 9
+Credits(s)
+Credits
+PREDICATE_OK
+FullTimeStudent(Linh) ∧ SpecialCase(Linh) ∧ Credits(Linh) = 12
+PARTS
+FullTimeStudent(Linh)
+FullTimeStudent
+PREDICATE_OK
+SpecialCase(Linh)
+SpecialCase
+PREDICATE_OK
+Credits(Linh) = 12
+Credits(Linh)
+Credits
+PREDICATE_OK
+SemesterCountSpecialCase(Linh) = 1
+SemesterCountSpecialCase(Linh)
+SemesterCountSpecialCase
+PREDICATE_OK
+  Defining Predicate: SemesterCountSpecialCase with arity 1
+    Inferred signature: ['Item'] -> Real
+∀s (PartTimeStudent(s) → MustSubmitWorkSchedule(s))
+PartTimeStudent(s) → MustSubmitWorkSchedule(s)
+PARTS
+PartTimeStudent(s)
+PartTimeStudent
+PREDICATE_OK
+MustSubmitWorkSchedule(s)
+MustSubmitWorkSchedule
+PREDICATE_OK
+  Defining Predicate: MustSubmitWorkSchedule with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s (FullTimeStudent(s) ∧ Credits(s) < 14 → MustMeetAdvisor(s))
+FullTimeStudent(s) ∧ Credits(s) < 14 → MustMeetAdvisor(s)
+PARTS
+FullTimeStudent(s)
+FullTimeStudent
+PREDICATE_OK
+Credits(s) < 14
+Credits(s)
+Credits
+PREDICATE_OK
+MustMeetAdvisor(s)
+MustMeetAdvisor
+PREDICATE_OK
+  Defining Predicate: MustMeetAdvisor with arity 1
+    Inferred signature: ['Item'] -> Bool
+Enrolled(Linh, LabCourse) ∧ Credits(LabCourse) = 4
+PARTS
+Enrolled(Linh, LabCourse)
+Enrolled
+PREDICATE_OK
+Credits(LabCourse) = 4
+Credits(LabCourse)
+Credits
+PREDICATE_OK
+Enrolled(Linh, LectureCourse1) ∧ Credits(LectureCourse1) = 4
+PARTS
+Enrolled(Linh, LectureCourse1)
+Enrolled
+PREDICATE_OK
+Credits(LectureCourse1) = 4
+Credits(LectureCourse1)
+Credits
+PREDICATE_OK
+Enrolled(Linh, LectureCourse2) ∧ Credits(LectureCourse2) = 4
+PARTS
+Enrolled(Linh, LectureCourse2)
+Enrolled
+PREDICATE_OK
+Credits(LectureCourse2) = 4
+Credits(LectureCourse2)
+Credits
+PREDICATE_OK
+PartTimeStudent(Minh) ∧ SpecialCase(Minh) ∧ Credits(Minh) = 10
+PARTS
+PartTimeStudent(Minh)
+PartTimeStudent
+PREDICATE_OK
+SpecialCase(Minh)
+SpecialCase
+PREDICATE_OK
+Credits(Minh) = 10
+Credits(Minh)
+Credits
+PREDICATE_OK
+∀c (Credits(c) > 3 → AttendanceRequired(c, 80%))
+Credits(c) > 3 → AttendanceRequired(c, 80%)
+PARTS
+Credits(c) > 3
+Credits(c)
+Credits
+PREDICATE_OK
+AttendanceRequired(c, 80%)
+AttendanceRequired
+PREDICATE_OK
+  Defining Predicate: AttendanceRequired with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s (Credits(s) = 12 → EligibleForDiscount(s))
+Credits(s) = 12 → EligibleForDiscount(s)
+PARTS
+Credits(s) = 12
+Credits(s)
+Credits
+PREDICATE_OK
+EligibleForDiscount(s)
+EligibleForDiscount
+PREDICATE_OK
+  Defining Predicate: EligibleForDiscount with arity 1
+    Inferred signature: ['Item'] -> Bool
+SemesterCountSpecialCase(Linh) ≤ 2
+SemesterCountSpecialCase(Linh)
+SemesterCountSpecialCase
+PREDICATE_OK
+WorkHours(Minh) = 20
+WorkHours(Minh)
+WorkHours
+PREDICATE_OK
+  Defining Predicate: WorkHours with arity 1
+    Inferred signature: ['Item'] -> Real
+∀s (FullTimeStudent(s) ∧ Semester(s) ≥ 3 → MustDeclareMajor(s))
+FullTimeStudent(s) ∧ Semester(s) ≥ 3 → MustDeclareMajor(s)
+PARTS
+FullTimeStudent(s)
+FullTimeStudent
+PREDICATE_OK
+Semester(s) ≥ 3
+Semester(s)
+Semester
+PREDICATE_OK
+  Defining Predicate: Semester with arity 1
+    Inferred signature: ['Item'] -> Real
+MustDeclareMajor(s)
+MustDeclareMajor
+PREDICATE_OK
+  Defining Predicate: MustDeclareMajor with arity 1
+    Inferred signature: ['Item'] -> Bool
+Semester(Linh) = 2
+Semester(Linh)
+Semester
+PREDICATE_OK
+
+--- Processing Summary ---
+Total records processed: 23
+Total premises encountered: 230
+Premise parsing errors: 0 (0.00% errors)
+Total questions encountered: 0
+Total unique predicates identified: 251
+Identified predicates: [('safety_orientation', 1), ('membership_duration', 1), ('paid_annual_fee', 1), ('valid_membership', 1), ('use_equipment', 1), ('has_trainer', 1), ('book_training', 1), ('eligible_trainer', 1), ('active_status', 1), ('completed_courses', 1), ('eligible_advanced', 1), ('requires_approval', 1), ('has_approval', 1), ('clinical_hours', 2), ('h ≥ 500', 0), ('advanced_practice', 1), ('registered_nurse', 1), ('can_prescribe', 1), ('has_card', 1), ('study', 2), ('understand', 2), ('analyze', 2), ('debate', 1), ('write_essay', 1), ('struggle', 2), ('professor_requires', 2), ('justified_reason', 1), ('high_quality', 1), ('academic_recognition', 1), ('field', 2), ('qualify_fellowship', 1), ('controversial', 1), ('must_analyze', 2), ('fail', 2), ('explain', 2), ('write_paper', 1), ('give_presentation', 1), ('original_work', 1), ('qualify_scholarship', 1), ('experiment', 2), ('complete_modules', 2), ('uptime', 1), ('master_content', 2), ('pass_exam', 2), ('submit_capstone', 2), ('take_exam', 2), ('require_exam', 1), ('secure_system', 1), ('external_proctor', 1), ('downtime', 2), ('pass_count', 1), ('digital_certificate', 1), ('live_sessions', 2), ('high_stakes', 1), ('need_verification', 2), ('advanced_credential', 1), ('crash_during_exam', 1), ('reschedule_exam', 1), ('accept_capstone', 2), ('re_enroll', 2), ('complete_theory', 1), ('participate_practice', 1), ('bad_weather', 1), ('delay_practice', 1), ('flight_practice', 1), ('safety_test', 1), ('retake_theory', 1), ('refund', 1), ('flight_late', 1), ('submit_report', 1), ('instructors', 1), ('instructor_absent', 1), ('find_replacement', 1), ('cancel_practice', 1), ('reregister', 1), ('submit_application', 1), ('complete_theory', 2), ('bad_weather', 3), ('safety_test', 3), ('instructor_absent', 3), ('find_replacement', 2), ('notify_cancellation', 1), ('make_up_session', 1), ('lose_exam_eligibility', 1), ('Student', 1), ('ComplyWithRules', 1), ('DisciplinaryAction', 1), ('CompleteMandatoryCourses', 1), ('EligibleForGraduation', 1), ('Lecturer', 1), ('UnderstandAdmissionRegulations', 1), ('AdditionalTesting', 1), ('MaxStudyDuration', 2), ('StudyDurationExceeded', 1), ('CompleteRequirementsWithin3Years', 1), ('TuitionFee', 1), ('DeterminedByFieldAndYear', 1), ('CompleteTuitionPayment', 1), ('Submitted', 1), ('Fail', 1), ('StudyRegularly', 1), ('Pass', 1), ('MeetCourseReq', 1), ('RetakeCourse', 1), ('Score', 1), ('Distinction', 1), ('Study', 1), ('CertificateExcellence', 1), ('HighAcademicStanding', 1), ('Honored', 1), ('StudyButFail', 1), ('FailThenImprove', 1), ('CompletedCourses', 1), ('GPA', 1), ('MustCompleteFinalProject', 1), ('ReceivesDiploma', 1), ('InternshipCompleted', 1), ('GraduatesWithHonors', 1), ('MeetsAcademicRequirements', 1), ('EligibleForHonors', 1), ('GoodGPA', 1), ('MeetsGraduationRequirements', 1), ('FinalProjectCompleted', 1), ('MustMeetAcademicRequirements', 1), ('CompletedGraduationRequirements', 1), ('GraduatesWithDistinction', 1), ('Member', 1), ('Event', 1), ('Attend', 2), ('Experience', 1), ('ImproveSkill', 1), ('Confident', 1), ('Events', 2), ('e ≥ 2', 0), ('TotalEvents', 2), ('Year', 2), ('n ≥ 3', 0), ('Internship', 1), ('Work', 1), ('GoodCV', 1), ('EasyJob', 1), ('FailTheoryCount', 1), ('AllowedFuturePractice', 1), ('TheoryQuizFailCount', 1), ('Attended', 2), ('CorrespondsTo', 2), ('Eligible', 2), ('CountFails', 2), ('SessionFail', 1), ('FailedCalculation', 2), ('AssignedTo', 2), ('AssignedToSession', 2), ('SessionFailForStudent', 2), ('FailsSession', 2), ('FailsOralCheck', 2), ('HasEnglishCertificate', 1), ('IELTS', 1), ('TOEFL', 1), ('RequiredToHaveEnglishCertificate', 1), ('CompletedLanguageProficiencyTest', 1), ('EligibleForLanguageScholarship', 1), ('Miss_Quiz', 1), ('Fail_Class', 1), ('Score_Final', 1), ('Complete_Homework', 1), ('Attend_All_Classes', 1), ('Pass_Final', 1), ('Retake_Next_Semester', 1), ('ScoreFinalExam', 1), ('QualifyScholarship', 1), ('AttendRegularly', 1), ('BasketballTeam', 1), ('MustAttendRegularly', 1), ('RemainOnTeamAllSemester', 1), ('AthleticCertificate', 1), ('Studies', 3), ('Knowledge', 2), ('ExamPass', 2), ('Project', 2), ('ExamTake', 2), ('RequiresExam', 1), ('ProfessorPrepares', 1), ('SystemGenerates', 1), ('PassesSubjects', 2), ('Scholarship', 1), ('KnowledgeThreeSubjects', 1), ('ProjectAny', 1), ('ExamTakeThree', 1), ('ProfessorRequires', 1), ('Assessment', 2), ('Graduate', 1), ('Credits', 2), ('CoreCourse', 1), ('Fails', 2), ('Retake', 2), ('Passes', 2), ('Enroll', 2), ('Completed', 2), ('CreditsPerSemester', 2), ('GPA', 2), ('ApplyEarlyGraduation', 1), ('MeetsPrerequisites', 2), ('RetakeNext', 2), ('Approval', 2), ('DelaysRetake', 2), ('Subject', 1), ('ContainsKnowledge', 1), ('Explain', 3), ('Understand', 2), ('Mastered', 2), ('GradeA', 2), ('GradeAPlus', 2), ('Count', 2), ('S', 1), ('A', 1), ('K', 1), ('F', 1), ('MaxStudents', 2), ('M', 1), ('P', 1), ('AllowedToEnterLab', 1), ('HasHealthInsurance', 1), ('HasAccidentInsurance', 1), ('LabOpen', 2), ('SpecialEvent', 0), ('CanAccessLab', 1), ('InLab', 1), ('VirtualLab', 0), ('MustWearGoggles', 1), ('Enrolled', 2), ('RequiresLabAccess', 2), ('GroupSize', 1), ('MustReserveEquipment', 2), ('CompletedSafetyTraining', 1), ('Approved', 2), ('ExtraLabHours', 1), ('WorksRegularHours', 1), ('Experiment', 2), ('LabTemperature ≥ 20', 0), ('FullTimeStudent', 1), ('Credits', 1), ('SpecialCase', 1), ('PartTimeStudent', 1), ('SemesterCountSpecialCase', 1), ('MustSubmitWorkSchedule', 1), ('MustMeetAdvisor', 1), ('AttendanceRequired', 2), ('EligibleForDiscount', 1), ('WorkHours', 1), ('Semester', 1), ('MustDeclareMajor', 1)]

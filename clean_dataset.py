@@ -37,8 +37,20 @@ def convert_fol_syntax(expr):
     expr = expr.replace("&", "∧")
     # Thay tất cả "):" bằng ")↔"
     expr = expr.replace("):", ")↔")
+    # Thay tất cả "):" bằng ")↔"
+    expr = expr.replace(")↔", ",")
     # Thay tất cả "Hà" bằng "Ha"
     expr = expr.replace("Hà", "Ha")
+    # Thay tất cả "GPA4.0" bằng "GPA4"
+    expr = expr.replace("GPA4.0", "GPA4")
+    # Thay tất cả "<=" bằng "≤"
+    expr = expr.replace("<=", "≤") 
+    # Thay tất cả ">=" bằng "≥"
+    expr = expr.replace(">=", "≥") 
+    # Thay tất cả "FORALL" bằng "ForAll"
+    expr = expr.replace("FORALL", "ForAll") 
+    # Thay tất cả "EXISTS" bằng "Exists"
+    expr = expr.replace("EXISTS", "Exists")
 
     quantifier_map = {
         'ForAll': '∀',
@@ -64,7 +76,7 @@ def convert_fol_syntax(expr):
     return ans
 
 # Đọc dữ liệu từ file train.json
-with open(r'datasets/train.json', 'r', encoding='utf-8') as f:
+with open(r'datasets/math_dataset.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Chuyển đổi tất cả biểu thức trong premises-FOL
@@ -76,5 +88,5 @@ for item in data:
     elif "premises_fol" in item:
         item["premises_fol"] = [convert_fol_syntax(expr) for expr in item["premises_fol"]]
 # Ghi lại vào file train.json
-with open(r'datasets/train.json', 'w', encoding='utf-8') as f:
+with open(r'datasets/math_dataset.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)

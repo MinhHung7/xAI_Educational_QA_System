@@ -4,7 +4,7 @@ import json
 special_chars = ['=', '≥', '>', '<', '≠', '≤', '+', '.', '∈', '*']
 
 # Đọc file JSON đầu vào
-with open(r'datasets/origin_train_v1.json', 'r', encoding='utf-8') as f:
+with open(r'datasets/train.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 # Lọc các item thỏa điều kiện

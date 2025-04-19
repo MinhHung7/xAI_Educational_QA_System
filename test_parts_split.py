@@ -19,8 +19,9 @@ def split_top_level(expr, delimiter='→'):
     return parts
 
 # Thử nghiệm
-expr = "GradeA(Tuan, x), 3"
-parts = split_top_level(expr, delimiter=',')
-for part in parts:
-    
+fol_str = "angle(A) + angle(B) + angle(C) = 180"
+
+
+arrow_parts = split_top_level(fol_str, delimiter='+')
+for part in arrow_parts:
     print(part)

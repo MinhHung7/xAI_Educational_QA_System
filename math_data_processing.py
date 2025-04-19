@@ -9,7 +9,7 @@ import regex
 
 
 # Redirect stdout và stderr
-log_file = open('logs.txt', 'w', encoding='utf-8')
+log_file = open('math_logs.txt', 'w', encoding='utf-8')
 sys.stdout = log_file
 sys.stderr = log_file
 
@@ -48,20 +48,21 @@ predicate_cache={}
 
 # Định nghĩa trước signature cho các predicate đặc biệt
 PREDEFINED_SIGNATURES = {
-    'higher': (Item, Item, z3.BoolSort()),
-    'has_degree': (Item, Item, z3.BoolSort()), # Giả định: người, bằng cấp -> bool
-    # Thêm các predicate khác nếu cần, ví dụ:
-    # 'completed_courses': (Item, z3.IntSort(), z3.BoolSort()), # Nếu có so sánh số lượng
-    # 'gpa_above_3_5': (Item, z3.BoolSort()), # Đã có trong regex
+    ('angle', 1): (Item, z3.RealSort()),
+    ('safety_test', 1): (Item, z3.BoolSort()),
+    ('safety_test', 3): (Item, Item, Item, z3.BoolSort()),
+    ('find_replacement', 1): (Item, z3.BoolSort()),
+    ('EnglishResultDate', 1): (Item, z3.StringSort())
 }
 
-def get_predicate(name, *arg_sorts_for_inference):
+
+def get_predicate(name, *arg_sorts_for_inference, return_sort=z3.BoolSort()):
     """
     Lấy hoặc tạo predicate Z3. Ưu tiên signature định nghĩa trước.
     Nếu không có, thử suy luận signature dựa trên sort của đối số mẫu được truyền vào.
     """
     print(name)
-    print("OK")
+    print("PREDICATE_OK")
     clean_name = name.strip()
     if not clean_name:
         raise ValueError("Predicate name cannot be empty")
@@ -72,8 +73,8 @@ def get_predicate(name, *arg_sorts_for_inference):
     if cache_key not in predicate_cache:
         print(f"  Defining Predicate: {clean_name} with arity {arity}")
 
-        if clean_name in PREDEFINED_SIGNATURES:
-            sig = PREDEFINED_SIGNATURES[clean_name]
+        if cache_key in PREDEFINED_SIGNATURES:
+            sig = PREDEFINED_SIGNATURES[cache_key]
             print(f"    Using predefined signature: {[s.name() for s in sig[:-1]]} -> {sig[-1].name()}")
             predicate_cache[cache_key] = z3.Function(clean_name, *sig)
         else:
@@ -91,11 +92,11 @@ def get_predicate(name, *arg_sorts_for_inference):
                         # valid_inference = False # Có thể quyết định không tạo nếu không rõ sort
                         # break
             else: # Predicate không có đối số? Ví dụ: Raining (0-ary)
-                predicate_cache[cache_key] = z3.Const(clean_name, z3.BoolSort())
+                predicate_cache[cache_key] = z3.Const(clean_name, return_sort)
                 return predicate_cache[cache_key]
 
             # if valid_inference:
-            signature = inferred_arg_sorts + [z3.BoolSort()]
+            signature = inferred_arg_sorts + [return_sort]
             print(f"    Inferred signature: {[s.name() for s in signature[:-1]]} -> {signature[-1].name()}")
             predicate_cache[cache_key] = z3.Function(clean_name, *signature)
             # else:
@@ -116,7 +117,7 @@ def get_predicate(name, *arg_sorts_for_inference):
 
 
 # --- 2. Hàm Parse Premises-FOL (Tổng quát hơn dùng Regex) ---
-def parse_fol_string_to_z3(fol_str):
+def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
     """
     Cố gắng parse một chuỗi FOL thành biểu thức Z3 bằng regex cho các mẫu phổ biến.
     Hàm này *vẫn còn hạn chế* và cần được mở rộng/tinh chỉnh dựa trên dataset.
@@ -128,16 +129,13 @@ def parse_fol_string_to_z3(fol_str):
         z3.ExprRef | None: Biểu thức Z3 tương ứng hoặc None nếu không parse được.
     """
     ################   TEST #########
-    # fol_str = "Q(Const) → R(Const)"
+    # fol_str = "academic_warning(x) ∧ next_term_gpa(x) > 6.5 ∧ ¬violation(x) → lift_warning(x)"
 
     ##################################
 
     # Các trường họp chưa xử lý được
     # ---------------------------------------------------------
 
-    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠', '≤', '+', '.', '∈', '*']):
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
     if "SubmittedApplication" in fol_str:
         print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
         return None
@@ -232,6 +230,209 @@ def parse_fol_string_to_z3(fol_str):
             return P
     # ------------------------------------------------------------------------------------
 
+    # Mẫu:
+    # ¬P(const) = const
+    # ¬P(x) = const
+    # P(ABC)
+    # P(x)
+    # Q(Const, Const)
+    # P(R(S(x)))
+    # P(Q(S(t)))
+    # P(S(a), V(b))
+    # P(Q(Const, x), 3)
+    # proportional(sides(ABC), sides(DEF))
+
+    # match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)\s*=+\s*\w+", fol_str)
+    # match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)\s*(=|≥|>|<|≠|≤|∈)\s*\w+\.*\w*", fol_str)
+    pattern = r'''
+^
+\s*
+(?P<lhs>
+    \w+\([^()]+\)                     # hàm đơn hoặc với đối số, ví dụ: GPAUse(c)
+    (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ với các hàm khác (nếu có)
+)
+\s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
+(?P<rhs>
+    \w+\(
+        (?:
+            [^()]+                    # đối số không có ngoặc
+            |
+            \w+\([^()]+\)             # hỗ trợ một lớp lồng nhau như Max(Grades(c))
+        )
+    \)
+    (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ tiếp (nếu có)
+    |
+    \d+(?:/\d+){0,2}
+    |
+    \d+(?:\.\d+)?
+    |
+    \w+
+)
+\s*$
+'''
+    match = re.search(pattern, fol_str, re.VERBOSE)
+    # membership_duration(Alex) = 8
+    if match and not fol_str.startswith('∀') and not fol_str.startswith('∃') and fol_str == match.group():
+        pred = match.group("lhs")
+        operator = match.group("op")
+
+        value_return = match.group("rhs").strip()
+
+        def smart_parse_value(value_return):
+            try:
+                if '(' in value_return and ')' in value_return:
+                    # Là một biểu thức hàm, ví dụ: Max(Grades(c)) → parse sau bằng parse_fol_string_to_z3
+                    return parse_fol_string_to_z3(value_return, return_sort=z3.RealSort())
+                elif '.' in value_return:  # dấu chấm cho biết đây là số thực
+                    return z3.RealVal(float(value_return))
+                else:
+                    return z3.IntVal(int(value_return))
+            except ValueError:
+                return z3.StringVal(value_return)
+
+        value_return = smart_parse_value(value_return)
+        
+        z = parse_fol_string_to_z3(pred, return_sort = z3.RealSort())
+
+        if operator == "=":
+            z_function = z == value_return
+        elif operator == "≠":
+            z_function = z != value_return
+        elif operator == ">":
+            z_function = z > value_return
+        elif operator == "<":
+            z_function = z < value_return
+        elif operator == "≥":
+            z_function = z >= value_return
+        elif operator == "≤":
+            z_function = z <= value_return
+        elif operator == "+":
+            z_function = z + value_return
+        elif operator == "*":
+            z_function = z * value_return
+        # elif operator == ".":
+        #     z_function = z * value_return  # giả định dùng như nhân chấm, có thể tùy bạn sửa
+        elif operator == "∈":
+            # ⚠️ Cần kiểm tra z và value_return là kiểu gì
+            # Nếu value_return là một tập hợp:
+            z_function = z3.IsMember(z, value_return)
+        return z_function
+    
+    # ------------------------------------------------------------------------------------
+
+    # angle(A) + angle(B) + angle(C) = 180
+    # match = re.match(r'(\w+)\((\w)\)(\s*[\+\-]\s*(\w+)\((\w)\))*\s*=\s*([\w\.]+)', fol_str)
+    pattern = r'''^
+\s*
+(?P<lhs>
+    \w+\([^\(\)]+\)                     # hàm có 1 hoặc nhiều đối số
+    (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*    # nhiều hàm cộng/trừ nhau
+)
+\s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
+(?P<rhs>
+    (?:
+        \w+\([^\(\)]+\)                 # hàm có 1 hoặc nhiều đối số
+        (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*  # nhiều hàm cộng/trừ nhau
+    )
+    |
+    (?:
+        \d+(?:\.\d+)?                   # số thực hoặc nguyên
+    )
+    |
+    \w+                                 # biến đơn
+)
+\s*$
+'''
+    match = re.match(pattern, fol_str, re.VERBOSE)
+    if match:
+        # operator = match.group("op")
+        # left_predicates, right_predicates = fol_str.split(operator, 1)
+
+        # left_predicates = left_predicates.strip()
+        # right_predicates = right_predicates.strip()
+
+        # left_predicates = left_predicates.split("+")
+        # left_predicates = [left_predicate.strip() for left_predicate in left_predicates]
+
+        # list_predicates = []
+
+        # for left_predicate in left_predicates:
+        #     list_predicates.append(parse_fol_string_to_z3(left_predicate, return_sort=z3.RealSort()))
+
+        
+        # left_z = z3.Sum(list_predicates)
+
+        # if '(' in right_predicates:
+        #     right_predicates = right_predicates.split("+")
+        #     right_predicates = [right_predicate.strip() for right_predicate in right_predicates]
+
+        #     list_predicates = []
+
+        #     for right_predicate in right_predicates:
+        #         list_predicates.append(parse_fol_string_to_z3(right_predicate, return_sort=z3.RealSort()))
+            
+        #     right_z = z3.Sum(list_predicates)
+
+        #     if operator == "=":
+        #         return left_z == right_z
+        #     elif operator == "<":
+        #         return left_z < right_z
+        # else:
+        #     value =  z3.RealVal(float(right_predicates))
+        #     if operator == "=":
+        #         return left_z == value
+        #     elif operator == "<":
+        #         return left_z < value
+
+        operator = match.group("op")
+        lhs_str = match.group("lhs").strip()
+        rhs_str = match.group("rhs").strip()
+
+        def parse_side(expr):
+            parts = re.findall(r'[+-]?\s*[^+-]+', expr)
+            result = []
+            for part in parts:
+                part = part.strip()
+                if part.startswith('-'):
+                    result.append(-parse_fol_string_to_z3(part[1:].strip(), return_sort=z3.RealSort()))
+                elif part.startswith('+'):
+                    result.append(parse_fol_string_to_z3(part[1:].strip(), return_sort=z3.RealSort()))
+                else:
+                    result.append(parse_fol_string_to_z3(part.strip(), return_sort=z3.RealSort()))
+            return z3.Sum(result) if len(result) > 1 else result[0]
+
+        left_z = parse_side(lhs_str)
+
+        if '(' in rhs_str:
+            right_z = parse_side(rhs_str)
+        else:
+            try:
+                right_z = z3.RealVal(float(rhs_str))
+            except ValueError:
+                right_z = parse_fol_string_to_z3(rhs_str, return_sort=z3.RealSort())
+
+        # Trả về biểu thức so sánh Z3 tương ứng
+        if operator == "=":
+            return left_z == right_z
+        elif operator == "<":
+            return left_z < right_z
+        elif operator == ">":
+            return left_z > right_z
+        elif operator == "≥":
+            return left_z >= right_z
+        elif operator == "≤":
+            return left_z <= right_z
+        elif operator == "≠":
+            return left_z != right_z
+        elif operator == "∈":
+            # Tùy trường hợp bạn xử lý riêng (ví dụ `x ∈ A`)
+            raise NotImplementedError("Chưa xử lý toán tử ∈.")
+        else:
+            raise ValueError("Toán tử không hợp lệ.")
+        
+
+
+    # ------------------------------------------------------------------------------------
 
     # Mẫu:
     # ¬P(const)
@@ -269,14 +470,14 @@ def parse_fol_string_to_z3(fol_str):
 
                     args.append(predicate)
                 
-                P = get_predicate(pred_name, *args)
+                P = get_predicate(pred_name, *args, return_sort = return_sort)
                 return P(*args)
             else:
                 args = args[:-1]
                 # args = Q(S(t))
 
                 sub_predicate = parse_fol_string_to_z3(args)
-                P = get_predicate(pred_name, sub_predicate)
+                P = get_predicate(pred_name, sub_predicate, return_sort = return_sort)
 
                 return P(sub_predicate)
         else:
@@ -289,20 +490,20 @@ def parse_fol_string_to_z3(fol_str):
 
                 if '¬' in pred_name:
                     pred_name = pred_name[1:]
-                    P = get_predicate(pred_name, *args)
+                    P = get_predicate(pred_name, *args, return_sort = return_sort)
                     return z3.Not(P(*args))
                 else:
-                    P = get_predicate(pred_name, *args)
+                    P = get_predicate(pred_name, *args, return_sort = return_sort)
                     return P(*args)
             else:
                 args = z3.Const(args.strip(), Item)
 
                 if '¬' in pred_name:
                     pred_name = pred_name[1:]
-                    P = get_predicate(pred_name, args)
+                    P = get_predicate(pred_name, args, return_sort = return_sort)
                     return z3.Not(P(args))
                 else:
-                    P = get_predicate(pred_name, args)
+                    P = get_predicate(pred_name, args, return_sort = return_sort)
                     return P(args)
 
     # Mẫu:
@@ -371,7 +572,7 @@ def parse_fol_string_to_z3(fol_str):
 
                     # Lấy hoặc tạo hàm Z3 'higher(Degree, Degree) -> Bool'
                     # CẦN đảm bảo get_predicate trả về đúng signature
-                    P = get_predicate(func_name, *z3_args) # Truyền z3_args để giúp get_predicate (nếu cần)
+                    P = get_predicate(func_name, *z3_args, return_sort = return_sort) # Truyền z3_args để giúp get_predicate (nếu cần)
 
                     # Kiểm tra xem P có đúng là hàm nhận 2 đối số Degree không (an toàn hơn)
                     left_predicates_z3.append(P(*z3_args)) # Gọi hàm Z3: P(local_vars['a'], local_vars['b'])
@@ -385,7 +586,7 @@ def parse_fol_string_to_z3(fol_str):
 
         # Xử lý vế phải
         right_args_z3 = [local_vars[name] for name in right_args_list] # [local_vars['a'], local_vars['c']]
-        R = get_predicate(right_pred_name, *right_args_z3) # Lấy hàm Z3 'higher'
+        R = get_predicate(right_pred_name, *right_args_z3, return_sort = return_sort) # Lấy hàm Z3 'higher'
 
         # Kiểm tra signature của R
         right_expr_z3 = R(*right_args_z3) # Gọi hàm Z3: R(local_vars['a'], local_vars['c'])
@@ -423,6 +624,7 @@ def parse_fol_string_to_z3(fol_str):
             
             if split_top_level(arrow_part, delimiter='∧')[0] != arrow_part.strip():
                 hat_parts = split_top_level(arrow_part, delimiter='∧')
+
                 # hat_parts gồm:
                 # P(R(S(x)) ∧ Q(Const))
                 # (Q(Const) → Q(Const))
@@ -493,8 +695,8 @@ def parse_fol_string_to_z3(fol_str):
 
 
         arg1 = z3.Const(arg1, Item)
-        P = get_predicate(func1, arg1)
-        left_func = get_predicate(func1, arg1)
+        P = get_predicate(func1, arg1, return_sort = return_sort)
+        left_func = get_predicate(func1, arg1, return_sort = return_sort)
         left_pred = left_func(arg1)
 
 
@@ -512,7 +714,7 @@ def parse_fol_string_to_z3(fol_str):
                 args[0] = z3.Const(args[0], Item)
                 args[1] = z3.Const(args[1], Item)
 
-                R = get_predicate(func_name, args[0], args[1])
+                R = get_predicate(func_name, args[0], args[1], return_sort = return_sort)
                 rhs_predicates.append(R(args[0], args[1]))
     
         arg2 = z3.Const(arg2, Item)
@@ -680,7 +882,7 @@ def process_dataset(data):
 # --- Chạy chương trình ---
 if __name__ == "__main__":
     # !!! THAY ĐỔI ĐƯỜNG DẪN NÀY !!!
-    dataset_filepath = r'datasets/train.json' # Hoặc đường dẫn đầy đủ
+    dataset_filepath = r'datasets/math_dataset.json' # Hoặc đường dẫn đầy đủ
 
 
     # Load data

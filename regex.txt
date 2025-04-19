@@ -73,3 +73,6 @@ instructor_absent(Lan, '8:15', '25/3/2025')
 
 
 Warning: Could not parse FOL string with current rules
+
+
+fol_str = "∀x∀h((clinical_hours(x, h) ∧ h ≥ 500) → advanced_practice(x))"
