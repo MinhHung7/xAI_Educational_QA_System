@@ -9,7 +9,7 @@ import regex
 
 
 # Redirect stdout và stderr
-log_file = open('logs.txt', 'w', encoding='utf-8')
+log_file = open('simple_FOLs_logs.txt', 'w', encoding='utf-8')
 sys.stdout = log_file
 sys.stderr = log_file
 
@@ -48,11 +48,13 @@ predicate_cache={}
 
 # Định nghĩa trước signature cho các predicate đặc biệt
 PREDEFINED_SIGNATURES = {
-    'higher': (Item, Item, z3.BoolSort()),
-    'has_degree': (Item, Item, z3.BoolSort()), # Giả định: người, bằng cấp -> bool
+    # 'higher': (Item, Item, z3.BoolSort()),
+    # 'has_degree': (Item, Item, z3.BoolSort()), # Giả định: người, bằng cấp -> bool
+    # 'before': (Item, z3.Item)
     # Thêm các predicate khác nếu cần, ví dụ:
     # 'completed_courses': (Item, z3.IntSort(), z3.BoolSort()), # Nếu có so sánh số lượng
     # 'gpa_above_3_5': (Item, z3.BoolSort()), # Đã có trong regex
+
 }
 
 def get_predicate(name, *arg_sorts_for_inference):
@@ -134,16 +136,7 @@ def parse_fol_string_to_z3(fol_str):
 
     # Các trường họp chưa xử lý được
     # ---------------------------------------------------------
-
-    if any(op in fol_str for op in ['=', '≥', '>', '<', '≠', '≤', '+', '.', '∈', '*']):
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
-    if "SubmittedApplication" in fol_str:
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
     
-    # ---------------------------------------------------------
-
     # Xóa các dấu sapce
     fol_str = fol_str.strip()
 
@@ -484,122 +477,11 @@ def parse_fol_string_to_z3(fol_str):
 
         return expr
     
-    # ------------------------------------------------------------------------------------        
-    # Mẫu: ∀x(P(x) → (∃d, Q(x, d) ∧ R(d, Const)))
-    match = re.fullmatch(r"∀(\w)\s*\(\s*(\w+\(\w+\))\s*→\s*\(\s*∃(\w),\s*(.*?)\s*\)\s*\)", fol_str)
-    if match:
-        arg1 = match.group(1)
-        func1 = match.group(2).split('(')[0]
-
-
-        arg1 = z3.Const(arg1, Item)
-        P = get_predicate(func1, arg1)
-        left_func = get_predicate(func1, arg1)
-        left_pred = left_func(arg1)
-
-
-        arg2 = match.group(3)
-        right_part = match.group(4)
-
-        rhs_predicates = []
-        for pred in right_part.split("∧"):
-            pred = pred.strip()
-            if pred:
-                func_name, args_str = pred.split("(")
-                args = args_str.rstrip(")").split(",")
-                args = [arg.strip() for arg in args]  # ví dụ: ['x', 'd']
-
-                args[0] = z3.Const(args[0], Item)
-                args[1] = z3.Const(args[1], Item)
-
-                R = get_predicate(func_name, args[0], args[1])
-                rhs_predicates.append(R(args[0], args[1]))
-    
-        arg2 = z3.Const(arg2, Item)
-        # Tạo biểu thức tồn tại (∃)
-        exists_expr = z3.Exists(arg2, z3.And(*rhs_predicates))
-
-        # Toàn bộ biểu thức
-        return z3.ForAll(arg1, z3.Implies(left_pred, exists_expr))
-
     # *** Thêm các quy tắc regex khác cho các mẫu FOL bạn tìm thấy trong dataset ***
 
     # Nếu không khớp mẫu nào
     print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
     return None
-
-# --- 3. Hàm Parse Questions (Vẫn cần cải thiện nhiều) ---
-def parse_nl_question_to_z3_goal(question_str):
-    """
-    Cố gắng parse câu hỏi NL thành Z3 goal(s). Cần tùy chỉnh nhiều dựa trên dataset.
-
-    Returns:
-        (object, str): Tuple chứa (Z3 goal(s) hoặc dữ liệu liên quan, question_type)
-                       hoặc (None, "unknown")
-    """
-    local_x = z3.Const('x', Item) # Biến cục bộ
-
-    # --- Logic nhận dạng loại câu hỏi và trích xuất thông tin ---
-    # (Đây là phần phác thảo, cần logic thực tế dựa trên dataset)
-
-    # Loại 1: Yes/No (ví dụ: "Does it follow that...")
-    if "Does it follow that" in question_str and "according to the premises" in question_str:
-        # Cố gắng trích xuất mệnh đề logic bên trong
-        # Ví dụ rất đơn giản: tìm "if ... then ..."
-        match_if_then = re.search(r"if all .* are (.*), then all .* are (.*)", question_str, re.IGNORECASE)
-        if match_if_then:
-            try:
-                antecedent_pred_name = match_if_then.group(1).strip().split()[0] # Heuristic!
-                consequent_pred_name = match_if_then.group(2).strip().split()[0] # Heuristic!
-                P = get_predicate(antecedent_pred_name.upper()) # Chuẩn hóa tên
-                Q = get_predicate(consequent_pred_name.upper()) # Chuẩn hóa tên
-                goal = z3.ForAll([local_x], z3.Implies(P(local_x), Q(local_x)))
-                return goal, "yes_no"
-            except Exception as e:
-                print(f"Error parsing Yes/No statement logic: {e} in question: {question_str}")
-                return None, "unknown"
-        else:
-             # Thử các mẫu Yes/No khác
-             pass
-
-    # Loại 2: Multiple Choice (ví dụ: "Which conclusion follows...")
-    elif "Which conclusion follows" in question_str and "\nA." in question_str:
-        # Trích xuất các options (A, B, C, D)
-        options = {}
-        # Regex đơn giản để lấy text của từng option (cần kiểm tra kỹ)
-        matches = re.findall(r"\n([A-D])\.\s*(.*?)(?=\n[A-D]\.|\Z)", question_str, re.DOTALL)
-        parsed_options = []
-        for label, text in matches:
-            text = text.strip()
-            # Cố gắng parse text của option thành Z3 (lại là phần khó)
-            # Ví dụ: "If a ... is not optimized, then it is not well-tested"
-            match_opt = re.match(r"If a .* is not (\w+), then it is not (\w+)", text, re.IGNORECASE)
-            if match_opt:
-                try:
-                    P_name = match_opt.group(1).upper()
-                    Q_name = match_opt.group(2).upper()
-                    P = get_predicate(P_name)
-                    Q = get_predicate(Q_name)
-                    goal = z3.ForAll([local_x], z3.Implies(z3.Not(P(local_x)), z3.Not(Q(local_x))))
-                    parsed_options.append({'label': label, 'text': text, 'goal': goal})
-                except Exception as e:
-                    print(f"Error parsing MCQ option logic: {e} in option: {text}")
-                    parsed_options.append({'label': label, 'text': text, 'goal': None})
-            else:
-                # Thử các mẫu option khác
-                parsed_options.append({'label': label, 'text': text, 'goal': None})
-                print(f"Warning: Could not parse MCQ option text: {text}")
-
-        if parsed_options:
-            return parsed_options, "multiple_choice"
-        else:
-            return None, "unknown" # Không trích xuất được option nào
-
-    # *** Thêm logic cho các loại câu hỏi khác (Listing, How Many) ***
-
-    # Nếu không nhận dạng được loại câu hỏi
-    print(f"Warning: Could not determine question type or parse: {question_str[:100]}...")
-    return None, "unknown"
 
 # --- 4. Hàm xử lý chính ---
 def process_dataset(data):
@@ -614,14 +496,13 @@ def process_dataset(data):
     """
     processed_records = []
     premise_parse_errors = 0
-    question_parse_errors = 0
     total_premises = 0
     total_questions = 0
 
     for i, record in enumerate(data):
         print(f"\n--- Processing Record {i} ---")
         processed_record = {
-            'original_index': i,
+            'original_index': record.get('id_sample'),
             'premises_nl': record.get('premises-NL', []),
             'premises_fol_str': record.get('premises-FOL', []),
             'questions_nl': record.get('questions', []),
@@ -646,31 +527,11 @@ def process_dataset(data):
         if current_premise_errors > 0:
              print(f"Record {i}: Encountered {current_premise_errors} premise parsing errors.")
 
-        # Parse Questions
-        # current_question_errors = 0
-        # for q_str in processed_record['questions_nl']:
-        #     total_questions += 1
-        #     parsed_goal, q_type = parse_nl_question_to_z3_goal(q_str)
-        #     if parsed_goal is not None:
-        #          processed_record['parsed_questions'].append({
-        #              'original_question': q_str,
-        #              'goal_data': parsed_goal, # Can be a single goal or list of options
-        #              'type': q_type
-        #          })
-        #     else:
-        #         question_parse_errors += 1
-        #         current_question_errors += 1
-        # if current_question_errors > 0:
-        #      print(f"Record {i}: Encountered {current_question_errors} question parsing errors.")
-
-        # processed_records.append(processed_record)
-
     print("\n--- Processing Summary ---")
     print(f"Total records processed: {len(data)}")
     print(f"Total premises encountered: {total_premises}")
     print(f"Premise parsing errors: {premise_parse_errors} ({premise_parse_errors/total_premises:.2%} errors)")
     print(f"Total questions encountered: {total_questions}")
-    # print(f"Question parsing errors: {question_parse_errors} ({question_parse_errors/total_questions:.2%} errors)")
     print(f"Total unique predicates identified: {len(predicate_cache)}")
     print("Identified predicates:", list(predicate_cache.keys()))
 

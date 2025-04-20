@@ -47,6 +47,7 @@ predicate_cache={}
 
 
 # Định nghĩa trước signature cho các predicate đặc biệt
+
 PREDEFINED_SIGNATURES = {
     ('angle', 1): (Item, z3.RealSort()),
     ('safety_test', 1): (Item, z3.BoolSort()),
@@ -54,7 +55,6 @@ PREDEFINED_SIGNATURES = {
     ('find_replacement', 1): (Item, z3.BoolSort()),
     ('EnglishResultDate', 1): (Item, z3.StringSort())
 }
-
 
 def get_predicate(name, *arg_sorts_for_inference, return_sort=z3.BoolSort()):
     """
