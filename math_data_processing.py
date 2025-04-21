@@ -6,7 +6,7 @@ from collections import defaultdict
 import sys
 from test_parts_split import split_top_level
 import regex
-
+import math
 
 # Redirect stdout và stderr
 log_file = open('math_logs.txt', 'w', encoding='utf-8')
@@ -53,7 +53,8 @@ PREDEFINED_SIGNATURES = {
     ('safety_test', 1): (Item, z3.BoolSort()),
     ('safety_test', 3): (Item, Item, Item, z3.BoolSort()),
     ('find_replacement', 1): (Item, z3.BoolSort()),
-    ('EnglishResultDate', 1): (Item, z3.StringSort())
+    ('EnglishResultDate', 1): (Item, z3.StringSort()),
+    ('Retention', 2): (Item, Item, z3.StringSort())
 }
 
 def get_predicate(name, *arg_sorts_for_inference, return_sort=z3.BoolSort()):
@@ -244,29 +245,54 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 
     # match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)\s*=+\s*\w+", fol_str)
     # match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)\s*(=|≥|>|<|≠|≤|∈)\s*\w+\.*\w*", fol_str)
+#     pattern = r'''
+# ^
+# \s*
+# (?P<lhs>
+#     \w+\([^()]+\)                     # hàm đơn hoặc với đối số, ví dụ: GPAUse(c)
+#     (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ với các hàm khác (nếu có)
+# )
+# \s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
+# (?P<rhs>
+#     \w+\(
+#         (?:
+#             [^()]+                    # đối số không có ngoặc
+#             |
+#             \w+\([^()]+\)             # hỗ trợ một lớp lồng nhau như Max(Grades(c))
+#         )
+#     \)
+#     (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ tiếp (nếu có)
+#     |
+#     \d+(?:/\d+){0,2}
+#     |
+#     \d+(?:\.\d+)?
+#     |
+#     \w+
+# )
+# \s*$
+# '''
     pattern = r'''
 ^
 \s*
 (?P<lhs>
-    \w+\([^()]+\)                     # hàm đơn hoặc với đối số, ví dụ: GPAUse(c)
-    (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ với các hàm khác (nếu có)
+    \w+\([^()]+\)                     # GPAUse(c)
+    (?:\s*[\+\-]\s*\w+\([^()]+\))*    # GPAUse(c) + Bonus(c) - Penalty(c)
 )
 \s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
 (?P<rhs>
-    \w+\(
-        (?:
-            [^()]+                    # đối số không có ngoặc
-            |
-            \w+\([^()]+\)             # hỗ trợ một lớp lồng nhau như Max(Grades(c))
-        )
-    \)
-    (?:\s*[\+\-]\s*\w+\([^()]+\))*    # cộng/trừ tiếp (nếu có)
-    |
-    \d+(?:/\d+){0,2}
-    |
-    \d+(?:\.\d+)?
-    |
-    \w+
+    (
+        e\^\([^)]+\)                  # hỗ trợ e^(...) như e^(-t/s)
+        |
+        \w+\([^()]*\)                 # hàm như Max(...), Retention(...)
+        |
+        \d+(?:/\d+){0,2}              # số phân số: 1/2, 1/2/3 (hiếm)
+        |
+        \d+(?:\.\d+)?                 # số thực
+        |
+        \w+                           # biến đơn như x, y
+        |
+        [-+*/\s()]+                   # toán tử và biểu thức trong ngoặc
+    )+
 )
 \s*$
 '''
@@ -280,7 +306,12 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 
         def smart_parse_value(value_return):
             try:
-                if '(' in value_return and ')' in value_return:
+                if value_return == "e^(-t/s)":
+                    value_return = z3.Const(value_return, z3.StringSort())
+
+                    return value_return
+                    # return z3.RealVal(float(math.exp(-T / S)))
+                elif '(' in value_return and ')' in value_return:
                     # Là một biểu thức hàm, ví dụ: Max(Grades(c)) → parse sau bằng parse_fol_string_to_z3
                     return parse_fol_string_to_z3(value_return, return_sort=z3.RealSort())
                 elif '.' in value_return:  # dấu chấm cho biết đây là số thực
@@ -288,10 +319,12 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
                 else:
                     return z3.IntVal(int(value_return))
             except ValueError:
-                return z3.StringVal(value_return)
+                value_return = z3.Const(value_return, z3.RealSort())
+                return value_return
+                # return z3.StringVal(value_return)
 
         value_return = smart_parse_value(value_return)
-        
+
         z = parse_fol_string_to_z3(pred, return_sort = z3.RealSort())
 
         if operator == "=":
