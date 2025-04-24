@@ -1,24 +1,27 @@
 Successfully loaded data from datasets/train.json
 
 --- Processing Record 0 ---
-∀x ((S(x) ∧ V(x)) → B(x))
-(S(x) ∧ V(x)) → B(x)
+¬(Healthy(cherry) ∧ Is(cherry, apple)) → RedFruit(cherry)
 PARTS
-S(x)
-S
+¬(Healthy(cherry) ∧ Is(cherry, apple))
+Healthy(cherry) ∧ Is(cherry, apple)
+PARTS
+Healthy(cherry)
+Healthy
 OK
-  Defining Predicate: S with arity 1
+  Defining Predicate: Healthy with arity 1
     Inferred signature: ['Item'] -> Bool
-V(x)
-V
+Is(cherry, apple)
+Is
 OK
-  Defining Predicate: V with arity 1
-    Inferred signature: ['Item'] -> Bool
+  Defining Predicate: Is with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
 Đã nối lại bằng mũ
-B(x)
-B
+Đã nối lại bằng mũi tên
+RedFruit(cherry)
+RedFruit
 OK
-  Defining Predicate: B with arity 1
+  Defining Predicate: RedFruit with arity 1
     Inferred signature: ['Item'] -> Bool
 Đã nối lại bằng mũi tên
 ∀x (O(x) → F(x))
@@ -44,13 +47,19 @@ OK
 ¬B(x)
 B
 OK
+  Defining Predicate: B with arity 1
+    Inferred signature: ['Item'] -> Bool
 Đã nối lại bằng mũi tên
 S(An)
 S
 OK
+  Defining Predicate: S with arity 1
+    Inferred signature: ['Item'] -> Bool
 V(An)
 V
 OK
+  Defining Predicate: V with arity 1
+    Inferred signature: ['Item'] -> Bool
 O(An)
 O
 OK
@@ -63,28 +72,13 @@ Total records processed: 1
 Total premises encountered: 6
 Premise parsing errors: 0 (0.00% errors)
 Total questions encountered: 0
-Total unique predicates identified: 5
-Identified predicates: [('S', 1), ('V', 1), ('B', 1), ('O', 1), ('F', 1)]
+Total unique predicates identified: 8
+Identified predicates: [('Healthy', 1), ('Is', 2), ('RedFruit', 1), ('O', 1), ('F', 1), ('B', 1), ('S', 1), ('V', 1)]
 
 --- Sample Processed Record (Index 0) ---
-{'original_index': None, 'premises_nl': ['If you are a student of the school and have a valid library card, you can borrow books.', 'If you return books overdue, you will be fined.', 'If you are fined, you cannot borrow books.', 'An is a student of the school.', 'An has a valid library card.', 'An returned books overdue.'], 'premises_fol_str': ['∀x ((S(x) ∧ V(x)) → B(x))', '∀x (O(x) → F(x))', '∀x (F(x) → ¬B(x))', 'S(An)', 'V(An)', 'O(An)'], 'questions_nl': ['¬O(An)'], 'answers_gt': ['A', 'No'], 'idx_gt': [[2, 3], [2, 3, 6]], 'explanation_gt': ['The statement that if a person returns books overdue, they cannot borrow books follows because returning books overdue leads to a fine (premise 2), and being fined prevents borrowing books (premise 3).', 'An is not allowed to borrow books because she returned books overdue (premise 6), which leads to a fine (premise 2), and being fined prevents borrowing (premise 3).'], 'z3_premises': [{'expr': ForAll(x, Implies(And(S(x), V(x)), B(x))), 'original_index': 0}, {'expr': ForAll(x, Implies(O(x), F(x))), 'original_index': 1}, {'expr': ForAll(x, Implies(F(x), Not(B(x)))), 'original_index': 2}, {'expr': S(An), 'original_index': 3}, {'expr': V(An), 'original_index': 4}, {'expr': O(An), 'original_index': 5}], 'parsed_questions': [{'ques': Not(O(An))}]}
+{'original_index': None, 'premises_nl': ['If you are a student of the school and have a valid library card, you can borrow books.', 'If you return books overdue, you will be fined.', 'If you are fined, you cannot borrow books.', 'An is a student of the school.', 'An has a valid library card.', 'An returned books overdue.'], 'premises_fol_str': ['¬(Healthy(cherry) ∧ Is(cherry, apple)) → RedFruit(cherry)', '∀x (O(x) → F(x))', '∀x (F(x) → ¬B(x))', 'S(An)', 'V(An)', 'O(An)'], 'questions_nl': ['¬O(An)'], 'answers_gt': ['A', 'No'], 'idx_gt': [[2, 3], [2, 3, 6]], 'explanation_gt': ['The statement that if a person returns books overdue, they cannot borrow books follows because returning books overdue leads to a fine (premise 2), and being fined prevents borrowing books (premise 3).', 'An is not allowed to borrow books because she returned books overdue (premise 6), which leads to a fine (premise 2), and being fined prevents borrowing (premise 3).'], 'z3_premises': [{'expr': Implies(Not(And(Healthy(cherry), Is(cherry, apple))),
+        RedFruit(cherry)), 'original_index': 0}, {'expr': ForAll(x, Implies(O(x), F(x))), 'original_index': 1}, {'expr': ForAll(x, Implies(F(x), Not(B(x)))), 'original_index': 2}, {'expr': S(An), 'original_index': 3}, {'expr': V(An), 'original_index': 4}, {'expr': O(An), 'original_index': 5}], 'parsed_questions': [{'ques': Not(O(An))}]}
 ---------------RESULT---------------
-Các giả định đã dùng: [p1, p2, p3, p4, p5]
-Vị trí trong premises_fol_str: [1, 2, 3, 4, 5]
-----
-{'expr': ForAll(x, Implies(And(S(x), V(x)), B(x))), 'original_index': 0}
-{'expr': ForAll(x, Implies(O(x), F(x))), 'original_index': 1}
-{'expr': ForAll(x, Implies(F(x), Not(B(x)))), 'original_index': 2}
-{'expr': S(An), 'original_index': 3}
-{'expr': V(An), 'original_index': 4}
-Các giả định đã dùng: [p1, p2, p3, p4, p5]
-Vị trí trong premises_fol_str: [1, 2, 3, 4, 5]
-----
-{'expr': ForAll(x, Implies(And(S(x), V(x)), B(x))), 'original_index': 0}
-{'expr': ForAll(x, Implies(O(x), F(x))), 'original_index': 1}
-{'expr': ForAll(x, Implies(F(x), Not(B(x)))), 'original_index': 2}
-{'expr': S(An), 'original_index': 3}
-{'expr': V(An), 'original_index': 4}
 
-Kết quả tổng hợp: {'NO': 4, 'YES': 2}
-Kết quả xảy ra nhiều nhất: ('NO', 4)
+Kết quả tổng hợp: {'NO': 6}
+Kết quả xảy ra nhiều nhất: ('NO', 6)

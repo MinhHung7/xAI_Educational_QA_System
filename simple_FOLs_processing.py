@@ -326,6 +326,15 @@ def parse_fol_string_to_z3(fol_str):
             return z3.ForAll([var], predicate)
         elif sign == '∃':
             return z3.Exists([var], predicate)
+    elif fol_str.startswith('¬(') and '→' not in fol_str:
+        sign = fol_str[0]
+
+        var = ""
+        pred = fol_str[2:-1].strip()
+
+        predicate = parse_fol_string_to_z3(pred)
+
+        return z3.Not(predicate)
             
     
     # ∀a∀b∀c((higher(a, b) ∧ higher(b, c)) → higher(a, c))
