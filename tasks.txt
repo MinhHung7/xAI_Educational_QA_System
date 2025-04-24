@@ -1,0 +1,7 @@
+1. Fine-tune model (Phi-3): Lê Huy (25/04)
+    - Prompt
+    - Train
+2. Z3 processing (main dataset): Minh Hưng, Hà Huy (24/04)
+3. Z3 processing (Folio dataset): Khang, Hà Huy (25/04)
+4. Tìm evaluation: Hùng, Khang (25/04)
+5. API submit: Phúc Hưng, <EdxAIQA>

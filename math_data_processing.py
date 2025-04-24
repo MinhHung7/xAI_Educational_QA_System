@@ -54,7 +54,9 @@ PREDEFINED_SIGNATURES = {
     ('safety_test', 3): (Item, Item, Item, z3.BoolSort()),
     ('find_replacement', 1): (Item, z3.BoolSort()),
     ('EnglishResultDate', 1): (Item, z3.StringSort()),
-    ('Retention', 2): (Item, Item, z3.StringSort())
+    ('Retention', 2): (Item, Item, z3.StringSort()),
+    ('completion_time', 1): (Item, z3.RealSort()),
+    ('appeal', 1): (Item, z3.BoolSort()),
 }
 
 def get_predicate(name, *arg_sorts_for_inference, return_sort=z3.BoolSort()):
@@ -136,10 +138,6 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 
     # Các trường họp chưa xử lý được
     # ---------------------------------------------------------
-
-    if "SubmittedApplication" in fol_str:
-        print(f"Warning: Could not parse FOL string with current rules: '{fol_str}'")
-        return None
     
     # ---------------------------------------------------------
 
@@ -271,6 +269,111 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 # )
 # \s*$
 # '''
+#     pattern = r'''
+# ^
+# \s*
+# (?P<lhs>
+#     \w+\([^()]+\)                     # GPAUse(c)
+#     (?:\s*[\+\-]\s*\w+\([^()]+\))*    # GPAUse(c) + Bonus(c) - Penalty(c)
+# )
+# \s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
+# (?P<rhs>
+#     (
+#         e\^\([^)]+\)                  # hỗ trợ e^(...) như e^(-t/s)
+#         |
+#         \w+\([^()]*\)                 # hàm như Max(...), Retention(...)
+#         |
+#         \d+(?:/\d+){0,2}              # số phân số: 1/2, 1/2/3 (hiếm)
+#         |
+#         \d+(?:\.\d+)?                 # số thực
+#         |
+#         \w+                           # biến đơn như x, y
+#         |
+#         [-+*/\s()]+                   # toán tử và biểu thức trong ngoặc
+#     )+
+# )
+# \s*$
+# '''
+#     match = re.search(pattern, fol_str, re.VERBOSE)
+#     # membership_duration(Alex) = 8
+#     if match and not fol_str.startswith('∀') and not fol_str.startswith('∃') and fol_str == match.group():
+#         pred = match.group("lhs")
+#         operator = match.group("op")
+
+#         value_return = match.group("rhs").strip()
+
+#         def smart_parse_value(value_return):
+#             try:
+#                 if value_return == "e^(-t/s)":
+#                     value_return = z3.Const(value_return, z3.StringSort())
+
+#                     return value_return
+#                     # return z3.RealVal(float(math.exp(-T / S)))
+#                 elif '(' in value_return and ')' in value_return:
+#                     # Là một biểu thức hàm, ví dụ: Max(Grades(c)) → parse sau bằng parse_fol_string_to_z3
+#                     return parse_fol_string_to_z3(value_return, return_sort=z3.RealSort())
+#                 elif '.' in value_return:  # dấu chấm cho biết đây là số thực
+#                     return z3.RealVal(float(value_return))
+#                 else:
+#                     return z3.IntVal(int(value_return))
+#             except ValueError:
+#                 value_return = z3.Const(value_return, z3.RealSort())
+#                 return value_return
+#                 # return z3.StringVal(value_return)
+
+#         value_return = smart_parse_value(value_return)
+
+#         z = parse_fol_string_to_z3(pred, return_sort = z3.RealSort())
+
+#         if operator == "=":
+#             z_function = z == value_return
+#         elif operator == "≠":
+#             z_function = z != value_return
+#         elif operator == ">":
+#             z_function = z > value_return
+#         elif operator == "<":
+#             z_function = z < value_return
+#         elif operator == "≥":
+#             z_function = z >= value_return
+#         elif operator == "≤":
+#             z_function = z <= value_return
+#         elif operator == "+":
+#             z_function = z + value_return
+#         elif operator == "*":
+#             z_function = z * value_return
+#         # elif operator == ".":
+#         #     z_function = z * value_return  # giả định dùng như nhân chấm, có thể tùy bạn sửa
+#         elif operator == "∈":
+#             # ⚠️ Cần kiểm tra z và value_return là kiểu gì
+#             # Nếu value_return là một tập hợp:
+#             z_function = z3.IsMember(z, value_return)
+#         return z_function
+    
+    # ------------------------------------------------------------------------------------
+
+    # angle(A) + angle(B) + angle(C) = 180
+    # match = re.match(r'(\w+)\((\w)\)(\s*[\+\-]\s*(\w+)\((\w)\))*\s*=\s*([\w\.]+)', fol_str)
+#     pattern = r'''^
+# \s*
+# (?P<lhs>
+#     \w+\([^\(\)]+\)                     # hàm có 1 hoặc nhiều đối số
+#     (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*    # nhiều hàm cộng/trừ nhau
+# )
+# \s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
+# (?P<rhs>
+#     (?:
+#         \w+\([^\(\)]+\)                 # hàm có 1 hoặc nhiều đối số
+#         (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*  # nhiều hàm cộng/trừ nhau
+#     )
+#     |
+#     (?:
+#         \d+(?:\.\d+)?                   # số thực hoặc nguyên
+#     )
+#     |
+#     \w+                                 # biến đơn
+# )
+# \s*$
+# '''
     pattern = r'''
 ^
 \s*
@@ -296,127 +399,8 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 )
 \s*$
 '''
-    match = re.search(pattern, fol_str, re.VERBOSE)
-    # membership_duration(Alex) = 8
-    if match and not fol_str.startswith('∀') and not fol_str.startswith('∃') and fol_str == match.group():
-        pred = match.group("lhs")
-        operator = match.group("op")
-
-        value_return = match.group("rhs").strip()
-
-        def smart_parse_value(value_return):
-            try:
-                if value_return == "e^(-t/s)":
-                    value_return = z3.Const(value_return, z3.StringSort())
-
-                    return value_return
-                    # return z3.RealVal(float(math.exp(-T / S)))
-                elif '(' in value_return and ')' in value_return:
-                    # Là một biểu thức hàm, ví dụ: Max(Grades(c)) → parse sau bằng parse_fol_string_to_z3
-                    return parse_fol_string_to_z3(value_return, return_sort=z3.RealSort())
-                elif '.' in value_return:  # dấu chấm cho biết đây là số thực
-                    return z3.RealVal(float(value_return))
-                else:
-                    return z3.IntVal(int(value_return))
-            except ValueError:
-                value_return = z3.Const(value_return, z3.RealSort())
-                return value_return
-                # return z3.StringVal(value_return)
-
-        value_return = smart_parse_value(value_return)
-
-        z = parse_fol_string_to_z3(pred, return_sort = z3.RealSort())
-
-        if operator == "=":
-            z_function = z == value_return
-        elif operator == "≠":
-            z_function = z != value_return
-        elif operator == ">":
-            z_function = z > value_return
-        elif operator == "<":
-            z_function = z < value_return
-        elif operator == "≥":
-            z_function = z >= value_return
-        elif operator == "≤":
-            z_function = z <= value_return
-        elif operator == "+":
-            z_function = z + value_return
-        elif operator == "*":
-            z_function = z * value_return
-        # elif operator == ".":
-        #     z_function = z * value_return  # giả định dùng như nhân chấm, có thể tùy bạn sửa
-        elif operator == "∈":
-            # ⚠️ Cần kiểm tra z và value_return là kiểu gì
-            # Nếu value_return là một tập hợp:
-            z_function = z3.IsMember(z, value_return)
-        return z_function
-    
-    # ------------------------------------------------------------------------------------
-
-    # angle(A) + angle(B) + angle(C) = 180
-    # match = re.match(r'(\w+)\((\w)\)(\s*[\+\-]\s*(\w+)\((\w)\))*\s*=\s*([\w\.]+)', fol_str)
-    pattern = r'''^
-\s*
-(?P<lhs>
-    \w+\([^\(\)]+\)                     # hàm có 1 hoặc nhiều đối số
-    (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*    # nhiều hàm cộng/trừ nhau
-)
-\s*(?P<op>=|≥|>|<|≠|≤|∈)\s*
-(?P<rhs>
-    (?:
-        \w+\([^\(\)]+\)                 # hàm có 1 hoặc nhiều đối số
-        (?:\s*[\+\-]\s*\w+\([^\(\)]+\))*  # nhiều hàm cộng/trừ nhau
-    )
-    |
-    (?:
-        \d+(?:\.\d+)?                   # số thực hoặc nguyên
-    )
-    |
-    \w+                                 # biến đơn
-)
-\s*$
-'''
     match = re.match(pattern, fol_str, re.VERBOSE)
     if match:
-        # operator = match.group("op")
-        # left_predicates, right_predicates = fol_str.split(operator, 1)
-
-        # left_predicates = left_predicates.strip()
-        # right_predicates = right_predicates.strip()
-
-        # left_predicates = left_predicates.split("+")
-        # left_predicates = [left_predicate.strip() for left_predicate in left_predicates]
-
-        # list_predicates = []
-
-        # for left_predicate in left_predicates:
-        #     list_predicates.append(parse_fol_string_to_z3(left_predicate, return_sort=z3.RealSort()))
-
-        
-        # left_z = z3.Sum(list_predicates)
-
-        # if '(' in right_predicates:
-        #     right_predicates = right_predicates.split("+")
-        #     right_predicates = [right_predicate.strip() for right_predicate in right_predicates]
-
-        #     list_predicates = []
-
-        #     for right_predicate in right_predicates:
-        #         list_predicates.append(parse_fol_string_to_z3(right_predicate, return_sort=z3.RealSort()))
-            
-        #     right_z = z3.Sum(list_predicates)
-
-        #     if operator == "=":
-        #         return left_z == right_z
-        #     elif operator == "<":
-        #         return left_z < right_z
-        # else:
-        #     value =  z3.RealVal(float(right_predicates))
-        #     if operator == "=":
-        #         return left_z == value
-        #     elif operator == "<":
-        #         return left_z < value
-
         operator = match.group("op")
         lhs_str = match.group("lhs").strip()
         rhs_str = match.group("rhs").strip()
@@ -436,13 +420,56 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
 
         left_z = parse_side(lhs_str)
 
-        if '(' in rhs_str:
+        right_z = None
+
+        if rhs_str == "e^(-t/s)":
+            right_z = z3.Const(rhs_str, z3.StringSort())
+        # Case 0.5 * total_credits(x)
+        elif '*' in rhs_str:
+            preds = rhs_str.split("*")
+            preds = [pred.strip() for pred in preds]
+
+            multi = 1
+            # [0.5, total_credits(x)]
+            for pred in preds:
+                if "." in pred:
+                    multi = multi * float(pred)
+            for pred in preds:
+                if "(" in pred:
+                    z = parse_fol_string_to_z3(pred, return_sort=z3.RealSort())
+                    right_z = z * multi
+                    multi = z * multi
+                else:
+                    z = z3.Const(pred, z3.RealSort())
+                    right_z = z * multi
+                    multi = z * multi
+        elif '+' in rhs_str:
+            preds = rhs_str.split("+")
+            preds = [pred.strip() for pred in preds]
+
+            sum = 0
+            # [0.5, total_credits(x)]
+            for pred in preds:
+                if "." in pred:
+                    sum = sum + float(pred)
+            for pred in preds:
+                if "(" in pred:
+                    z = parse_fol_string_to_z3(pred, return_sort=z3.RealSort())
+                    right_z = z + sum
+                    sum = z + sum
+                else:
+                    z = z3.Const(pred, z3.RealSort())
+                    right_z = z + sum
+                    sum = z + sum
+
+        elif '(' in rhs_str:
             right_z = parse_side(rhs_str)
         else:
             try:
                 right_z = z3.RealVal(float(rhs_str))
             except ValueError:
                 right_z = parse_fol_string_to_z3(rhs_str, return_sort=z3.RealSort())
+                # right_z = z3.Const(right_z, z3.RealSort())
 
         # Trả về biểu thức so sánh Z3 tương ứng
         if operator == "=":
@@ -642,6 +669,7 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
     #       P(R(S(x)) ∧ Q(Const)) ∧ Q(Const) -> Q(Const) ∧ Q(Const) -> Q(Const)
     #       Q(Const) -> Q(Const)
     if not fol_str.startswith(('∀', '∃')):
+        
         arrow_parts = split_top_level(fol_str, delimiter='→')
         # Nếu fol_str = "P(R(S(x)) ∧ Q(Const)) ∧ (Q(Const) → Q(Const)) ∧ Q(Const) → Q(Const)"
         # thì arrow_parts gồm:
@@ -691,7 +719,32 @@ def parse_fol_string_to_z3(fol_str, return_sort=z3.BoolSort()):
                 if len(v_predicates) == 1:
                     z3_parts.append(v_predicates[0])
                 else:
-                    z3_parts.append(z3.Or(*v_predicates))
+                    z3_parts.append(z3.Or(*v_predicates))                
+            
+            elif split_top_level(arrow_part, delimiter='+')[0] != arrow_part.strip():
+                preds = split_top_level(arrow_part, delimiter='+')
+
+                preds = [pred.strip() for pred in preds]
+
+                sum = 0
+                right_z = None
+                # [0.5, total_credits(x)]
+                for pred in preds:
+                    if "." in pred:
+                        sum = sum + float(pred)
+                for pred in preds:
+                    if "(" in pred:
+                        z = parse_fol_string_to_z3(pred, return_sort=z3.RealSort())
+                        right_z = z + sum
+                        sum = z + sum
+                    else:
+                        z = z3.Const(pred, z3.RealSort())
+                        right_z = z + sum
+                        sum = z + sum
+
+                return right_z
+
+
             else:
                 def z3_parts_equivalence(preds):
                     if len(preds) == 1:
@@ -854,6 +907,14 @@ def process_dataset(data):
     total_questions = 0
 
     for i, record in enumerate(data):
+        
+        fol_list = record.get('premises-FOL', [])
+
+        if "≥(Score(x, Calculus1), 4)" in fol_list or \
+        "¬∃d (SocialWorkDays(x, d) ∧ d ≥ 15)" in fol_list:
+            continue
+
+
         print(f"\n--- Processing Record {i} ---")
         processed_record = {
             'original_index': i,

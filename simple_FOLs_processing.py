@@ -6,6 +6,7 @@ from collections import defaultdict
 import sys
 from test_parts_split import split_top_level
 import regex
+from collections import Counter
 
 
 # Redirect stdout và stderr
@@ -413,7 +414,7 @@ def parse_fol_string_to_z3(fol_str):
         
         print("PARTS")
         for arrow_part in arrow_parts:
-            
+            arrow_part = strip_outer_parentheses(arrow_part)
             if split_top_level(arrow_part, delimiter='∧')[0] != arrow_part.strip():
                 hat_parts = split_top_level(arrow_part, delimiter='∧')
                 # hat_parts gồm:
@@ -433,6 +434,7 @@ def parse_fol_string_to_z3(fol_str):
                 if len(hat_predicates) == 1:
                     z3_parts.append(hat_predicates[0])
                 else:
+                    print("Đã nối lại bằng mũ")
                     z3_parts.append(z3.And(*hat_predicates))
 
             elif split_top_level(arrow_part, delimiter='∨')[0] != arrow_part.strip():
@@ -463,7 +465,6 @@ def parse_fol_string_to_z3(fol_str):
 
                 # Tạo predicates để nối tất cả các hatparts lại với nhau
                 e_predicates = []
-
                 for e_part in e_parts:
                     e_predicates.append(parse_fol_string_to_z3(e_part))
 
@@ -471,6 +472,7 @@ def parse_fol_string_to_z3(fol_str):
 
 
         # Nối tất cả bằng chuỗi z3.Implies
+        print("Đã nối lại bằng mũi tên")
         expr = z3_parts[-1]
         for prev in reversed(z3_parts[:-1]):
             expr = z3.Implies(prev, expr)
@@ -524,8 +526,19 @@ def process_dataset(data):
             else:
                 premise_parse_errors += 1
                 current_premise_errors += 1
+        
+        for question_str in processed_record['questions_nl']:
+            z3_question = parse_fol_string_to_z3(question_str)
+            if z3_question is not None:
+                # Lưu cả câu hỏi Z3
+                processed_record['parsed_questions'].append({'ques': z3_question})
+            else:
+                print("Question Parse Error")
+
         if current_premise_errors > 0:
              print(f"Record {i}: Encountered {current_premise_errors} premise parsing errors.")
+
+        processed_records.append(processed_record)
 
     print("\n--- Processing Summary ---")
     print(f"Total records processed: {len(data)}")
@@ -555,15 +568,60 @@ if __name__ == "__main__":
         if processed_data:
             print("\n--- Sample Processed Record (Index 0) ---")
             first_record = processed_data[0]
-            print("Original FOL Strings:", first_record['premises_fol_str'])
-            print("Parsed Z3 Premises:", [(p['expr'], p['original_index']) for p in first_record['z3_premises']])
-            print("\nOriginal Questions:", first_record['questions_nl'])
-            print("Parsed Questions:")
-            for pq in first_record['parsed_questions']:
-                print(f"  Type: {pq['type']}")
-                print(f"  Goal/Data: {pq['goal_data']}") # In ra cấu trúc goal đã parse
-                print("-" * 10)
+            print(first_record)
 
+            # print("Original FOL Strings:", first_record['premises_fol_str'])
+            # print("Parsed Z3 Premises:", [(p['expr'], p['original_index']) for p in first_record['z3_premises']])
+            # print("\nOriginal Questions:", first_record['questions_nl'])
+            # print("Parsed Questions:")
+            # for pq in first_record['parsed_questions']:
+            #     print(f"  Type: {pq['type']}")
+            #     print(f"  Goal/Data: {pq['goal_data']}") # In ra cấu trúc goal đã parse
+            #     print("-" * 10)
+
+            print("---------------RESULT---------------")
+
+            result_counts = Counter()
+
+            solver = z3.Solver()
+
+            # Gắn label cho từng premise
+            labels = []
+            num_premises = len(first_record['z3_premises'])
+            for i, item in enumerate(reversed(first_record['z3_premises'])):
+                label = z3.Bool(f"p{num_premises-i}")  # gán tên giả định
+                solver.assert_and_track(item['expr'], label)
+                labels.append(label)
+
+            # for i, item in enumerate(first_record['z3_premises']):
+            #     label = z3.Bool(f"p{i+1}")  # gán tên giả định
+            #     solver.assert_and_track(item['expr'], label)
+            #     labels.append(label)
+
+                solver.push()
+                solver.add(z3.Not(first_record['parsed_questions'][0]['ques']))
+                result = solver.check()
+
+                # In kết quả
+                if result == z3.unsat:
+                    result_counts["YES"] += 1
+                    used = solver.unsat_core()  # trả về danh sách các label đã dùng
+                    print("Các giả định đã dùng:", used)
+                    # Lấy chỉ số index tương ứng từ tên p0, p1, ...
+                    used_indices = [int(str(label)[1:]) for label in used]
+                    print("Vị trí trong premises_fol_str:", used_indices)
+                    print("----")
+                    for idx in used_indices:
+                        print(first_record['z3_premises'][idx-1])
+                elif result == z3.sat:
+                    result_counts["NO"] += 1
+                else:
+                    # print("UNKNOW: Sophia does not qualify for the scholarship.")
+                    result_counts["UNKNOWN"] += 1
+                solver.pop()
+
+            print("\nKết quả tổng hợp:", dict(result_counts))
+            print("Kết quả xảy ra nhiều nhất:", result_counts.most_common(1)[0])
 
     elif raw_data:
         print("Error: Expected dataset to be a JSON list of records.")
