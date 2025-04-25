@@ -12,6 +12,7 @@ membership_duration
 PREDICATE_OK
   Defining Predicate: membership_duration with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 paid_annual_fee(Alex)
 paid_annual_fee
 PREDICATE_OK
@@ -60,6 +61,7 @@ membership_duration(x) ≥ 6
 membership_duration(x)
 membership_duration
 PREDICATE_OK
+IAM HERE
 eligible_trainer(x)
 eligible_trainer
 PREDICATE_OK
@@ -92,6 +94,7 @@ completed_courses
 PREDICATE_OK
   Defining Predicate: completed_courses with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 eligible_advanced(x)
 eligible_advanced
 PREDICATE_OK
@@ -115,6 +118,7 @@ completed_courses(sarah) = 4
 completed_courses(sarah)
 completed_courses
 PREDICATE_OK
+IAM HERE
 has_approval(sarah)
 has_approval
 PREDICATE_OK
@@ -205,6 +209,7 @@ membership_duration(x) ≥ 6
 membership_duration(x)
 membership_duration
 PREDICATE_OK
+IAM HERE
 eligible_trainer(x)
 eligible_trainer
 PREDICATE_OK
@@ -229,6 +234,7 @@ attendance
 PREDICATE_OK
   Defining Predicate: attendance with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 allowed_exam(s,m)
 allowed_exam
 PREDICATE_OK
@@ -296,6 +302,7 @@ attendance(s,m) < 50
 attendance(s,m)
 attendance
 PREDICATE_OK
+IAM HERE
 ¬allowed_exam(s,m)
 allowed_exam
 PREDICATE_OK
@@ -325,14 +332,17 @@ grade
 PREDICATE_OK
   Defining Predicate: grade with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 grade(s,m2) > 8.5
 grade(s,m2)
 grade
 PREDICATE_OK
+IAM HERE
 grade(s,m3) > 8.5
 grade(s,m3)
 grade
 PREDICATE_OK
+IAM HERE
 scholarship(s)
 scholarship
 PREDICATE_OK
@@ -353,6 +363,7 @@ score
 PREDICATE_OK
   Defining Predicate: score with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 passing_score
 passing_score
 PREDICATE_OK
@@ -370,6 +381,7 @@ attendance(s,m) = 100
 attendance(s,m)
 attendance
 PREDICATE_OK
+IAM HERE
 ¬completes_exam(s,m)
 completes_exam
 PREDICATE_OK
@@ -428,6 +440,7 @@ attendance(s,m) < 50
 attendance(s,m)
 attendance
 PREDICATE_OK
+IAM HERE
 completes_assignment(s,m)
 completes_assignment
 PREDICATE_OK
@@ -450,6 +463,7 @@ study
 PREDICATE_OK
   Defining Predicate: study with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 understand(s,PoliticalIdeologies)
 understand
 PREDICATE_OK
@@ -500,6 +514,7 @@ study(s,PoliticalTheory) < 6
 study(s,PoliticalTheory)
 study
 PREDICATE_OK
+IAM HERE
 struggle(s,PoliticalIdeologies)
 struggle
 PREDICATE_OK
@@ -598,6 +613,7 @@ study(s,quantum_mechanics) ≥ 15
 study(s,quantum_mechanics)
 study
 PREDICATE_OK
+IAM HERE
 understand(s,superposition)
 understand
 PREDICATE_OK
@@ -646,6 +662,7 @@ study(s,quantum_mechanics) < 8
 study(s,quantum_mechanics)
 study
 PREDICATE_OK
+IAM HERE
 struggle(s,superposition)
 struggle
 PREDICATE_OK
@@ -731,6 +748,7 @@ Retention
 PREDICATE_OK
   Defining Predicate: Retention with arity 2
     Using predefined signature: ['Item', 'Item'] -> String
+IAM HERE
 ∀s(use_spaced_repetition(s) → better_memory_retention(s))
 use_spaced_repetition(s) → better_memory_retention(s)
 PARTS
@@ -876,6 +894,7 @@ Retention(s,t) = e^(-t/s)
 Retention(s,t)
 Retention
 PREDICATE_OK
+IAM HERE
 ∀s(use_spaced_repetition(s) → better_memory_retention(s))
 use_spaced_repetition(s) → better_memory_retention(s)
 PARTS
@@ -995,6 +1014,7 @@ PREDICATE_OK
 angle(C)
 angle
 PREDICATE_OK
+IAM HERE
 ∀C∀P(chord(C) ∧ perpendicular_bisector(P, C) → passes_through(P, center))
 ∀P(chord(C) ∧ perpendicular_bisector(P, C) → passes_through(P, center))
 chord(C) ∧ perpendicular_bisector(P, C) → passes_through(P, center)
@@ -1089,6 +1109,7 @@ distance_product
 PREDICATE_OK
   Defining Predicate: distance_product with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 radii_product(C1, C2)
 radii_product
 PREDICATE_OK
@@ -1126,6 +1147,7 @@ median(hypotenuse) = 0.5*hypotenuse
 median(hypotenuse)
 median
 PREDICATE_OK
+IAM HERE
 
 --- Processing Record 10 ---
 ∀s∀c(complete_modules(s,c) ∧ (uptime(c) ≥ 99)) → master_content(s,c)
@@ -1145,6 +1167,7 @@ uptime
 PREDICATE_OK
   Defining Predicate: uptime with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 master_content(s,c)
 master_content
 PREDICATE_OK
@@ -1211,6 +1234,7 @@ downtime
 PREDICATE_OK
   Defining Predicate: downtime with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 ¬master_content(s,c)
 master_content
 PREDICATE_OK
@@ -1223,6 +1247,7 @@ pass_count
 PREDICATE_OK
   Defining Predicate: pass_count with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 digital_certificate(s)
 digital_certificate
 PREDICATE_OK
@@ -1238,6 +1263,7 @@ live_sessions
 PREDICATE_OK
   Defining Predicate: live_sessions with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 ¬take_exam(s,c)
 take_exam
 PREDICATE_OK
@@ -1288,6 +1314,7 @@ downtime(s,c) < 5
 downtime(s,c)
 downtime
 PREDICATE_OK
+IAM HERE
 submit_capstone(s,c)
 submit_capstone
 PREDICATE_OK
@@ -1322,18 +1349,22 @@ uptime(c1) ≥ 99
 uptime(c1)
 uptime
 PREDICATE_OK
+IAM HERE
 uptime(c2) ≥ 99
 uptime(c2)
 uptime
 PREDICATE_OK
+IAM HERE
 uptime(c3) ≥ 99
 uptime(c3)
 uptime
 PREDICATE_OK
+IAM HERE
 uptime(c4) ≥ 99
 uptime(c4)
 uptime
 PREDICATE_OK
+IAM HERE
 pass_exam(s,c1)
 pass_exam
 PREDICATE_OK
@@ -1406,6 +1437,7 @@ gpa
 PREDICATE_OK
   Defining Predicate: gpa with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 change_major(x) → semesters(x) ≥ 2
 PARTS
 change_major(x)
@@ -1417,6 +1449,7 @@ semesters
 PREDICATE_OK
   Defining Predicate: semesters with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 change_major(x) → accumulated_credits(x) ≥ 0.5 * total_credits(x)
 PARTS
 change_major(x)
@@ -1428,6 +1461,7 @@ accumulated_credits
 PREDICATE_OK
   Defining Predicate: accumulated_credits with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 total_credits(x)
 total_credits
 PREDICATE_OK
@@ -1444,6 +1478,7 @@ similarity
 PREDICATE_OK
   Defining Predicate: similarity with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 major_courses_taken(x) → equivalent_assessment(x)
 PARTS
 major_courses_taken(x)
@@ -1492,6 +1527,7 @@ application_days
 PREDICATE_OK
   Defining Predicate: application_days with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 late_application(x) → wait_next_term(x) ∧ penalty(x) = 0.1 * tuition(x)
 PARTS
 late_application(x)
@@ -1510,6 +1546,7 @@ penalty
 PREDICATE_OK
   Defining Predicate: penalty with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 tuition(x)
 tuition
 PREDICATE_OK
@@ -1526,6 +1563,7 @@ change_fee
 PREDICATE_OK
   Defining Predicate: change_fee with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 tuition(x)
 tuition
 PREDICATE_OK
@@ -1566,6 +1604,7 @@ repayment
 PREDICATE_OK
   Defining Predicate: repayment with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 scholarship_value(x)
 scholarship_value
 PREDICATE_OK
@@ -1582,18 +1621,21 @@ make_up_courses
 PREDICATE_OK
   Defining Predicate: make_up_courses with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 make_up_credits(x) ≤ 15
 make_up_credits(x)
 make_up_credits
 PREDICATE_OK
   Defining Predicate: make_up_credits with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 gpa(x) < 6.0 ∧ change_major(x) → academic_warning(x)
 PARTS
 gpa(x) < 6.0
 gpa(x)
 gpa
 PREDICATE_OK
+IAM HERE
 change_major(x)
 change_major
 PREDICATE_OK
@@ -1613,6 +1655,7 @@ next_term_gpa
 PREDICATE_OK
   Defining Predicate: next_term_gpa with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 ¬violation(x)
 violation
 PREDICATE_OK
@@ -1634,6 +1677,7 @@ change_count
 PREDICATE_OK
   Defining Predicate: change_count with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 ¬special_case(x)
 special_case
 PREDICATE_OK
@@ -1650,6 +1694,7 @@ credit_retention
 PREDICATE_OK
   Defining Predicate: credit_retention with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 policy_eligible(x) → fee_discount(x) = 0.2 ∧ priority_review(x)
 PARTS
 policy_eligible(x)
@@ -1661,6 +1706,7 @@ fee_discount
 PREDICATE_OK
   Defining Predicate: fee_discount with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 priority_review(x)
 priority_review
 PREDICATE_OK
@@ -1679,6 +1725,7 @@ exam_score
 PREDICATE_OK
   Defining Predicate: exam_score with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 standard_score(x)
 standard_score
 PREDICATE_OK
@@ -1700,10 +1747,12 @@ gpa(Mai) = 7.2
 gpa(Mai)
 gpa
 PREDICATE_OK
+IAM HERE
 semesters(Mai) = 3
 semesters(Mai)
 semesters
 PREDICATE_OK
+IAM HERE
 change_major(Mai, IT, BiomedicalEng) ∧ similarity(Mai) = 0.65
 PARTS
 change_major(Mai, IT, BiomedicalEng)
@@ -1715,26 +1764,31 @@ similarity(Mai) = 0.65
 similarity(Mai)
 similarity
 PREDICATE_OK
+IAM HERE
 accumulated_credits(Mai) = 45 ∧ total_credits(Mai) = 90 ∧ application_days(Mai) = 45
 PARTS
 accumulated_credits(Mai) = 45
 accumulated_credits(Mai)
 accumulated_credits
 PREDICATE_OK
+IAM HERE
 total_credits(Mai) = 90
 total_credits(Mai)
 total_credits
 PREDICATE_OK
+IAM HERE
 application_days(Mai) = 45
 application_days(Mai)
 application_days
 PREDICATE_OK
+IAM HERE
 scholarship(Mai) = 0.5 * tuition(Mai) ∧ change_count(Mai) = 0
 PARTS
 scholarship(Mai) = 0.5 * tuition(Mai)
 scholarship(Mai)
 scholarship
 PREDICATE_OK
+IAM HERE
 tuition(Mai)
 tuition
 PREDICATE_OK
@@ -1742,6 +1796,7 @@ change_count(Mai) = 0
 change_count(Mai)
 change_count
 PREDICATE_OK
+IAM HERE
 entrance_exam(Mai) ∧ standard_score(Mai) = 80 ∧ exam_score(Mai) = 78
 PARTS
 entrance_exam(Mai)
@@ -1751,10 +1806,12 @@ standard_score(Mai) = 80
 standard_score(Mai)
 standard_score
 PREDICATE_OK
+IAM HERE
 exam_score(Mai) = 78
 exam_score(Mai)
 exam_score
 PREDICATE_OK
+IAM HERE
 
 --- Processing Record 12 ---
 complete_theory(s) → participate_practice(s)
@@ -1782,6 +1839,7 @@ delay_practice
 PREDICATE_OK
   Defining Predicate: delay_practice with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 flight_practice(s) → safety_test(s) ≤ 1
 PARTS
 flight_practice(s)
@@ -1795,6 +1853,7 @@ safety_test
 PREDICATE_OK
   Defining Predicate: safety_test with arity 1
     Using predefined signature: ['Item'] -> Bool
+IAM HERE
 ¬safety_test(s) → ¬flight_practice(s) ∧ retake_theory(s)
 PARTS
 ¬safety_test(s)
@@ -1814,12 +1873,14 @@ delay_practice(s) > 3
 delay_practice(s)
 delay_practice
 PREDICATE_OK
+IAM HERE
 refund(s) = 0.5
 refund(s)
 refund
 PREDICATE_OK
   Defining Predicate: refund with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 flight_late(s) > 1 → submit_report(s)
 PARTS
 flight_late(s) > 1
@@ -1828,6 +1889,7 @@ flight_late
 PREDICATE_OK
   Defining Predicate: flight_late with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 submit_report(s)
 submit_report
 PREDICATE_OK
@@ -1844,6 +1906,7 @@ instructors
 PREDICATE_OK
   Defining Predicate: instructors with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 instructor_absent(s) → find_replacement(s) ≤ 1
 PARTS
 instructor_absent(s)
@@ -1857,6 +1920,7 @@ find_replacement
 PREDICATE_OK
   Defining Predicate: find_replacement with arity 1
     Using predefined signature: ['Item'] -> Bool
+IAM HERE
 instructor_absent(s) ∧ ¬find_replacement(s) → cancel_practice(s) ∧ reregister(s)
 PARTS
 instructor_absent(s)
@@ -1886,6 +1950,7 @@ submit_application
 PREDICATE_OK
   Defining Predicate: submit_application with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 complete_theory(Lan, 20/3/2025)
 complete_theory
 PREDICATE_OK
@@ -1922,6 +1987,7 @@ notify_cancellation
 PREDICATE_OK
   Defining Predicate: notify_cancellation with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 cancel_practice(s) → make_up_session(s) ≤ 2 ∨ lose_exam_eligibility(s)
 PARTS
 cancel_practice(s)
@@ -1933,6 +1999,7 @@ make_up_session
 PREDICATE_OK
   Defining Predicate: make_up_session with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 lose_exam_eligibility(s)
 lose_exam_eligibility
 PREDICATE_OK
@@ -1948,6 +2015,7 @@ identical_answers
 PREDICATE_OK
   Defining Predicate: identical_answers with arity 2
     Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
 cheating(s,t)
 cheating
 PREDICATE_OK
@@ -1969,6 +2037,7 @@ PREDICATE_OK
 submit_time(t)
 submit_time
 PREDICATE_OK
+IAM HERE
 further_review(s,t)
 further_review
 PREDICATE_OK
@@ -1980,6 +2049,7 @@ completion_time
 PREDICATE_OK
   Defining Predicate: completion_time with arity 1
     Using predefined signature: ['Item'] -> Real
+IAM HERE
 anomalous(s)
 anomalous
 PREDICATE_OK
@@ -2010,6 +2080,7 @@ gaze_deviation
 PREDICATE_OK
   Defining Predicate: gaze_deviation with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 screen_cheating(s)
 screen_cheating
 PREDICATE_OK
@@ -2045,6 +2116,7 @@ score
 PREDICATE_OK
   Defining Predicate: score with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 ai_detection(s) > 95 → board_meeting(s) ≤ 48
 PARTS
 ai_detection(s) > 95
@@ -2053,12 +2125,14 @@ ai_detection
 PREDICATE_OK
   Defining Predicate: ai_detection with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 board_meeting(s) ≤ 48
 board_meeting(s)
 board_meeting
 PREDICATE_OK
   Defining Predicate: board_meeting with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 ¬immediate_suspension(s) → appeal(s) ≤ 7
 PARTS
 ¬immediate_suspension(s)
@@ -2072,6 +2146,7 @@ appeal
 PREDICATE_OK
   Defining Predicate: appeal with arity 1
     Using predefined signature: ['Item'] -> Bool
+IAM HERE
 appeal(s) ∧ ¬accept_appeal(s) → retake_course(s) ∧ penalty(s) = 0.3 * tuition(s)
 PARTS
 appeal(s)
@@ -2091,6 +2166,7 @@ penalty(s) = 0.3 * tuition(s)
 penalty(s)
 penalty
 PREDICATE_OK
+IAM HERE
 tuition(s)
 tuition
 PREDICATE_OK
@@ -2126,6 +2202,7 @@ technical_errors
 PREDICATE_OK
   Defining Predicate: technical_errors with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 reschedule_exam(s)
 reschedule_exam
 PREDICATE_OK
@@ -2149,12 +2226,14 @@ late_submission
 PREDICATE_OK
   Defining Predicate: late_submission with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 score_deduction(s) = 0.1
 score_deduction(s)
 score_deduction
 PREDICATE_OK
   Defining Predicate: score_deduction with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 class_cheating_suspicion_rate(s) > 0.5 → reinvestigation(s)
 PARTS
 class_cheating_suspicion_rate(s) > 0.5
@@ -2163,6 +2242,7 @@ class_cheating_suspicion_rate
 PREDICATE_OK
   Defining Predicate: class_cheating_suspicion_rate with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 reinvestigation(s)
 reinvestigation
 PREDICATE_OK
@@ -2191,6 +2271,7 @@ late_board_meeting
 PREDICATE_OK
   Defining Predicate: late_board_meeting with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 review_request(s)
 review_request
 PREDICATE_OK
@@ -2226,6 +2307,7 @@ course_average_before
 PREDICATE_OK
   Defining Predicate: course_average_before with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 special_surveillance(s)
 special_surveillance
 PREDICATE_OK
@@ -2278,12 +2360,14 @@ additional_fine
 PREDICATE_OK
   Defining Predicate: additional_fine with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 identical_answers(A,B) = 95 ∧ date(25/3/2025)
 PARTS
 identical_answers(A,B) = 95
 identical_answers(A,B)
 identical_answers
 PREDICATE_OK
+IAM HERE
 date(25/3/2025)
 date
 PREDICATE_OK
@@ -2296,12 +2380,14 @@ PREDICATE_OK
 submit_time(B)
 submit_time
 PREDICATE_OK
+IAM HERE
 completion_time(A) = 15 ∧ class_average = 40
 PARTS
 completion_time(A) = 15
 completion_time(A)
 completion_time
 PREDICATE_OK
+IAM HERE
 class_average = 40
 class_average = 40
 PREDICATE_OK
@@ -2320,6 +2406,7 @@ gaze_deviation(A) = 12
 gaze_deviation(A)
 gaze_deviation
 PREDICATE_OK
+IAM HERE
 cheating_history(A,12/2024)
 cheating_history
 PREDICATE_OK
@@ -2329,6 +2416,7 @@ ai_detection(A) = 97
 ai_detection(A)
 ai_detection
 PREDICATE_OK
+IAM HERE
 board_meeting(A,27/3/2025,10:00)
 board_meeting
 PREDICATE_OK
@@ -2527,6 +2615,7 @@ Score
 PREDICATE_OK
   Defining Predicate: Score with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 Distinction(x)
 Distinction
 PREDICATE_OK
@@ -2548,6 +2637,7 @@ Score(x) > 90
 Score(x)
 Score
 PREDICATE_OK
+IAM HERE
 ∀x(Score(x) > 90 → CertificateExcellence(x))
 Score(x) > 90 → CertificateExcellence(x)
 PARTS
@@ -2555,6 +2645,7 @@ Score(x) > 90
 Score(x)
 Score
 PREDICATE_OK
+IAM HERE
 CertificateExcellence(x)
 CertificateExcellence
 PREDICATE_OK
@@ -2584,6 +2675,7 @@ Score(x) > 90
 Score(x)
 Score
 PREDICATE_OK
+IAM HERE
 CertificateExcellence(x)
 CertificateExcellence
 PREDICATE_OK
@@ -2597,6 +2689,7 @@ Score(x) ≤ 90
 Score(x)
 Score
 PREDICATE_OK
+IAM HERE
 ∀x(¬Submitted(x) → ¬Pass(x))
 ¬Submitted(x) → ¬Pass(x)
 PARTS
@@ -2671,6 +2764,7 @@ GPA
 PREDICATE_OK
   Defining Predicate: GPA with arity 1
     Inferred signature: ['Item'] -> Real
+IAM HERE
 ¬EligibleForGraduation(x)
 EligibleForGraduation
 PREDICATE_OK
@@ -2715,6 +2809,7 @@ GPA(x) ≥ 3.5
 GPA(x)
 GPA
 PREDICATE_OK
+IAM HERE
 GraduatesWithHonors(x)
 GraduatesWithHonors
 PREDICATE_OK
@@ -2742,6 +2837,7 @@ GPA(x) ≥ 3.5
 GPA(x)
 GPA
 PREDICATE_OK
+IAM HERE
 GraduatesWithHonors(x)
 GraduatesWithHonors
 PREDICATE_OK
@@ -2838,2048 +2934,1119 @@ MeetsAcademicRequirements
 PREDICATE_OK
 
 --- Processing Record 17 ---
-∀x (Freshman(x) → (Pass(x, Calculus1) ∧ Pass(x, Calculus2)))
-Freshman(x) → (Pass(x, Calculus1) ∧ Pass(x, Calculus2))
+
+--- Processing Record 18 ---
+
+--- Processing Record 19 ---
+
+--- Processing Record 20 ---
+∀x (Member(x) ∧ ∃e (Event(e) ∧ Attend(x, e)) → Experience(x))
+Member(x) ∧ ∃e (Event(e) ∧ Attend(x, e)) → Experience(x)
 PARTS
-Freshman(x)
-Freshman
+Member(x)
+Member
 PREDICATE_OK
-  Defining Predicate: Freshman with arity 1
+  Defining Predicate: Member with arity 1
     Inferred signature: ['Item'] -> Bool
-Pass(x, Calculus1) ∧ Pass(x, Calculus2)
+∃e (Event(e) ∧ Attend(x, e))
+Event(e) ∧ Attend(x, e)
 PARTS
-Pass(x, Calculus1)
-Pass
+Event(e)
+Event
 PREDICATE_OK
-  Defining Predicate: Pass with arity 2
+  Defining Predicate: Event with arity 1
+    Inferred signature: ['Item'] -> Bool
+Attend(x, e)
+Attend
+PREDICATE_OK
+  Defining Predicate: Attend with arity 2
     Inferred signature: ['Item', 'Item'] -> Bool
-Pass(x, Calculus2)
-Pass
+Experience(x)
+Experience
 PREDICATE_OK
-∀x (Student(x) ∧ ≥(Score(x, Calculus1), 4) → Took(x, Calculus2))
-Student(x) ∧ ≥(Score(x, Calculus1), 4) → Took(x, Calculus2)
+  Defining Predicate: Experience with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (Experience(x) → ImproveSkill(x))
+Experience(x) → ImproveSkill(x)
 PARTS
-Student(x)
-Student
+Experience(x)
+Experience
 PREDICATE_OK
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-PARTS
-≥(Score(x, Calculus1), 4)
-Traceback (most recent call last):
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 987, in <module>
-    processed_data = process_dataset(raw_data)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 935, in process_dataset
-    z3_premise = parse_fol_string_to_z3(fol_str)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 590, in parse_fol_string_to_z3
-    predicate = parse_fol_string_to_z3(fol_str)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 700, in parse_fol_string_to_z3
-    hat_predicates.append(parse_fol_string_to_z3(hat_part))
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 763, in parse_fol_string_to_z3
-    e_predicates.append(parse_fol_string_to_z3(e_part))
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 763, in parse_fol_string_to_z3
-    e_predicates.append(parse_fol_string_to_z3(e_part))
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 763, in parse_fol_string_to_z3
-    e_predicates.append(parse_fol_string_to_z3(e_part))
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  [Previous line repeated 986 more times]
-  File "i:\xAI_EQA_Contest\main\math_data_processing.py", line 508, in parse_fol_string_to_z3
-    match = regex.search(r"¬*\w+\((?:[^()]+|(?R))*\)", fol_str)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\Lib\site-packages\regex\regex.py", line 267, in search
-    pat = _compile(pattern, flags, ignore_unused, kwargs, True)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\Lib\site-packages\regex\regex.py", line 459, in _compile
-    if (flags & DEBUG) != 0:
-        ~~~~~~^~~~~~~
-  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\Lib\enum.py", line 1523, in __and__
-    return self.__class__(value & other)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\Lib\enum.py", line 711, in __call__
-    return cls.__new__(cls, value)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ADMIN\AppData\Local\Programs\Python\Python311\Lib\enum.py", line 1101, in __new__
-    return cls._value2member_map_[value]
-           ^^^^^^^^^^^^^^^^^^^^^^
-RecursionError: maximum recursion depth exceeded while calling a Python object
+ImproveSkill(x)
+ImproveSkill
+PREDICATE_OK
+  Defining Predicate: ImproveSkill with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (ImproveSkill(x) → Confident(x))
+ImproveSkill(x) → Confident(x)
+PARTS
+ImproveSkill(x)
+ImproveSkill
+PREDICATE_OK
+Confident(x)
+Confident
+PREDICATE_OK
+  Defining Predicate: Confident with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x ((Events(x, e) ∧ e ≥ 2) → Experience(x))
+(Events(x, e) ∧ e ≥ 2) → Experience(x)
+PARTS
+Events(x, e) ∧ e ≥ 2
+PARTS
+Events(x, e)
+Events
+PREDICATE_OK
+  Defining Predicate: Events with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+e ≥ 2
+e ≥ 2
+PREDICATE_OK
+  Defining Predicate: e ≥ 2 with arity 0
+Experience(x)
+Experience
+PREDICATE_OK
+∀e (Event(e) → Attend(Tu, e)) ∧ TotalEvents(Tu, 5)
+(Event(e) → Attend(Tu, e)) ∧ TotalEvents(Tu, 5)
+PARTS
+Event(e) → Attend(Tu, e)
+PARTS
+Event(e)
+Event
+PREDICATE_OK
+Attend(Tu, e)
+Attend
+PREDICATE_OK
+TotalEvents(Tu, 5)
+TotalEvents
+PREDICATE_OK
+  Defining Predicate: TotalEvents with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 21 ---
+∀x (Year(x, n) ∧ n ≥ 3 → (Internship(x) ∨ Work(x)))
+Year(x, n) ∧ n ≥ 3 → (Internship(x) ∨ Work(x))
+PARTS
+Year(x, n)
+Year
+PREDICATE_OK
+  Defining Predicate: Year with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+n ≥ 3
+n ≥ 3
+PREDICATE_OK
+  Defining Predicate: n ≥ 3 with arity 0
+Internship(x) ∨ Work(x)
+PARTS
+Internship(x)
+Internship
+PREDICATE_OK
+  Defining Predicate: Internship with arity 1
+    Inferred signature: ['Item'] -> Bool
+Work(x)
+Work
+PREDICATE_OK
+  Defining Predicate: Work with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (Internship(x) → GoodCV(x))
+Internship(x) → GoodCV(x)
+PARTS
+Internship(x)
+Internship
+PREDICATE_OK
+GoodCV(x)
+GoodCV
+PREDICATE_OK
+  Defining Predicate: GoodCV with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (GoodCV(x) → EasyJob(x))
+GoodCV(x) → EasyJob(x)
+PARTS
+GoodCV(x)
+GoodCV
+PREDICATE_OK
+EasyJob(x)
+EasyJob
+PREDICATE_OK
+  Defining Predicate: EasyJob with arity 1
+    Inferred signature: ['Item'] -> Bool
+Year(Coke, 4)
+Year
+PREDICATE_OK
+
+--- Processing Record 22 ---
+∀x (FailTheoryCount(x) ≥ 4 → ¬AllowedFuturePractice(x))
+FailTheoryCount(x) ≥ 4 → ¬AllowedFuturePractice(x)
+PARTS
+FailTheoryCount(x) ≥ 4
+FailTheoryCount(x)
+FailTheoryCount
+PREDICATE_OK
+  Defining Predicate: FailTheoryCount with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+¬AllowedFuturePractice(x)
+AllowedFuturePractice
+PREDICATE_OK
+  Defining Predicate: AllowedFuturePractice with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (TheoryQuizFailCount(x) > 3 → ¬AllowedFuturePractice(x))
+TheoryQuizFailCount(x) > 3 → ¬AllowedFuturePractice(x)
+PARTS
+TheoryQuizFailCount(x) > 3
+TheoryQuizFailCount(x)
+TheoryQuizFailCount
+PREDICATE_OK
+  Defining Predicate: TheoryQuizFailCount with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+¬AllowedFuturePractice(x)
+AllowedFuturePractice
+PREDICATE_OK
+∀x∀t∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+∀t∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+∀p (¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p))
+¬Attended(x, t) ∧ CorrespondsTo(t, p) → ¬Eligible(x, p)
+PARTS
+¬Attended(x, t)
+Attended
+PREDICATE_OK
+  Defining Predicate: Attended with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+CorrespondsTo(t, p)
+CorrespondsTo
+PREDICATE_OK
+  Defining Predicate: CorrespondsTo with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Eligible(x, p)
+Eligible
+PREDICATE_OK
+  Defining Predicate: Eligible with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀g∀s (CountFails(g, s) ≥ 2 → SessionFail(s))
+∀s (CountFails(g, s) ≥ 2 → SessionFail(s))
+CountFails(g, s) ≥ 2 → SessionFail(s)
+PARTS
+CountFails(g, s) ≥ 2
+CountFails(g, s)
+CountFails
+PREDICATE_OK
+  Defining Predicate: CountFails with arity 2
+    Inferred signature: ['Item', 'Item'] -> Real
+IAM HERE
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+  Defining Predicate: SessionFail with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀g∀s (FailedCalculation(g, s) → SessionFail(s))
+∀s (FailedCalculation(g, s) → SessionFail(s))
+FailedCalculation(g, s) → SessionFail(s)
+PARTS
+FailedCalculation(g, s)
+FailedCalculation
+PREDICATE_OK
+  Defining Predicate: FailedCalculation with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+∀x∀g∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+∀g∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+∀s ((AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s))
+(AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)) → SessionFailForStudent(x, s)
+PARTS
+AssignedTo(x, g) ∧ AssignedToSession(g, s) ∧ SessionFail(s)
+PARTS
+AssignedTo(x, g)
+AssignedTo
+PREDICATE_OK
+  Defining Predicate: AssignedTo with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+AssignedToSession(g, s)
+AssignedToSession
+PREDICATE_OK
+  Defining Predicate: AssignedToSession with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+SessionFail(s)
+SessionFail
+PREDICATE_OK
+SessionFailForStudent(x, s)
+SessionFailForStudent
+PREDICATE_OK
+  Defining Predicate: SessionFailForStudent with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀t (¬Attended(x, t) → FailsSession(x, t))
+∀t (¬Attended(x, t) → FailsSession(x, t))
+¬Attended(x, t) → FailsSession(x, t)
+PARTS
+¬Attended(x, t)
+Attended
+PREDICATE_OK
+FailsSession(x, t)
+FailsSession
+PREDICATE_OK
+  Defining Predicate: FailsSession with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+FailTheoryCount(Bob) ≥ 3
+FailTheoryCount(Bob)
+FailTheoryCount
+PREDICATE_OK
+IAM HERE
+TheoryQuizFailCount(Bob) ≥ 3
+TheoryQuizFailCount(Bob)
+TheoryQuizFailCount
+PREDICATE_OK
+IAM HERE
+¬Attended(Bob, T3)
+Attended
+PREDICATE_OK
+CorrespondsTo(T3, P3)
+CorrespondsTo
+PREDICATE_OK
+AssignedTo(Bob, G1)
+AssignedTo
+PREDICATE_OK
+AssignedToSession(G1, P3)
+AssignedToSession
+PREDICATE_OK
+∀x∀t∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+∀t∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+∀p (FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p))
+FailsSession(x, t) ∧ CorrespondsTo(t, p) → FailsOralCheck(x, p)
+PARTS
+FailsSession(x, t)
+FailsSession
+PREDICATE_OK
+CorrespondsTo(t, p)
+CorrespondsTo
+PREDICATE_OK
+FailsOralCheck(x, p)
+FailsOralCheck
+PREDICATE_OK
+  Defining Predicate: FailsOralCheck with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+CountFails(G1, P3) ≥ 1
+CountFails(G1, P3)
+CountFails
+PREDICATE_OK
+IAM HERE
+
+--- Processing Record 23 ---
+∀x (HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600))
+HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)
+PARTS
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+  Defining Predicate: HasEnglishCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600
+PARTS
+IELTS(x) ≥ 6.0
+IELTS(x)
+IELTS
+PREDICATE_OK
+  Defining Predicate: IELTS with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+TOEFL(x) > 600
+TOEFL(x)
+TOEFL
+PREDICATE_OK
+  Defining Predicate: TOEFL with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+∃x(HasEnglishCertificate(x))
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+∀x (RequiredToHaveEnglishCertificate(x))
+RequiredToHaveEnglishCertificate(x)
+RequiredToHaveEnglishCertificate
+PREDICATE_OK
+  Defining Predicate: RequiredToHaveEnglishCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(HasEnglishCertificate(x))
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+∀x ((HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)) →∀y (RequiredToHaveEnglishCertificate(y)))
+(HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)) →∀y (RequiredToHaveEnglishCertificate(y))
+PARTS
+HasEnglishCertificate(x) → (IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600)
+PARTS
+HasEnglishCertificate(x)
+HasEnglishCertificate
+PREDICATE_OK
+IELTS(x) ≥ 6.0 ∨ TOEFL(x) > 600
+PARTS
+IELTS(x) ≥ 6.0
+IELTS(x)
+IELTS
+PREDICATE_OK
+IAM HERE
+TOEFL(x) > 600
+TOEFL(x)
+TOEFL
+PREDICATE_OK
+IAM HERE
+∀y (RequiredToHaveEnglishCertificate(y))
+RequiredToHaveEnglishCertificate(y)
+RequiredToHaveEnglishCertificate
+PREDICATE_OK
+∃x(CompletedLanguageProficiencyTest(x))
+CompletedLanguageProficiencyTest(x)
+CompletedLanguageProficiencyTest
+PREDICATE_OK
+  Defining Predicate: CompletedLanguageProficiencyTest with arity 1
+    Inferred signature: ['Item'] -> Bool
+∃x(EligibleForLanguageScholarship(x))
+EligibleForLanguageScholarship(x)
+EligibleForLanguageScholarship
+PREDICATE_OK
+  Defining Predicate: EligibleForLanguageScholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 24 ---
+∀x(Miss_Quiz(x) → Fail_Class(x))
+Miss_Quiz(x) → Fail_Class(x)
+PARTS
+Miss_Quiz(x)
+Miss_Quiz
+PREDICATE_OK
+  Defining Predicate: Miss_Quiz with arity 1
+    Inferred signature: ['Item'] -> Bool
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+  Defining Predicate: Fail_Class with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(Score_Final(x) < 50 → Fail_Class(x))
+Score_Final(x) < 50 → Fail_Class(x)
+PARTS
+Score_Final(x) < 50
+Score_Final(x)
+Score_Final
+PREDICATE_OK
+  Defining Predicate: Score_Final with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+∀x(Complete_Homework(x) ∧ Attend_All_Classes(x) → Pass_Final(x))
+Complete_Homework(x) ∧ Attend_All_Classes(x) → Pass_Final(x)
+PARTS
+Complete_Homework(x)
+Complete_Homework
+PREDICATE_OK
+  Defining Predicate: Complete_Homework with arity 1
+    Inferred signature: ['Item'] -> Bool
+Attend_All_Classes(x)
+Attend_All_Classes
+PREDICATE_OK
+  Defining Predicate: Attend_All_Classes with arity 1
+    Inferred signature: ['Item'] -> Bool
+Pass_Final(x)
+Pass_Final
+PREDICATE_OK
+  Defining Predicate: Pass_Final with arity 1
+    Inferred signature: ['Item'] -> Bool
+Complete_Homework(Ponko) ∧ ¬Attend_All_Classes(Ponko)
+PARTS
+Complete_Homework(Ponko)
+Complete_Homework
+PREDICATE_OK
+¬Attend_All_Classes(Ponko)
+Attend_All_Classes
+PREDICATE_OK
+∀x(Fail_Class(x) → Retake_Next_Semester(x))
+Fail_Class(x) → Retake_Next_Semester(x)
+PARTS
+Fail_Class(x)
+Fail_Class
+PREDICATE_OK
+Retake_Next_Semester(x)
+Retake_Next_Semester
+PREDICATE_OK
+  Defining Predicate: Retake_Next_Semester with arity 1
+    Inferred signature: ['Item'] -> Bool
+
+--- Processing Record 25 ---
+∀x(ScoreFinalExam(x) > 80 → QualifyScholarship(x))
+ScoreFinalExam(x) > 80 → QualifyScholarship(x)
+PARTS
+ScoreFinalExam(x) > 80
+ScoreFinalExam(x)
+ScoreFinalExam
+PREDICATE_OK
+  Defining Predicate: ScoreFinalExam with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+QualifyScholarship(x)
+QualifyScholarship
+PREDICATE_OK
+  Defining Predicate: QualifyScholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(¬AttendRegularly(x) → ScoreFinalExam(x) ≤ 80)
+¬AttendRegularly(x) → ScoreFinalExam(x) ≤ 80
+PARTS
+¬AttendRegularly(x)
+AttendRegularly
+PREDICATE_OK
+  Defining Predicate: AttendRegularly with arity 1
+    Inferred signature: ['Item'] -> Bool
+ScoreFinalExam(x) ≤ 80
+ScoreFinalExam(x)
+ScoreFinalExam
+PREDICATE_OK
+IAM HERE
+∀x(BasketballTeam(x) → MustAttendRegularly(x))
+BasketballTeam(x) → MustAttendRegularly(x)
+PARTS
+BasketballTeam(x)
+BasketballTeam
+PREDICATE_OK
+  Defining Predicate: BasketballTeam with arity 1
+    Inferred signature: ['Item'] -> Bool
+MustAttendRegularly(x)
+MustAttendRegularly
+PREDICATE_OK
+  Defining Predicate: MustAttendRegularly with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x(RemainOnTeamAllSemester(x) → AthleticCertificate(x))
+RemainOnTeamAllSemester(x) → AthleticCertificate(x)
+PARTS
+RemainOnTeamAllSemester(x)
+RemainOnTeamAllSemester
+PREDICATE_OK
+  Defining Predicate: RemainOnTeamAllSemester with arity 1
+    Inferred signature: ['Item'] -> Bool
+AthleticCertificate(x)
+AthleticCertificate
+PREDICATE_OK
+  Defining Predicate: AthleticCertificate with arity 1
+    Inferred signature: ['Item'] -> Bool
+BasketballTeam(Rillance)
+BasketballTeam
+PREDICATE_OK
+AthleticCertificate(Rillance)
+AthleticCertificate
+PREDICATE_OK
+ScoreFinalExam(Rillance) = 85
+ScoreFinalExam(Rillance)
+ScoreFinalExam
+PREDICATE_OK
+IAM HERE
+
+--- Processing Record 26 ---
+∀x∀y(Studies(x, y, ≥10) → Knowledge(x, y))
+∀y(Studies(x, y, ≥10) → Knowledge(x, y))
+Studies(x, y, ≥10) → Knowledge(x, y)
+PARTS
+Studies(x, y, ≥10)
+Studies
+PREDICATE_OK
+  Defining Predicate: Studies with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+Knowledge(x, y)
+Knowledge
+PREDICATE_OK
+  Defining Predicate: Knowledge with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀y(Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y)))
+∀y(Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y)))
+Knowledge(x, y) → (ExamPass(x, y) ∨ Project(x, y))
+PARTS
+Knowledge(x, y)
+Knowledge
+PREDICATE_OK
+ExamPass(x, y) ∨ Project(x, y)
+PARTS
+ExamPass(x, y)
+ExamPass
+PREDICATE_OK
+  Defining Predicate: ExamPass with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Project(x, y)
+Project
+PREDICATE_OK
+  Defining Predicate: Project with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀y(¬Project(x, y) → ExamTake(x, y))
+∀y(¬Project(x, y) → ExamTake(x, y))
+¬Project(x, y) → ExamTake(x, y)
+PARTS
+¬Project(x, y)
+Project
+PREDICATE_OK
+ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+  Defining Predicate: ExamTake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀y(RequiresExam(y) → (ProfessorPrepares(y) ∨ SystemGenerates(y)))
+RequiresExam(y) → (ProfessorPrepares(y) ∨ SystemGenerates(y))
+PARTS
+RequiresExam(y)
+RequiresExam
+PREDICATE_OK
+  Defining Predicate: RequiresExam with arity 1
+    Inferred signature: ['Item'] -> Bool
+ProfessorPrepares(y) ∨ SystemGenerates(y)
+PARTS
+ProfessorPrepares(y)
+ProfessorPrepares
+PREDICATE_OK
+  Defining Predicate: ProfessorPrepares with arity 1
+    Inferred signature: ['Item'] -> Bool
+SystemGenerates(y)
+SystemGenerates
+PREDICATE_OK
+  Defining Predicate: SystemGenerates with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y(Studies(x, y, <10) → ExamTake(x, y))
+∀y(Studies(x, y, <10) → ExamTake(x, y))
+Studies(x, y, <10) → ExamTake(x, y)
+PARTS
+Studies(x, y, <10)
+Studies
+PREDICATE_OK
+ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+∀x(PassesSubjects(x, ≥3) → Scholarship(x))
+PassesSubjects(x, ≥3) → Scholarship(x)
+PARTS
+PassesSubjects(x, ≥3)
+PassesSubjects
+PREDICATE_OK
+  Defining Predicate: PassesSubjects with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Scholarship(x)
+Scholarship
+PREDICATE_OK
+  Defining Predicate: Scholarship with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y(Studies(x, y, ≥15) → ¬ExamTake(x, y))
+∀y(Studies(x, y, ≥15) → ¬ExamTake(x, y))
+Studies(x, y, ≥15) → ¬ExamTake(x, y)
+PARTS
+Studies(x, y, ≥15)
+Studies
+PREDICATE_OK
+¬ExamTake(x, y)
+ExamTake
+PREDICATE_OK
+∀x(KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)) → ExamTakeThree(x)
+(KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)) → ExamTakeThree(x)
+PARTS
+KnowledgeThreeSubjects(x) ∧ ¬ProjectAny(x)
+PARTS
+KnowledgeThreeSubjects(x)
+KnowledgeThreeSubjects
+PREDICATE_OK
+  Defining Predicate: KnowledgeThreeSubjects with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬ProjectAny(x)
+ProjectAny
+PREDICATE_OK
+  Defining Predicate: ProjectAny with arity 1
+    Inferred signature: ['Item'] -> Bool
+ExamTakeThree(x)
+ExamTakeThree
+PREDICATE_OK
+  Defining Predicate: ExamTakeThree with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀y(Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y)
+∀y(Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y)
+(Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)) → Assessment(x, y)
+PARTS
+Studies(x, y, <10) ∧ Project(x, y) ∧ ProfessorRequires(y)
+PARTS
+Studies(x, y, <10)
+Studies
+PREDICATE_OK
+Project(x, y)
+Project
+PREDICATE_OK
+ProfessorRequires(y)
+ProfessorRequires
+PREDICATE_OK
+  Defining Predicate: ProfessorRequires with arity 1
+    Inferred signature: ['Item'] -> Bool
+Assessment(x, y)
+Assessment
+PREDICATE_OK
+  Defining Predicate: Assessment with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+
+--- Processing Record 27 ---
+∀x(Graduate(x) → Credits(x, ≥150))
+Graduate(x) → Credits(x, ≥150)
+PARTS
+Graduate(x)
+Graduate
+PREDICATE_OK
+  Defining Predicate: Graduate with arity 1
+    Inferred signature: ['Item'] -> Bool
+Credits(x, ≥150)
+Credits
+PREDICATE_OK
+  Defining Predicate: Credits with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀c(CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x)))
+∀c(CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x)))
+CoreCourse(c) ∧ Fails(x, c) → (Retake(x, c) ∧ Passes(x, c) → Graduate(x))
+PARTS
+CoreCourse(c)
+CoreCourse
+PREDICATE_OK
+  Defining Predicate: CoreCourse with arity 1
+    Inferred signature: ['Item'] -> Bool
+Fails(x, c)
+Fails
+PREDICATE_OK
+  Defining Predicate: Fails with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Retake(x, c) ∧ Passes(x, c) → Graduate(x)
+PARTS
+Retake(x, c)
+Retake
+PREDICATE_OK
+  Defining Predicate: Retake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Passes(x, c)
+Passes
+PREDICATE_OK
+  Defining Predicate: Passes with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Graduate(x)
+Graduate
+PREDICATE_OK
+∀x(Enroll(x, Capstone) → (Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods)))
+Enroll(x, Capstone) → (Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods))
+PARTS
+Enroll(x, Capstone)
+Enroll
+PREDICATE_OK
+  Defining Predicate: Enroll with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Completed(x, AdvAlgorithms) ∧ Completed(x, ResearchMethods)
+PARTS
+Completed(x, AdvAlgorithms)
+Completed
+PREDICATE_OK
+  Defining Predicate: Completed with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Completed(x, ResearchMethods)
+Completed
+PREDICATE_OK
+∀x(Completed(x, AdvAlgorithms) → (Passes(x, DataStructures) ∧ Passes(x, DiscreteMath)))
+Completed(x, AdvAlgorithms) → (Passes(x, DataStructures) ∧ Passes(x, DiscreteMath))
+PARTS
+Completed(x, AdvAlgorithms)
+Completed
+PREDICATE_OK
+Passes(x, DataStructures) ∧ Passes(x, DiscreteMath)
+PARTS
+Passes(x, DataStructures)
+Passes
+PREDICATE_OK
+Passes(x, DiscreteMath)
+Passes
+PREDICATE_OK
+∀x(CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)) → ApplyEarlyGraduation(x)
+(CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)) → ApplyEarlyGraduation(x)
+PARTS
+CreditsPerSemester(x, ≥12) ∧ GPA(x, ≥3.0)
+PARTS
+CreditsPerSemester(x, ≥12)
+CreditsPerSemester
+PREDICATE_OK
+  Defining Predicate: CreditsPerSemester with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+GPA(x, ≥3.0)
+GPA
+PREDICATE_OK
+  Defining Predicate: GPA with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+ApplyEarlyGraduation(x)
+ApplyEarlyGraduation
+PREDICATE_OK
+  Defining Predicate: ApplyEarlyGraduation with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x∀c(¬MeetsPrerequisites(x, c) → ¬Enroll(x, c))
+∀c(¬MeetsPrerequisites(x, c) → ¬Enroll(x, c))
+¬MeetsPrerequisites(x, c) → ¬Enroll(x, c)
+PARTS
+¬MeetsPrerequisites(x, c)
+MeetsPrerequisites
+PREDICATE_OK
+  Defining Predicate: MeetsPrerequisites with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Enroll(x, c)
+Enroll
+PREDICATE_OK
+∀x∀c(Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c)))
+∀c(Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c)))
+Fails(x, c) → (RetakeNext(x, c) ∨ Approval(x, c))
+PARTS
+Fails(x, c)
+Fails
+PREDICATE_OK
+RetakeNext(x, c) ∨ Approval(x, c)
+PARTS
+RetakeNext(x, c)
+RetakeNext
+PREDICATE_OK
+  Defining Predicate: RetakeNext with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Approval(x, c)
+Approval
+PREDICATE_OK
+  Defining Predicate: Approval with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x∀c(CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x))
+∀c(CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x))
+CoreCourse(c) ∧ DelaysRetake(x, c) ∧ ¬Approval(x, c) → ¬Graduate(x)
+PARTS
+CoreCourse(c)
+CoreCourse
+PREDICATE_OK
+DelaysRetake(x, c)
+DelaysRetake
+PREDICATE_OK
+  Defining Predicate: DelaysRetake with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬Approval(x, c)
+Approval
+PREDICATE_OK
+¬Graduate(x)
+Graduate
+PREDICATE_OK
+Credits(Nam, 138) ∧ Passes(Nam, DataStructures) ∧ ¬Passes(Nam, DiscreteMath)
+PARTS
+Credits(Nam, 138)
+Credits
+PREDICATE_OK
+Passes(Nam, DataStructures)
+Passes
+PREDICATE_OK
+¬Passes(Nam, DiscreteMath)
+Passes
+PREDICATE_OK
+CreditsPerSemester(Nam, 15) ∧ GPA(Nam, 3.2)
+PARTS
+CreditsPerSemester(Nam, 15)
+CreditsPerSemester
+PREDICATE_OK
+GPA(Nam, 3.2)
+GPA
+PREDICATE_OK
+CoreCourse(OperatingSystems) ∧ Fails(Nam, OperatingSystems) ∧ ¬Retake(Nam, OperatingSystems)
+PARTS
+CoreCourse(OperatingSystems)
+CoreCourse
+PREDICATE_OK
+Fails(Nam, OperatingSystems)
+Fails
+PREDICATE_OK
+¬Retake(Nam, OperatingSystems)
+Retake
+PREDICATE_OK
+
+--- Processing Record 28 ---
+∀x(Subject(x) → ContainsKnowledge(x))
+Subject(x) → ContainsKnowledge(x)
+PARTS
+Subject(x)
+Subject
+PREDICATE_OK
+  Defining Predicate: Subject with arity 1
+    Inferred signature: ['Item'] -> Bool
+ContainsKnowledge(x)
+ContainsKnowledge
+PREDICATE_OK
+  Defining Predicate: ContainsKnowledge with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s∀x(Knowledge(s, x) → Explain(s, x, Friends))
+∀x(Knowledge(s, x) → Explain(s, x, Friends))
+Knowledge(s, x) → Explain(s, x, Friends)
+PARTS
+Knowledge(s, x)
+Knowledge
+PREDICATE_OK
+Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+  Defining Predicate: Explain with arity 3
+    Inferred signature: ['Item', 'Item', 'Item'] -> Bool
+∀s∀x(Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x)
+∀x(Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x)
+(Explain(s, x, Friends) ∧ Understand(Friends, x)) → Mastered(s, x)
+PARTS
+Explain(s, x, Friends) ∧ Understand(Friends, x)
+PARTS
+Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+Understand(Friends, x)
+Understand
+PREDICATE_OK
+  Defining Predicate: Understand with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+  Defining Predicate: Mastered with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s∀x(Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x)))
+∀x(Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x)))
+Mastered(s, x) → (GradeA(s, x) ∨ GradeAPlus(s, x))
+PARTS
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+GradeA(s, x) ∨ GradeAPlus(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+  Defining Predicate: GradeA with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+GradeAPlus(s, x)
+GradeAPlus
+PREDICATE_OK
+  Defining Predicate: GradeAPlus with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀s(Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5) → Scholarship(s))
+Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5) → Scholarship(s)
+PARTS
+Count(GradeA(s, x) ∨ GradeAPlus(s, x), ≥5)
+GradeA(s, x) ∨ GradeAPlus(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+GradeAPlus(s, x)
+GradeAPlus
+PREDICATE_OK
+Count
+PREDICATE_OK
+  Defining Predicate: Count with arity 2
+    Inferred signature: ['Bool', 'Item'] -> Bool
+Scholarship(s)
+Scholarship
+PREDICATE_OK
+Count(GradeA(Tuan, x), 3)
+GradeA(Tuan, x)
+GradeA
+PREDICATE_OK
+Count
+PREDICATE_OK
+Count(GradeAPlus(Tuan, x), 0)
+GradeAPlus(Tuan, x)
+GradeAPlus
+PREDICATE_OK
+Count
+PREDICATE_OK
+∀s∀x(GradeA(s, x) → Mastered(s, x))
+∀x(GradeA(s, x) → Mastered(s, x))
+GradeA(s, x) → Mastered(s, x)
+PARTS
+GradeA(s, x)
+GradeA
+PREDICATE_OK
+Mastered(s, x)
+Mastered
+PREDICATE_OK
+∀x(¬Understand(Friends, x) → ¬Mastered(Tuan, x))
+¬Understand(Friends, x) → ¬Mastered(Tuan, x)
+PARTS
+¬Understand(Friends, x)
+Understand
+PREDICATE_OK
+¬Mastered(Tuan, x)
+Mastered
+PREDICATE_OK
+∀s∀x(¬Explain(s, x, Friends) → ¬Knowledge(s, x))
+∀x(¬Explain(s, x, Friends) → ¬Knowledge(s, x))
+¬Explain(s, x, Friends) → ¬Knowledge(s, x)
+PARTS
+¬Explain(s, x, Friends)
+Explain
+PREDICATE_OK
+¬Knowledge(s, x)
+Knowledge
+PREDICATE_OK
+
+--- Processing Record 29 ---
+∀x (S(x) → A(x))
+S(x) → A(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+  Defining Predicate: S with arity 1
+    Inferred signature: ['Item'] -> Bool
+A(x)
+A
+PREDICATE_OK
+  Defining Predicate: A with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (¬S(x) → ¬A(x))
+¬S(x) → ¬A(x)
+PARTS
+¬S(x)
+S
+PREDICATE_OK
+¬A(x)
+A
+PREDICATE_OK
+S(John)
+S
+PREDICATE_OK
+A(John)
+A
+PREDICATE_OK
+¬S(Sarah)
+S
+PREDICATE_OK
+∀x (S(x) ∧ A(x) → K(x))
+S(x) ∧ A(x) → K(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+A(x)
+A
+PREDICATE_OK
+K(x)
+K
+PREDICATE_OK
+  Defining Predicate: K with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀x (K(x) → F(x))
+K(x) → F(x)
+PARTS
+K(x)
+K
+PREDICATE_OK
+F(x)
+F
+PREDICATE_OK
+  Defining Predicate: F with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀c ∃n (MaxStudents(c, n))
+∃n (MaxStudents(c, n))
+MaxStudents(c, n)
+MaxStudents
+PREDICATE_OK
+  Defining Predicate: MaxStudents with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+∀x (S(x) ∧ M(x) > 3 → P(x))
+S(x) ∧ M(x) > 3 → P(x)
+PARTS
+S(x)
+S
+PREDICATE_OK
+M(x) > 3
+M(x)
+M
+PREDICATE_OK
+  Defining Predicate: M with arity 1
+    Inferred signature: ['Item'] -> Real
+IAM HERE
+P(x)
+P
+PREDICATE_OK
+  Defining Predicate: P with arity 1
+    Inferred signature: ['Item'] -> Bool
+M(John) = 0
+M(John)
+M
+PREDICATE_OK
+IAM HERE
+
+--- Processing Record 30 ---
+
+--- Processing Record 31 ---
+∀s (AllowedToEnterLab(s) ↔ (HasHealthInsurance(s) ∧ HasAccidentInsurance(s)))
+AllowedToEnterLab(s) ↔ (HasHealthInsurance(s) ∧ HasAccidentInsurance(s))
+PARTS
+AllowedToEnterLab(s)
+AllowedToEnterLab
+PREDICATE_OK
+  Defining Predicate: AllowedToEnterLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasHealthInsurance(s) ∧ HasAccidentInsurance(s)
+PARTS
+HasHealthInsurance(s)
+HasHealthInsurance
+PREDICATE_OK
+  Defining Predicate: HasHealthInsurance with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasAccidentInsurance(s)
+HasAccidentInsurance
+PREDICATE_OK
+  Defining Predicate: HasAccidentInsurance with arity 1
+    Inferred signature: ['Item'] -> Bool
+HasHealthInsurance(Lan)
+HasHealthInsurance
+PREDICATE_OK
+HasAccidentInsurance(Lan)
+HasAccidentInsurance
+PREDICATE_OK
+∀s ((LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent) → CanAccessLab(s))
+(LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent) → CanAccessLab(s)
+PARTS
+LabOpen(Weekdays, 9AM-5PM) ∧ ¬SpecialEvent
+PARTS
+LabOpen(Weekdays, 9AM-5PM)
+LabOpen
+PREDICATE_OK
+  Defining Predicate: LabOpen with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+¬SpecialEvent
+SpecialEvent
+PREDICATE_OK
+  Defining Predicate: SpecialEvent with arity 0
+CanAccessLab(s)
+CanAccessLab
+PREDICATE_OK
+  Defining Predicate: CanAccessLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+∀s (InLab(s) ∧ ¬VirtualLab → MustWearGoggles(s))
+InLab(s) ∧ ¬VirtualLab → MustWearGoggles(s)
+PARTS
+InLab(s)
+InLab
+PREDICATE_OK
+  Defining Predicate: InLab with arity 1
+    Inferred signature: ['Item'] -> Bool
+¬VirtualLab
+VirtualLab
+PREDICATE_OK
+  Defining Predicate: VirtualLab with arity 0
+MustWearGoggles(s)
+MustWearGoggles
+PREDICATE_OK
+  Defining Predicate: MustWearGoggles with arity 1
+    Inferred signature: ['Item'] -> Bool
+Enrolled(Lan, Chemistry101)
+Enrolled
+PREDICATE_OK
+  Defining Predicate: Enrolled with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+RequiresLabAccess(Chemistry101, Tuesdays)
+RequiresLabAccess
+PREDICATE_OK
+  Defining Predicate: RequiresLabAccess with arity 2
+    Inferred signature: ['Item', 'Item'] -> Bool
+HasHealthInsurance(Kai)
+HasHealthInsurance
+PREDICATE_OK
+¬HasAccidentInsurance(Kai)
+HasAccidentInsurance
+PREDICATE_OK

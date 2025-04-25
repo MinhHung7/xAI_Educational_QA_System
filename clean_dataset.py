@@ -21,6 +21,8 @@ def convert_fol_syntax(expr):
     Chuyển chuỗi ForAll(...) hoặc Exists(...) sang ∀... hoặc ∃...
     Ví dụ: ForAll(x, ForAll(d, P(x,d))) → ∀x∀d(P(x,d))
     """
+    # Xoá khoảng trắng giữa các dấu với mọi
+    expr = expr.replace(" ∀", "∀")
     # Thay tất cả dấu mũi tên bằng mũi tên
     expr = expr.replace("->", "→")
     # Thay tất cả dấu nháy đơn bằng khoảng trắng
@@ -45,6 +47,15 @@ def convert_fol_syntax(expr):
     expr = expr.replace("FORALL", "ForAll") 
     # Thay tất cả "EXISTS" bằng "Exists"
     expr = expr.replace("EXISTS", "Exists")
+
+
+    if ("):" in expr):
+        expr = expr.replace("):", ",")
+        expr = expr + ')'
+
+
+    ##########TEST###############
+    # expr = re.sub(r'(ForAll|Exists)\(([^()]+?)\):', r'\1(\2,', expr)
 
     quantifier_map = {
         'ForAll': '∀',
@@ -80,6 +91,8 @@ def convert_fol_syntax(expr):
         var_part = inside[:comma_index].strip()
         expr = inside[comma_index + 1:].strip()  # cập nhật expr cho vòng lặp tiếp theo
 
+
+
         # Nối các biến với kí hiệu định lượng
         variables = [v.strip() for v in var_part.split(',')]
         result += ''.join([symbol + v for v in variables])
@@ -100,26 +113,6 @@ def convert_fol_syntax(expr):
             result = result + ')'
 
     return result
-
-
-    # # pattern = r'(ForAll|Exists)\((\w+),\s*(.*)\)$'
-    # pattern = r'^(ForAll|Exists)\(([^)]+)\):?\s*(.+)$'
-    # variables = []
-    # while True:
-    #     match = re.match(pattern, expr)
-    #     if match:
-    #         print(match)
-    #         quantifier, var, inner = match.groups()
-    #         variables.append(quantifier_map[quantifier] + var)
-    #         expr = inner.strip()
-    #     else:
-    #         break
-    # # Chỉ đệ quy nếu phần còn lại cũng là ForAll(...) hoặc Exists(...) ở đầu chuỗi
-    # if re.match(pattern, expr):
-    #     expr = convert_fol_syntax(expr)
-
-    # ans = ''.join(variables) + f'({expr})'
-    # return ans
 
 # Đọc dữ liệu từ file train.json
 with open(r'datasets/train.json', 'r', encoding='utf-8') as f:

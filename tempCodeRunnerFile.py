@@ -1,1 +1,1 @@
-IAM HERE
+2M ≤ AccumulatedCredits(s) < 3M
