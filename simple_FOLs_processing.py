@@ -24,7 +24,7 @@ limiter = Limiter(
 
 load_dotenv()  # Ensure environment variables are loaded from .env file
 API_KEY = os.getenv("API_KEY")  # Read API_KEY from environment variables
-PORT = os.getenv("PORT")  # Read PORT from environment variables
+PORT = os.getenv("PORT") or 8000  # Read PORT from environment variables
 
 # Redirect stdout và stderr
 log_file = open('simple_FOLs_logs.txt', 'w', encoding='utf-8')
