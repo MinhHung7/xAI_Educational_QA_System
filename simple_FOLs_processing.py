@@ -513,13 +513,13 @@ def process_dataset(data):
     for i, record in enumerate(data):
         print(f"\n--- Processing Record {i} ---")
         processed_record = {
-            'original_index': record.get('id_sample'),
+            # 'original_index': record.get('id_sample'),
             'premises_nl': record.get('premises-NL', []),
-            'premises_fol_str': record.get('premises-FOL', []),
+            # 'premises_fol_str': record.get('premises-FOL', []),
             'questions_nl': record.get('questions', []),
-            'answers_gt': record.get('answers', []), # Ground Truth
-            'idx_gt': record.get('idx', []),
-            'explanation_gt': record.get('explanation', []),
+            # 'answers_gt': record.get('answers', []), # Ground Truth
+            # 'idx_gt': record.get('idx', []),
+            # 'explanation_gt': record.get('explanation', []),
             'z3_premises': [],
             'parsed_questions': []
         }
@@ -565,6 +565,36 @@ if __name__ == "__main__":
     # !!! THAY ĐỔI ĐƯỜNG DẪN NÀY !!!
     dataset_filepath = r'datasets/train.json' # Hoặc đường dẫn đầy đủ
 
+    item = {
+    "premises-NL": [
+        "If a Python code is well-tested, then the project is optimized.",
+        "If a Python code does not follow PEP 8 standards, then it is not well-tested.",
+        "All Python projects are easy to maintain.",
+        "All Python code is well-tested.",
+        "If a Python code follows PEP 8 standards, then it is easy to maintain.",
+        "There exists at least one Python project that has clean and readable code.",
+        "If a Python code is well-tested, then it follows PEP 8 standards.",
+        "If a Python project is not optimized, then it is not well-tested.",
+        "There exists at least one Python project that is well-structured.",
+        "If a Python project is well-structured, then it is optimized.",
+        "If being well-tested implies following PEP 8 standards, then all Python code is well-tested.",
+        "If being well-structured implies optimization, then if a Python project is not optimized, it is not welltested.",
+        "If a Python project is easy to maintain, then it is well-tested.",
+        "If a Python project is optimized, then it has clean and readable code.",
+        "All Python projects are well-structured.",
+        "All Python projects have clean and readable code.",
+        "There exists at least one Python project that follows best practices.",
+        "There exists at least one Python project that is optimized.",
+        "If a Python project is not well-structured, then it does not follow PEP 8 standards."
+    ],
+    "questions": [
+        "Based on the above premises, which conclusion is correct?\nA. If a Python project is not optimized,
+        then it is not well-tested.\nB. If all Python projects are optimized, then all Python projects are wellstructured.\nC. If a Python project is well-tested, then it must be clean and readable.\nD. If a Python project is
+        not optimized, then it does not follow PEP 8 standards.",
+        "According to the above premises, is the following statement true?\nStatement: If all Python projects
+        are well-structured, then all Python projects are optimized."
+    ]
+}
 
     # Load data
     raw_data = load_json_dataset(dataset_filepath)
@@ -631,6 +661,9 @@ if __name__ == "__main__":
 
             print("\nKết quả tổng hợp:", dict(result_counts))
             print("Kết quả xảy ra nhiều nhất:", result_counts.most_common(1)[0])
+
+
+
 
     elif raw_data:
         print("Error: Expected dataset to be a JSON list of records.")
