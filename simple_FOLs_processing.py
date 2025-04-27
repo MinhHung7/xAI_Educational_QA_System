@@ -7,7 +7,24 @@ import sys
 from test_parts_split import split_top_level
 import regex
 from collections import Counter
+from flask import Flask, request, jsonify
+from dotenv import load_dotenv
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
+
+app = Flask(__name__)
+
+# Setup rate limiter
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,  # identify users by IP address
+    default_limits=["10 per second"]  # 10 requests per second
+)
+
+load_dotenv()  # Ensure environment variables are loaded from .env file
+API_KEY = os.getenv("API_KEY")  # Read API_KEY from environment variables
+PORT = os.getenv("PORT")  # Read PORT from environment variables
 
 # Redirect stdout và stderr
 log_file = open('simple_FOLs_logs.txt', 'w', encoding='utf-8')
@@ -495,106 +512,103 @@ def parse_fol_string_to_z3(fol_str):
     return None
 
 # --- 4. Hàm xử lý chính ---
-def process_dataset(data):
-    """
-    Xử lý toàn bộ dataset đã được load.
+# def process_dataset(data):
+#     """
+#     Xử lý toàn bộ dataset đã được load.
 
-    Args:
-        data (list): Danh sách các record từ file JSON.
+#     Args:
+#         data (list): Danh sách các record từ file JSON.
 
-    Returns:
-        list: Danh sách các record đã được xử lý, bổ sung thông tin Z3.
-    """
-    processed_records = []
-    premise_parse_errors = 0
-    total_premises = 0
-    total_questions = 0
+#     Returns:
+#         list: Danh sách các record đã được xử lý, bổ sung thông tin Z3.
+#     """
+#     processed_records = []
+#     premise_parse_errors = 0
+#     total_premises = 0
+#     total_questions = 0
 
-    for i, record in enumerate(data):
-        print(f"\n--- Processing Record {i} ---")
-        processed_record = {
-            # 'original_index': record.get('id_sample'),
-            'premises_nl': record.get('premises-NL', []),
-            # 'premises_fol_str': record.get('premises-FOL', []),
-            'questions_nl': record.get('questions', []),
-            # 'answers_gt': record.get('answers', []), # Ground Truth
-            # 'idx_gt': record.get('idx', []),
-            # 'explanation_gt': record.get('explanation', []),
-            'z3_premises': [],
-            'parsed_questions': []
-        }
+#     for i, record in enumerate(data):
+#         print(f"\n--- Processing Record {i} ---")
+#         processed_record = {
+#             # 'original_index': record.get('id_sample'),
+#             'premises_nl': record.get('premises-NL', []),
+#             # 'premises_fol_str': record.get('premises-FOL', []),
+#             'questions_nl': record.get('questions', []),
+#             # 'answers_gt': record.get('answers', []), # Ground Truth
+#             # 'idx_gt': record.get('idx', []),
+#             # 'explanation_gt': record.get('explanation', []),
+#             'z3_premises': [],
+#             'parsed_questions': []
+#         }
 
-        # Parse Premises
-        current_premise_errors = 0
-        for idx, fol_str in enumerate(processed_record['premises_fol_str']):
-            total_premises += 1
-            z3_premise = parse_fol_string_to_z3(fol_str)
-            if z3_premise is not None:
-                # Lưu cả biểu thức Z3 và chỉ số gốc (0-based)
-                processed_record['z3_premises'].append({'expr': z3_premise, 'original_index': idx})
-            else:
-                premise_parse_errors += 1
-                current_premise_errors += 1
+#         # Parse Premises
+#         current_premise_errors = 0
+#         for idx, fol_str in enumerate(processed_record['premises_fol_str']):
+#             total_premises += 1
+#             z3_premise = parse_fol_string_to_z3(fol_str)
+#             if z3_premise is not None:
+#                 # Lưu cả biểu thức Z3 và chỉ số gốc (0-based)
+#                 processed_record['z3_premises'].append({'expr': z3_premise, 'original_index': idx})
+#             else:
+#                 premise_parse_errors += 1
+#                 current_premise_errors += 1
         
-        for question_str in processed_record['questions_nl']:
-            z3_question = parse_fol_string_to_z3(question_str)
-            if z3_question is not None:
-                # Lưu cả câu hỏi Z3
-                processed_record['parsed_questions'].append({'ques': z3_question})
-            else:
-                print("Question Parse Error")
+#         for question_str in processed_record['questions_nl']:
+#             z3_question = parse_fol_string_to_z3(question_str)
+#             if z3_question is not None:
+#                 # Lưu cả câu hỏi Z3
+#                 processed_record['parsed_questions'].append({'ques': z3_question})
+#             else:
+#                 print("Question Parse Error")
 
-        if current_premise_errors > 0:
-             print(f"Record {i}: Encountered {current_premise_errors} premise parsing errors.")
+#         if current_premise_errors > 0:
+#              print(f"Record {i}: Encountered {current_premise_errors} premise parsing errors.")
 
-        processed_records.append(processed_record)
+#         processed_records.append(processed_record)
 
-    print("\n--- Processing Summary ---")
-    print(f"Total records processed: {len(data)}")
-    print(f"Total premises encountered: {total_premises}")
-    print(f"Premise parsing errors: {premise_parse_errors} ({premise_parse_errors/total_premises:.2%} errors)")
-    print(f"Total questions encountered: {total_questions}")
-    print(f"Total unique predicates identified: {len(predicate_cache)}")
-    print("Identified predicates:", list(predicate_cache.keys()))
+#     print("\n--- Processing Summary ---")
+#     print(f"Total records processed: {len(data)}")
+#     print(f"Total premises encountered: {total_premises}")
+#     print(f"Premise parsing errors: {premise_parse_errors} ({premise_parse_errors/total_premises:.2%} errors)")
+#     print(f"Total questions encountered: {total_questions}")
+#     print(f"Total unique predicates identified: {len(predicate_cache)}")
+#     print("Identified predicates:", list(predicate_cache.keys()))
 
 
-    return processed_records
+#     return processed_records
 
 # --- Chạy chương trình ---
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # !!! THAY ĐỔI ĐƯỜNG DẪN NÀY !!!
-    dataset_filepath = r'datasets/train.json' # Hoặc đường dẫn đầy đủ
+    # dataset_filepath = r'datasets/train.json' # Hoặc đường dẫn đầy đủ
 
-    item = {
-    "premises-NL": [
-        "If a Python code is well-tested, then the project is optimized.",
-        "If a Python code does not follow PEP 8 standards, then it is not well-tested.",
-        "All Python projects are easy to maintain.",
-        "All Python code is well-tested.",
-        "If a Python code follows PEP 8 standards, then it is easy to maintain.",
-        "There exists at least one Python project that has clean and readable code.",
-        "If a Python code is well-tested, then it follows PEP 8 standards.",
-        "If a Python project is not optimized, then it is not well-tested.",
-        "There exists at least one Python project that is well-structured.",
-        "If a Python project is well-structured, then it is optimized.",
-        "If being well-tested implies following PEP 8 standards, then all Python code is well-tested.",
-        "If being well-structured implies optimization, then if a Python project is not optimized, it is not welltested.",
-        "If a Python project is easy to maintain, then it is well-tested.",
-        "If a Python project is optimized, then it has clean and readable code.",
-        "All Python projects are well-structured.",
-        "All Python projects have clean and readable code.",
-        "There exists at least one Python project that follows best practices.",
-        "There exists at least one Python project that is optimized.",
-        "If a Python project is not well-structured, then it does not follow PEP 8 standards."
-    ],
-    "questions": [
-        "Based on the above premises, which conclusion is correct?\nA. If a Python project is not optimized,
-        then it is not well-tested.\nB. If all Python projects are optimized, then all Python projects are wellstructured.\nC. If a Python project is well-tested, then it must be clean and readable.\nD. If a Python project is
-        not optimized, then it does not follow PEP 8 standards.",
-        "According to the above premises, is the following statement true?\nStatement: If all Python projects
-        are well-structured, then all Python projects are optimized."
-    ]
-}
+#     item = {
+#     "premises-NL": [
+#         "If a Python code is well-tested, then the project is optimized.",
+#         "If a Python code does not follow PEP 8 standards, then it is not well-tested.",
+#         "All Python projects are easy to maintain.",
+#         "All Python code is well-tested.",
+#         "If a Python code follows PEP 8 standards, then it is easy to maintain.",
+#         "There exists at least one Python project that has clean and readable code.",
+#         "If a Python code is well-tested, then it follows PEP 8 standards.",
+#         "If a Python project is not optimized, then it is not well-tested.",
+#         "There exists at least one Python project that is well-structured.",
+#         "If a Python project is well-structured, then it is optimized.",
+#         "If being well-tested implies following PEP 8 standards, then all Python code is well-tested.",
+#         "If being well-structured implies optimization, then if a Python project is not optimized, it is not welltested.",
+#         "If a Python project is easy to maintain, then it is well-tested.",
+#         "If a Python project is optimized, then it has clean and readable code.",
+#         "All Python projects are well-structured.",
+#         "All Python projects have clean and readable code.",
+#         "There exists at least one Python project that follows best practices.",
+#         "There exists at least one Python project that is optimized.",
+#         "If a Python project is not well-structured, then it does not follow PEP 8 standards."
+#     ],
+#     "questions": [
+#         "Based on the above premises, which conclusion is correct?\nA. If a Python project is not optimized, then it is not well-tested.\nB. If all Python projects are optimized, then all Python projects are wellstructured.\nC. If a Python project is well-tested, then it must be clean and readable.\nD. If a Python project is not optimized, then it does not follow PEP 8 standards.",
+#         "According to the above premises, is the following statement true?\nStatement: If all Python projects are well-structured, then all Python projects are optimized."
+#     ]
+# }
 
     # Load data
     raw_data = load_json_dataset(dataset_filepath)
@@ -670,3 +684,113 @@ if __name__ == "__main__":
     else:
         print("Failed to load dataset.")
     log_file.close()
+
+
+def parse_nl_to_FOL(premises_nl):
+    return "∀x (WT(x) → O(x))"
+
+
+@app.route("/query", methods=["POST"])
+@limiter.limit("10 per second")  # extra layer if you want per-route
+def query():
+    auth_header = request.headers.get("Authorization")
+    if not auth_header or not auth_header.startswith("Bearer ") or auth_header.split(" ")[1] != API_KEY:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.json
+    premises_nl = data.get("premises-NL", [])
+    questions_nl = data.get("questions", [])
+    
+    answers = []
+    z3_premises = []
+    idx = []
+    explanations = []
+    premises_FOL = []
+    questions_FOL = []
+
+
+    for premise_NL in premises_nl:
+        premises_FOL.append(parse_nl_to_FOL(premise_NL))  # Model
+    # premises_FOL = [
+    #     "∀x (WT(x) → O(x))",
+    #     "∀x (¬PEP8(x) → ¬WT(x))",
+    #     "∀x (EM(x))",
+    #     "∀x (WT(x))",
+    # ]
+    
+    for premise in premises_FOL:
+        z3_premises.append(parse_fol_string_to_z3(premise))
+    
+    for question_nl in questions_nl:
+        questions_FOL.append(parse_nl_to_FOL(question_nl))  # Model
+
+
+    for q in questions_FOL:
+        z3_question = parse_fol_string_to_z3(q)
+
+        result_counts = Counter()
+
+        solver = z3.Solver()
+
+        # Gắn label cho từng premise
+        labels = []
+        num_premises = len(z3_premises)
+        for i, item in enumerate(reversed(z3_premises)):
+            label = z3.Bool(f"p{num_premises-i}")  # gán tên giả định
+            solver.assert_and_track(item, label)
+            labels.append(label)
+
+        # for i, item in enumerate(first_record['z3_premises']):
+        #     label = z3.Bool(f"p{i+1}")  # gán tên giả định
+        #     solver.assert_and_track(item['expr'], label)
+        #     labels.append(label)
+
+            solver.push()
+            solver.add(z3.Not(z3_question))
+            result = solver.check()
+
+            # In kết quả
+            if result == z3.unsat:
+                result_counts["YES"] += 1
+                used = solver.unsat_core()  # trả về danh sách các label đã dùng
+                print("Các giả định đã dùng:", used)
+                # Lấy chỉ số index tương ứng từ tên p0, p1, ...
+                used_indices = [int(str(label)[1:]) for label in used]
+                print("Vị trí trong premises_fol_str:", used_indices)
+                print("----")
+                for idx in used_indices:
+                    print(z3_premises[idx-1])
+            elif result == z3.sat:
+                result_counts["NO"] += 1
+            else:
+                # print("UNKNOW: Sophia does not qualify for the scholarship.")
+                result_counts["UNKNOWN"] += 1
+            solver.pop()
+
+        print("\nKết quả tổng hợp:", dict(result_counts))
+        print("Kết quả xảy ra nhiều nhất:", result_counts.most_common(1)[0])
+    
+    return jsonify({
+        "answers": [
+            "A",
+            "Yes"
+        ],
+        "idx": [
+            [
+                1
+            ],
+            [
+                7,
+                10
+            ]
+        ],
+        "explanation":  [
+            "Premise 1 states that if a Python project is well-tested, it is optimized. By logical contraposition, if a project is not optimized, it is not well-tested, supporting option A with the fewest premises. Option B is false because optimization does not imply well-structured projects. Option C follows from premises 4, 1, and 9 but requires more steps. Option D follows from premises 1 and 6 but is less direct than A.",
+            "Premise 10 confirms all Python projects are well-structured. Premise 7 states that well-structured projects are optimized, implying all projects are optimized, so the statement that well-structured projects imply optimized projects holds."
+        ]
+    })
+
+
+if __name__ == "__main__":
+    print("PORT:", PORT)
+    app.run(host="0.0.0.0", port=PORT)
